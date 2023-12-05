@@ -19,7 +19,7 @@ if os.path.exists('env.py'):
 CLOUDINARY_STORAGE = {
     'CLOUDINARY_URL': os.environ.get('CLOUDINARY_URL')
 }
-MEDIA_URL = '/media'
+MEDIA_URL = 'media/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -35,7 +35,11 @@ SECRET_KEY = 'django-insecure-^gnao!&s-_5l!0j19#7evugg@wy2l9_@p5txsn52_*)xy%aqi=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '8000-soroushgreza-myplans-q1a4wfppihu.ws-us106.gitpod.io',
+]
+
+CSRF_TRUSTED_ORIGINS = ['https://*.gitpod.io']
 
 
 # Application definition
