@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from .models import Account
 
-# Create your views here.
+class AccountList(APIView):
+    def get(self, request):
+        accounts = Account.objects.all()
+        return Response(accounts)
