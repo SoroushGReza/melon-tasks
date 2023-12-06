@@ -24,7 +24,8 @@ class TaskAPITests(APITestCase):
         Task.objects.create(
             owner=self.user,
             title='Test Task',
-            due_date=date.today()
+            due_date=date.today(),
+            is_public=True  # Make sure task is public
         )
 
         # Make a GET request to list tasks
@@ -41,7 +42,8 @@ class TaskAPITests(APITestCase):
             'title': 'New Task',
             'due_date': date.today().isoformat(),
             'category': 'work',
-            'priority': 'high'
+            'priority': 'high',
+            'is_public': True  # Specify the visibility of the task
         })
 
         # Assert that the response code is 201 Created,
@@ -63,8 +65,10 @@ class TaskAPITests(APITestCase):
         response = self.client.post(
             self.task_url,
             {'title': 'Another Task',
-             'due_date': date.today().isoformat()}
+             'due_date': date.today().isoformat(),
+             'is_public': True}
         )
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
 
 # ------------- END OF TDD TESTS -------------
