@@ -9,6 +9,7 @@ from django.contrib.auth import get_user_model
 from rest_framework import permissions, status
 from rest_framework.response import Response
 from rest_framework.generics import RetrieveUpdateDestroyAPIView
+from rest_framework import generics, filters
 
 
 User = get_user_model()
@@ -29,14 +30,27 @@ class UserRegistrationView(GenericAPIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class AccountList(APIView):
-    def get(self, request):
-        accounts = Account.objects.all()
-        serializer = AccountSerializer(
-            accounts, many=True,
-            context={'request': request}
-        )
-        return Response(serializer.data)
+class AccountList(generics.ListAPIView):
+    queryset = Account.objects.all()
+    serializer_class = AccountSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['owner__username']
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        search = self.request.query_params.get('search')
+        if search:
+            queryset = queryset.filter(owner__username__icontains=search)
+        return queryset
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        if 'search' in request.query_params and not queryset.exists():
+            return Response(
+                {"message": "User not found"},
+                status=status.HTTP_404_NOT_FOUND
+            )
+        return super().list(request, *args, **kwargs)
 
 
 class AccountDetail(RetrieveUpdateDestroyAPIView):
