@@ -28,6 +28,7 @@ class UserRegistrationView(GenericAPIView):
             }, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 class AccountList(APIView):
     def get(self, request):
         accounts = Account.objects.all()
