@@ -54,16 +54,22 @@ REST_AUTH_SERIALIZERS = {
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-^gnao!&s-_5l!0j19#7evugg@wy2l9_@p5txsn52_*)xy%aqi='
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 'DEBUG' in os.environ
 
 ALLOWED_HOSTS = [
     '8000-soroushgreza-myplans-q1a4wfppihu.ws-us106.gitpod.io',
+    os.environ('ALLOWED_HOST'),
+    'localhost',
 ]
 
 CSRF_TRUSTED_ORIGINS = ['https://*.gitpod.io']
+
+CORS_ALLOWED_ORIGINS = [
+    os.environ.get('CLIENT_ORIGIN')
+]
 
 
 # Application definition
@@ -86,6 +92,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
+    'corsheaders',
 
     'accounts',
     'tasks',
@@ -93,6 +100,7 @@ INSTALLED_APPS = [
 SITE_ID = 1
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
