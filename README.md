@@ -1,7 +1,7 @@
 
 # My Plans - Calender Application
 
-# Backend (Django REST Framework API)
+## Backend (Django REST Framework API)
 ## Overview
 This API is part of a calender application. It allows users register, login, logout, update/delete account, create tasks, organize tasks by filter, search for users, give other users permission to read and comment tasks. 
 
@@ -31,13 +31,19 @@ Run the commands as instructed below, to setup and install the app and it's requ
 &nbsp; `python3 manage.py runserver` <br><br>
 
 ## API Endpoints
-<div align="center">
+
 <img src="./images/my_plans_drf_api-endpoints.png" alt="endpoints" width="550" style="display-inline-block" />
 <img src="./images/accounts-endpoints.png" alt="endpoints" width="550" style="display-inline-block" />
 <img src="./images/tasks-endpoints.png" alt="endpoints" width="550" />
-</div>
+<br><br>
 
 # REMEMBER TO COMPRESS IMAGES LATER
 
-## 
+## Tests
+
+### TDD Tests
+
+
+
+
 
