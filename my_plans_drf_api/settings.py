@@ -44,7 +44,9 @@ if 'DEV' not in os.environ:
 
 REST_USE_JWT = True
 JWT_AUTH_SECURE = True
+JWT_AUTH_COOKIE = 'myapp-auth'
 JWT_AUTH_REFRESH_COOKIE = 'my-fresh-token'
+JWT_AUTH_SAMESITE = 'None'
 
 REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'my_plans_drf_api.serilizers.CurrentUserSerializer'
