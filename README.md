@@ -7,7 +7,7 @@ I choose to create the logo for the app, while knowing that 1 child dies every 1
 
 ![Logo description image](./frontend/src/assets/watermelon.png)
 
-### If you want to know all about why the watermelon became the symbol of the palestinian resistance, your can read about it in [THIS](https://www.businessinsider.com/why-watermelon-symbol-of-palestinian-resistance-2023-11?op=1) article. <br><br>
+If you want to know all about why the watermelon became the symbol of the palestinian resistance, your can read about it in [THIS](https://www.businessinsider.com/why-watermelon-symbol-of-palestinian-resistance-2023-11?op=1) article. <br><br>
 
 
 ## Credits:
