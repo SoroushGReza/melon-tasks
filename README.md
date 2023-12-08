@@ -1,19 +1,31 @@
+# <img src="./frontend/src/assets/logo.png" width="30" height="30"> My Plans - Calender Application
+## Overview
+This is a calender application, that allows you to signup and create tasks, to keep your days organized, and to make sure your not forgetting to buy a birthday gift for a loved one. You can also permit other user to be able to see see and comment your tasks. 
 
-# My Plans - Calender Application
+## Logo 
+I choose to create the logo for the app, while knowing that 1 child dies every 10 minutes in Gaza, by Israeli bombardment. The watermelon in the logo symbolizes the stand of solidarity with the palestinian people. <br>
+
+![Logo description image](./frontend/src/assets/watermelon.png)
+
+### If you want to know all about why the watermelon became the symbol of the palestinian resistance, your can read about it in [THIS](https://www.businessinsider.com/why-watermelon-symbol-of-palestinian-resistance-2023-11?op=1) article. <br><br>
+
+
+## Credits:
+Businessinsider <br><br>
 
 ## Backend (Django REST Framework API)
-## Overview
-This API is part of a calender application. It allows users register, login, logout, update/delete account, create tasks, organize tasks by filter, search for users, give other users permission to read and comment tasks. 
+## Back-end Overview
+This API is part of a calender application. It allows users register, login, logout, update/delete account, create tasks, organize tasks by filter, search for users, give other users permission to read and comment tasks.  <br><br>
 
 ## Feautures
 - **Accounts Managment**: Users can *register*, and manage their accounts.
-- **Tasks Managment**: Users can *create, update, view* and *delete* tasks. Tasks have *duedates*, *priorities*, *categories*, for better organisation. <br>
+- **Tasks Managment**: Users can *create, update, view* and *delete* tasks. Tasks have *duedates*, *priorities*, *categories*, for better organisation. <br><br>
 
 ## Technologies
 - Django REST Framework
 - Python
 - SQLite (for development)
-- PostgreSQL (ElephantSQL for production)
+- PostgreSQL (ElephantSQL for production) <br><br>
 
 ## Setup and Installation
 Run the commands as instructed below, to setup and install the app and it's requirements in a new workspace. <br>
@@ -38,6 +50,7 @@ Run the commands as instructed below, to setup and install the app and it's requ
 <br><br>
 
 # REMEMBER TO COMPRESS IMAGES LATER
+<br><br>
 
 ## Tests
 
