@@ -25,15 +25,15 @@ const NavBar = () => {
           </Form>
           <Nav className="ml-auto text-left">
             <Nav.Link>
-              <i class="fa-solid fa-right-to-bracket"></i>Sign in
+              <i className="fa-solid fa-right-to-bracket"></i>Sign in
             </Nav.Link>
             <Nav.Link>
-              <i class="fa-solid fa-user-plus"></i>Sign up
+              <i className="fa-solid fa-user-plus"></i>Sign up
             </Nav.Link>
             <NavDropdown
               title={
                 <>
-                  <i class="fa-solid fa-calendar-days">{""}</i>View
+                  <i className="fa-solid fa-calendar-days">{""}</i>View
                 </>
               }
               id="basic-nav-dropdown"
