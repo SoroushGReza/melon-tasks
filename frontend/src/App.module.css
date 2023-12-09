@@ -1,5 +1,40 @@
 .App {
     font-family: 'Noto Serif', serif;
-    background-color: aliceblue;
+    background-color: rgb(149, 207, 156);
     min-height: 100vh;
 }
+
+.Main {
+  padding-top: 81px;
+}
+
+* {
+    box-sizing: border-box;
+  }
+  
+  a {
+    color: #717171;
+    transition: color ease-in-out 0.3s;
+  }
+  
+  a:hover {
+    text-decoration: none;
+  }
+  
+  a:hover i {
+    color: #ad1d1d;
+    transition: color ease-in-out 0.3s;
+  }
+  
+  i {
+    color: #62b873da;
+    font-size: 1.6rem;
+    padding: 7px;
+    vertical-align: middle;
+  }
+  
+  i:hover {
+    cursor: pointer;
+    transition: color ease-in-out 0.3s;
+    color: #ad1d1d;
+  }
