@@ -49,7 +49,7 @@ JWT_AUTH_REFRESH_COOKIE = 'my-fresh-token'
 JWT_AUTH_SAMESITE = 'None'
 
 REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER': 'my_plans_drf_api.serilizers.CurrentUserSerializer'
+    'USER_DETAILS_SERIALIZER': 'my_plans_drf_api.serializers.CurrentUserSerializer'
 }
 
 # Quick-start development settings - unsuitable for production
@@ -106,7 +106,6 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'allauth.account.middleware.AccountMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
