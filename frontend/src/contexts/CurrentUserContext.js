@@ -21,11 +21,10 @@ export const CurrentUserProvider = ({ children }) => {
     } catch (err) {
       console.log(err);
     }
-  }, [history]); // history is the dependency here
-
+  }, [history]);
   useEffect(() => {
     handleMount();
-  }, [handleMount]); // handleMount is the dependency here
+  }, [handleMount]);
 
   useMemo(() => {
     axiosReq.interceptors.request.use(
