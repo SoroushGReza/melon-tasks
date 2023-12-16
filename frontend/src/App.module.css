@@ -9,10 +9,10 @@
 }
 
 .Content {
-  background-color: #ffffff;
+  background-color: #007a25;
   padding: 10px;
   border-radius: 2px;
-  border: 1px solid #dadadf;
+  border: 1px solid #00ff4d91;
 }
 
 .FillerImage {
@@ -85,3 +85,4 @@ figure {
 *::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
