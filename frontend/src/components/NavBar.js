@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Navbar,
   Container,
@@ -11,6 +11,7 @@ import {
 import logo from "../assets/logo.png";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
+import TaskForm from "./TaskForm";
 import {
   useCurrentUser,
   useSetCurrentUser,
@@ -20,6 +21,10 @@ import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 
 const NavBar = () => {
+  const [showTaskForm, setShowTaskForm] = useState(false);
+
+  const handleShowTaskForm = () => setShowTaskForm(true);
+  const handleCloseTaskForm = () => setShowTaskForm(false);
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
 
@@ -98,7 +103,11 @@ const NavBar = () => {
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
             <Button variant="outline-success">Search</Button>
           </Form>
-          {currentUser && addTaskIcon}
+          {currentUser && (
+            <Button onClick={handleShowTaskForm}>{addTaskIcon}</Button>
+          )}
+          <TaskForm show={showTaskForm} handleClose={handleCloseTaskForm} />
+
           <Nav className="ml-auto text-left">
             <NavLink
               exact
