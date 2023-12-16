@@ -32,16 +32,17 @@
 }
 
 a {
-  color: #555555;
+  color: #c0c0c0;
   transition: color ease-in-out 0.3s;
 }
 
 a:hover {
   text-decoration: none;
+  color: rgb(255, 0, 0);
 }
 
 a:hover i {
-  color: #2142b2;
+  color: #ad1d1d;
   transition: color ease-in-out 0.3s;
 }
 
@@ -50,7 +51,7 @@ input[type="file"] {
 }
 
 i {
-  color: #cfced3;
+  color: #b8b8b8;
   font-size: 1.6rem;
   padding: 7px;
   vertical-align: middle;
@@ -59,12 +60,16 @@ i {
 i:hover {
   cursor: pointer;
   transition: color ease-in-out 0.3s;
-  color: #2142b2;
+  color: #9d0000;
 }
 
 figure {
   text-align: center;
   display: inline-block;
+}
+
+.view-dropdown {
+  color: yellowgreen;
 }
 
 /* scrollbar */

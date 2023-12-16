@@ -1,5 +1,6 @@
 .NavBar {
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(0, 38, 6, 0.788);
+
     /* background-image: url(../assets/navbarbg.jpg); */
     border: 1px solid grey;
 }
@@ -9,5 +10,5 @@
 }
 
 .Active i {
-    color: #ad1d1d;
+    color: #ff3535;
 }
