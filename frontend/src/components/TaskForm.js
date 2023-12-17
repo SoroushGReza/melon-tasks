@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Modal, Form, Button } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import styles from "../styles/TaskForm.module.css";
 
 const TaskForm = ({ show, handleClose }) => {
   const [title, setTitle] = useState("");
@@ -10,6 +9,7 @@ const TaskForm = ({ show, handleClose }) => {
   const [status, setStatus] = useState("open");
   const [category, setCategory] = useState("other");
   const [priority, setPriority] = useState("medium");
+  const [isPublic, setIsPublic] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,10 +22,10 @@ const TaskForm = ({ show, handleClose }) => {
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
-          <Form.Group className={styles.formGroup}>
-            <Form.Label className={styles.formLabel}>Title</Form.Label>
+          <Form.Group className="mb-3">
+            <Form.Label>Title</Form.Label>
             <Form.Control
-              className={styles.formControl}
+              className="mb-3"
               type="text"
               placeholder="Enter task title"
               value={title}
@@ -77,6 +77,14 @@ const TaskForm = ({ show, handleClose }) => {
             <DatePicker
               selected={dueDate}
               onChange={(date) => setDueDate(date)}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Check
+              type="checkbox"
+              label="Make Public"
+              checked={isPublic}
+              onChange={(e) => setIsPublic(e.target.checked)}
             />
           </Form.Group>
 
