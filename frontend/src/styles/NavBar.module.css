@@ -1,9 +1,27 @@
 .NavBar {
     background-color: rgba(0, 38, 6, 0.788);
-
-    /* background-image: url(../assets/navbarbg.jpg); */
-    border: 1px solid grey;
+    position: fixed;
 }
+
+/* Navbar border bottom rainbow with watermelon colors */
+@keyframes rainbow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.NavBar::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(45deg, rgb(255, 0, 0), rgb(43, 255, 0),  rgba(0, 0, 0, 0.804));
+    background-size: 200% 200%;
+    animation: rainbow 10s linear infinite;
+}
+
 
 .NavLink {
     padding: 5px;
@@ -13,7 +31,7 @@
     color: #64ff35;
 }
 
-/* Create Task Knapp */
+/* Create Task Button */
 .CreateTaskButton {
     background-color: #e85038;
     color: rgb(255, 255, 255);
@@ -28,13 +46,12 @@
     background-color: #903123;
 }
 
+/* View dropdown */
 .viewText {
     color: #c0c0c0;
     font-size: inherit;
-  }
-  
-  /* Hover effect */
-  .NavBar .viewText:hover {
-    color: #64ff35; /* This is your hover color */
-  }
-  
+}
+
+.NavBar .viewText:hover {
+    color: #64ff35;
+}
