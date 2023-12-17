@@ -121,7 +121,8 @@ const NavBar = () => {
             <NavDropdown
               title={
                 <>
-                  <i className="fa-solid fa-calendar-days">{""}</i>View
+                  <i className="fa-solid fa-calendar-days">{""}</i>
+                  <span className={styles.viewText}>View</span>
                 </>
               }
               id="basic-nav-dropdown"

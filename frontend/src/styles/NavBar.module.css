@@ -10,7 +10,7 @@
 }
 
 .Active i {
-    color: #ff3535;
+    color: #64ff35;
 }
 
 /* Create Task Knapp */
@@ -27,3 +27,14 @@
 .CreateTaskButton:hover {
     background-color: #903123;
 }
+
+.viewText {
+    color: #c0c0c0;
+    font-size: inherit;
+  }
+  
+  /* Hover effect */
+  .NavBar .viewText:hover {
+    color: #64ff35; /* This is your hover color */
+  }
+  
