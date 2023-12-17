@@ -12,3 +12,18 @@
 .Active i {
     color: #ff3535;
 }
+
+/* Create Task Knapp */
+.CreateTaskButton {
+    background-color: #e85038;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+    padding-right: 8px;
+}
+
+.CreateTaskButton:hover {
+    background-color: #903123;
+}

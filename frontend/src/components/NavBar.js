@@ -40,14 +40,14 @@ const NavBar = () => {
   };
 
   const addTaskIcon = (
-    <NavLink
-      className={styles.NavLink}
-      activeClassName={styles.Active}
-      to="/tasks/create"
+    <div
+      className={`${styles.CreateTaskButton}`}
+      onClick={handleShowTaskForm}
     >
-      <i className="fa-solid fa-calendar-plus"></i>Create task
-    </NavLink>
+      <i className="fa-solid fa-calendar-plus"></i>Create task 
+    </div>
   );
+
   const loggedInIcons = (
     <>
       <NavLink className={styles.NavLink} to="/" onClick={handleSignout}>
@@ -61,6 +61,7 @@ const NavBar = () => {
       </NavLink>
     </>
   );
+
   const loggedOutIcons = (
     <>
       <NavLink
@@ -103,9 +104,8 @@ const NavBar = () => {
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
             <Button variant="outline-success">Search</Button>
           </Form>
-          {currentUser && (
-            <Button onClick={handleShowTaskForm}>{addTaskIcon}</Button>
-          )}
+          {currentUser && <div onClick={handleShowTaskForm}>{addTaskIcon}</div>}
+
           <TaskForm show={showTaskForm} handleClose={handleCloseTaskForm} />
 
           <Nav className="ml-auto text-left">
