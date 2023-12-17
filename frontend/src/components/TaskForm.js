@@ -6,9 +6,9 @@ import "react-datepicker/dist/react-datepicker.css";
 const TaskForm = ({ show, handleClose }) => {
   const [title, setTitle] = useState("");
   const [dueDate, setDueDate] = useState(new Date());
-  const [status, setStatus] = useState("open");
-  const [category, setCategory] = useState("other");
-  const [priority, setPriority] = useState("medium");
+  // const [status, setStatus] = useState("open");
+  // const [category, setCategory] = useState("other");
+  // const [priority, setPriority] = useState("medium");
 
   const handleSubmit = (e) => {
     e.preventDefault();
