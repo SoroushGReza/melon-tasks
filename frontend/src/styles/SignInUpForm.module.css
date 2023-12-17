@@ -28,10 +28,17 @@
     display: block;
     margin: auto;
     color: white;
+    font-size: 20px;
   }
   
   .Link span {
-    color: #0400ff;
+    color: #fff200;
+    font-size: 20px;
+  }
+
+  .Link span:hover {
+    color: #ffffff;
+    font-size: 20px;
   }
   
   .Container {
