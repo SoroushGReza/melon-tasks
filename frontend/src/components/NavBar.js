@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Navbar,
   Container,
@@ -11,7 +11,7 @@ import {
 import logo from "../assets/logo.png";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
-import TaskForm from "./TaskForm";
+import TaskCreateForm from "../pages/tasks/TaskCreateForm";
 import {
   useCurrentUser,
   useSetCurrentUser,
@@ -21,10 +21,6 @@ import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 
 const NavBar = () => {
-  const [showTaskForm, setShowTaskForm] = useState(false);
-
-  const handleShowTaskForm = () => setShowTaskForm(true);
-  const handleCloseTaskForm = () => setShowTaskForm(false);
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
 
@@ -40,12 +36,12 @@ const NavBar = () => {
   };
 
   const addTaskIcon = (
-    <div
+    <NavLink
       className={`${styles.CreateTaskButton}`}
-      onClick={handleShowTaskForm}
+      to="/tasks/create"
     >
-      <i className="fa-solid fa-calendar-plus"></i>Create task 
-    </div>
+      <i className="fa-solid fa-calendar-plus"></i>Create task
+    </NavLink>
   );
 
   const loggedInIcons = (
@@ -104,9 +100,8 @@ const NavBar = () => {
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
             <Button variant="outline-success">Search</Button>
           </Form>
-          {currentUser && <div onClick={handleShowTaskForm}>{addTaskIcon}</div>}
 
-          <TaskForm show={showTaskForm} handleClose={handleCloseTaskForm} />
+          {currentUser && addTaskIcon}
 
           <Nav className="ml-auto text-left">
             <NavLink
