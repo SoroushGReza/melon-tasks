@@ -23,16 +23,31 @@ function TaskCreateForm() {
     title: "",
     image: "",
     due_date: "",
+    is_overdue: false,
+    is_public: false,
+    priority: "medium",
+    category: "other",
+    status: "open",
   });
-  const { title, image, due_date } = taskData;
+  const {
+    title,
+    image,
+    due_date,
+    is_overdue,
+    is_public,
+    priority,
+    category,
+    status,
+  } = taskData;
 
   const imageInput = useRef(null);
   const history = useHistory();
 
   const handleChange = (event) => {
+    const { name, value, type, checked } = event.target;
     setTaskData({
       ...taskData,
-      [event.target.name]: event.target.value,
+      [name]: type === "checkbox" ? checked : value,
     });
   };
 
@@ -53,6 +68,11 @@ function TaskCreateForm() {
     formData.append("title", title);
     formData.append("image", imageInput.current.files[0]);
     formData.append("due_date", due_date);
+    formData.append("is_overdue", is_overdue);
+    formData.append("is_public", is_public);
+    formData.append("priority", priority);
+    formData.append("category", category);
+    formData.append("status", status);
 
     try {
       const { data } = await axiosReq.post("/tasks/", formData);
@@ -93,6 +113,67 @@ function TaskCreateForm() {
           {message}
         </Alert>
       ))}
+
+      <Form.Group>
+        <Form.Check
+          type="checkbox"
+          label="Is Overdue"
+          name="is_overdue"
+          checked={is_overdue}
+          onChange={handleChange}
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Check
+          type="checkbox"
+          label="Is Public"
+          name="is_public"
+          checked={is_public}
+          onChange={handleChange}
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Priority</Form.Label>
+        <Form.Control
+          as="select"
+          name="priority"
+          value={priority}
+          onChange={handleChange}
+        >
+          <option value="urgent">🔴 Urgent</option>
+          <option value="high">🟡 High Priority</option>
+          <option value="medium">🟢 Medium Priority</option>
+          <option value="low">🔵 Low Priority</option>
+        </Form.Control>
+      </Form.Group>
+
+      <Form.Group>
+        <Form.Label>Category</Form.Label>
+        <Form.Control
+          as="select"
+          name="category"
+          value={category}
+          onChange={handleChange}
+        >
+          <option value="work">Work</option>
+          <option value="personal">Personal</option>
+          <option value="other">Other</option>
+        </Form.Control>
+      </Form.Group>
+
+      <Form.Group>
+        <Form.Label>Status</Form.Label>
+        <Form.Control
+          as="select"
+          name="status"
+          value={status}
+          onChange={handleChange}
+        >
+          <option value="open">Open</option>
+          <option value="in_progress">In Progress</option>
+          <option value="done">Done</option>
+        </Form.Control>
+      </Form.Group>
 
       <Button
         className={`${btnStyles.Button} ${btnStyles.Blue}`}
