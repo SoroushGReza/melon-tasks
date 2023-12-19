@@ -7,6 +7,7 @@ import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import MyCalendar from "./components/MyCalendar";
 import TaskCreateForm from "./pages/tasks/TaskCreateForm";
+import TaskPage from "./pages/tasks/TaskPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route exact path="/signin" render={() => <SignInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
           <Route exact path="/tasks/create" render={() => <TaskCreateForm />} />
+          <Route exact path="/tasks/:id" render={() => <TaskPage />} />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>
