@@ -21,10 +21,10 @@ function TaskCreateForm() {
 
   const [taskData, setTaskData] = useState({
     title: "",
-    content: "",
     image: "",
+    due_date: "",
   });
-  const { title, content, image } = taskData;
+  const { title, image, due_date } = taskData;
 
   const imageInput = useRef(null);
   const history = useHistory();
@@ -51,8 +51,8 @@ function TaskCreateForm() {
     const formData = new FormData();
 
     formData.append("title", title);
-    formData.append("content", content);
     formData.append("image", imageInput.current.files[0]);
+    formData.append("due_date", due_date);
 
     try {
       const { data } = await axiosReq.post("/tasks/", formData);
@@ -75,12 +75,11 @@ function TaskCreateForm() {
         />
       </Form.Group>
       <Form.Group>
-        <Form.Label>Content</Form.Label>
+        <Form.Label>Due Date</Form.Label>
         <Form.Control
-          as="textarea"
-          rows={6}
-          name="content"
-          value={content}
+          type="date"
+          name="due_date"
+          value={due_date}
           onChange={handleChange}
         />
       </Form.Group>
