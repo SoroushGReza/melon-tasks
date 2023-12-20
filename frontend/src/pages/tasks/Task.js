@@ -2,8 +2,8 @@ import React from "react";
 import styles from "../../styles/Task.module.css";
 import Card from "react-bootstrap/Card";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import Media from 'react-bootstrap/Media';
-import { Link } from 'react-router-dom';
+import Media from "react-bootstrap/Media";
+import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 
 const Task = (props) => {
