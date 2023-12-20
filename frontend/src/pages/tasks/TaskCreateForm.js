@@ -33,11 +33,11 @@ function TaskCreateForm() {
     title,
     image,
     due_date,
-    is_overdue,
-    is_public,
     priority,
     category,
     status,
+    is_overdue,
+    is_public,
   } = taskData;
 
   const imageInput = useRef(null);
@@ -68,11 +68,11 @@ function TaskCreateForm() {
     formData.append("title", title);
     formData.append("image", imageInput.current.files[0]);
     formData.append("due_date", due_date);
-    formData.append("is_overdue", is_overdue);
-    formData.append("is_public", is_public);
     formData.append("priority", priority);
     formData.append("category", category);
     formData.append("status", status);
+    formData.append("is_overdue", is_overdue);
+    formData.append("is_public", is_public);
 
     try {
       const { data } = await axiosReq.post("/tasks/", formData);
@@ -115,24 +115,6 @@ function TaskCreateForm() {
       ))}
 
       <Form.Group>
-        <Form.Check
-          type="checkbox"
-          label="Is Overdue"
-          name="is_overdue"
-          checked={is_overdue}
-          onChange={handleChange}
-        />
-      </Form.Group>
-      <Form.Group>
-        <Form.Check
-          type="checkbox"
-          label="Is Public"
-          name="is_public"
-          checked={is_public}
-          onChange={handleChange}
-        />
-      </Form.Group>
-      <Form.Group>
         <Form.Label>Priority</Form.Label>
         <Form.Control
           as="select"
@@ -173,6 +155,24 @@ function TaskCreateForm() {
           <option value="in_progress">In Progress</option>
           <option value="done">Done</option>
         </Form.Control>
+      </Form.Group>
+      <Form.Group>
+        <Form.Check
+          type="checkbox"
+          label="Is Overdue"
+          name="is_overdue"
+          checked={is_overdue}
+          onChange={handleChange}
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Check
+          type="checkbox"
+          label="Is Public"
+          name="is_public"
+          checked={is_public}
+          onChange={handleChange}
+        />
       </Form.Group>
 
       <Button
