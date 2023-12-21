@@ -21,6 +21,7 @@ function TaskCreateForm() {
 
   const [taskData, setTaskData] = useState({
     title: "",
+    content: "",
     image: "",
     due_date: "",
     is_overdue: false,
@@ -31,6 +32,7 @@ function TaskCreateForm() {
   });
   const {
     title,
+    content,
     image,
     due_date,
     priority,
@@ -66,6 +68,7 @@ function TaskCreateForm() {
     const formData = new FormData();
 
     formData.append("title", title);
+    formData.append("content", content);
     formData.append("image", imageInput.current.files[0]);
     formData.append("due_date", due_date);
     formData.append("priority", priority);
@@ -95,6 +98,22 @@ function TaskCreateForm() {
         />
       </Form.Group>
       {errors?.title?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
+
+      <Form.Group>
+        <Form.Label>Content</Form.Label>
+        <Form.Control
+          as="textarea"
+          rows={3}
+          name="content"
+          value={content}
+          onChange={handleChange}
+        />
+      </Form.Group>
+      {errors?.content?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>
