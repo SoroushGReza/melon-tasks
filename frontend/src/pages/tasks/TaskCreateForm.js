@@ -82,7 +82,9 @@ function TaskCreateForm() {
 
     formData.append("title", title);
     formData.append("content", content);
-    formData.append("image", imageInput.current.files[0]);
+    if (imageInput.current && imageInput.current.files[0]) {
+      formData.append("image", imageInput.current.files[0]);
+    }
     formData.append("due_date", due_date);
     formData.append("priority", priority);
     formData.append("category", category);
@@ -227,11 +229,14 @@ function TaskCreateForm() {
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
           >
             <Form.Group className="text-center">
-              {image ? (
+              {image && (
                 <>
                   <figure>
-                    <Image className={appStyles.Image} src={image} rounded />
+                    {image && (
+                      <Image className={appStyles.Image} src={image} rounded />
+                    )}
                   </figure>
+
                   <div>
                     <Form.Label
                       className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
@@ -241,7 +246,8 @@ function TaskCreateForm() {
                     </Form.Label>
                   </div>
                 </>
-              ) : (
+              )}
+              {!image && (
                 <Form.Label
                   className="d-flex justify-content-center"
                   htmlFor="image-upload"
@@ -265,6 +271,7 @@ function TaskCreateForm() {
             <div className="d-md-none">{textFields}</div>
           </Container>
         </Col>
+
         <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
           <Container className={appStyles.Content}>{textFields}</Container>
         </Col>
