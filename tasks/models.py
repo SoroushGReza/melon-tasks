@@ -15,8 +15,7 @@ class Task(models.Model):
     content = models.TextField(max_length=3000)
     due_date = models.DateField()
     image = models.ImageField(
-        upload_to='task_images/', blank=True,
-        default='../image_seryuo'
+        upload_to='task_images/', blank=True
     )
     is_overdue = models.BooleanField(default=False)
     is_public = models.BooleanField(default=False)
