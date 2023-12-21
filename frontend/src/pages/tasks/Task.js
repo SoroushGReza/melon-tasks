@@ -12,6 +12,7 @@ const Task = (props) => {
     owner,
     account_id,
     account_image,
+    updated_at,
     title,
     image,
     due_date,
@@ -20,6 +21,7 @@ const Task = (props) => {
     status,
     is_overdue,
     is_public,
+    taskPage,
   } = props;
 
   const currentUser = useCurrentUser();
@@ -33,7 +35,19 @@ const Task = (props) => {
             <Avatar src={account_image} height={55} />
             {owner}
           </Link>
+          <div className="d-flex align-items-center">
+            <span>{updated_at}</span>
+            {is_owner && taskPage && "..."}
+          </div>
         </Media>
+      </Card.Body>
+      <Link to={`/posts/${id}`}>
+        <Card.Img src={image} alt={title} />
+      </Link>
+      <Card.Body>
+        {title && <Card.Title className="text-center">{title}</Card.Title>}
+        {/* Add content field in backend below later */}
+        {/* {content && <Card.Text>{content}</Card.Text>} */} 
       </Card.Body>
     </Card>
   );
