@@ -8,14 +8,23 @@ import SignInForm from "./pages/auth/SignInForm";
 import MyCalendar from "./components/MyCalendar";
 import TaskCreateForm from "./pages/tasks/TaskCreateForm";
 import TaskPage from "./pages/tasks/TaskPage";
+import TasksPage from "./pages/tasks/TasksPage";
+import { useCurrentUser } from "./contexts/CurrentUserContext";
 
 function App() {
+  const currentUser = useCurrentUser();
+  const accoun_id = currentUser?.accoun_id || "";
+
   return (
     <div className={styles.App}>
       <NavBar />
       <Container className={styles.Main}>
         <Switch>
         <Route exact path="/" render={() => <MyCalendar />} />
+        <Route exact path="/alltasks" render={() => (
+          <TasksPage mesage=" No results found. Try another keyword." />
+        )}
+        />
           <Route exact path="/signin" render={() => <SignInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
           <Route exact path="/tasks/create" render={() => <TaskCreateForm />} />
