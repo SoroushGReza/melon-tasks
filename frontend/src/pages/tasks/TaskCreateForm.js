@@ -65,6 +65,19 @@ function TaskCreateForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    let newErrors = {};
+
+    // Validation for required fields
+    if (!title.trim()) newErrors.title = ["This field is required."];
+    if (!content.trim()) newErrors.content = ["This field is required."];
+    if (!due_date.trim()) newErrors.due_date = ["This field is required."];
+
+    // If any issue, updated 'errors' and abort submission
+    if (Object.keys(newErrors).length) {
+      setErrors(newErrors);
+      return;
+    }
+
     const formData = new FormData();
 
     formData.append("title", title);
