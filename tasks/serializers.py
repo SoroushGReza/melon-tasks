@@ -40,6 +40,7 @@ class TaskSerializer(serializers.ModelSerializer):
             "created_at",
             "updated_at",
             "title",
+            "content",
             "due_date",
             "image",
             "is_overdue",
