@@ -24,7 +24,9 @@ class TaskListCreate(generics.ListCreateAPIView):
     ordering_fields = ['due_date', 'created_at']
 
     def get_queryset(self):
-        return Task.objects.all()
+        # Filter to only tasks owned by the logged in user
+        user = self.request.user
+        return Task.objects.filter(owner=user)
 
     def perform_create(self, serializer):
         task = serializer.save(owner=self.request.user)
