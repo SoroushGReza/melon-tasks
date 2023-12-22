@@ -44,6 +44,7 @@ function TasksPage({ message, filter = "" }) {
             ) : (
               <Container className={appStyles.Content}>
                 <Asset src={NoResults} message={message} />
+                <p>No tasks created yet</p>
               </Container>
             )}
           </>
