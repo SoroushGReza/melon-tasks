@@ -1,8 +1,9 @@
+import React, { useState, useEffect } from "react";
 import styles from "./App.module.css";
 import NavBar from "./components/NavBar";
 import Container from "react-bootstrap/Container";
 import { Route, Switch } from "react-router-dom";
-import "./api/axiosDefaults";
+import { axiosReq } from "./api/axiosDefaults";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import MyCalendar from "./components/MyCalendar";
@@ -13,18 +14,38 @@ import { useCurrentUser } from "./contexts/CurrentUserContext";
 
 function App() {
   const currentUser = useCurrentUser();
-  const accoun_id = currentUser?.accoun_id || "";
+  const account_id = currentUser?.account_id || "";
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      try {
+        const { data } = await axiosReq.get(`/tasks/?account_id=${account_id}`);
+        setTasks(data.results);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchTasks();
+  }, [account_id]);
 
   return (
     <div className={styles.App}>
       <NavBar />
       <Container className={styles.Main}>
         <Switch>
-        <Route exact path="/" render={() => <MyCalendar />} />
-        <Route exact path="/alltasks" render={() => (
-          <TasksPage mesage=" No results found. Try another keyword." />
-        )}
-        />
+          <Route exact path="/" render={() => <MyCalendar tasks={tasks} />} />
+          <Route
+            exact
+            path="/alltasks"
+            render={() => (
+              <TasksPage
+                message="No results found. Try another keyword."
+                setTasks={setTasks}
+                tasks={tasks}
+              />
+            )}
+          />
           <Route exact path="/signin" render={() => <SignInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
           <Route exact path="/tasks/create" render={() => <TaskCreateForm />} />
