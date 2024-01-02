@@ -19,11 +19,9 @@ class TaskSerializer(serializers.ModelSerializer):
 
     def __init__(self, *args, **kwargs):
         super(TaskSerializer, self).__init__(*args, **kwargs)
-        request = self.context.get('request', None)
-        if request and hasattr(request, "user"):
-            self.fields['permit_users'].queryset = User.objects.exclude(
-                username=request.user.username
-            )
+        # Make all fields optionnal
+        for field in self.fields:
+            self.fields[field].required = False
 
     def get_created_at(self, obj):
         return naturaltime(obj.created_at)
