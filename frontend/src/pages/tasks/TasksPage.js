@@ -12,6 +12,8 @@ import styles from "../../styles/TasksPage.module.css";
 import { useLocation } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import NoResults from "../../assets/no-results.png";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from "../../utils/utils";
 
 function TasksPage({ message, filter = "" }) {
   const [tasks, setTasks] = useState({ results: [] });
@@ -59,9 +61,15 @@ function TasksPage({ message, filter = "" }) {
         {hasLoaded ? (
           <>
             {tasks.results.length ? (
-              tasks.results.map((task) => (
-                <Post key={task.id} {...task} setTasks={setTasks} />
-              ))
+              <InfiniteScroll
+                children={tasks.results.map((task) => (
+                  <Post key={task.id} {...task} setTasks={setTasks} />
+                ))}
+                dataLength={tasks.results.length}
+                loader={<Asset spinner />}
+                hasMore={!!tasks.next}
+                next={() => fetchMoreData(tasks, setTasks)}
+              />
             ) : (
               <Container className={appStyles.Content}>
                 <Asset src={NoResults} message={message} />
