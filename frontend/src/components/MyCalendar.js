@@ -64,18 +64,41 @@ const MyCalendar = ({ tasks }) => {
       try {
         const formData = new FormData();
         Object.keys(taskData).forEach((key) => {
-          if (taskData[key] !== '') {
+          // Append only if the field has a value and it's not an empty string
+          // Exclude 'image' and 'permits_users' from this general rule
+          if (
+            taskData[key] !== "" &&
+            key !== "image" &&
+            key !== "permit_users"
+          ) {
             formData.append(key, taskData[key]);
+          }
+          if (key === "image" && taskData[key] instanceof File) {
+            formData.append(key, taskData[key]);
+          }
+          // Include 'permit_users' only if it's explicitly set and is a non-empty array
+          if (
+            key === "permit_users" &&
+            Array.isArray(taskData[key]) &&
+            taskData[key].length > 0
+          ) {
+            // Append each username in the 'permit_users' array
+            taskData[key].forEach((username) => {
+              formData.append("permit_users", username);
+            });
           }
         });
         await axiosReq.put(`/tasks/${selectedTask.id}/`, formData, {
           headers: {
-            'Content-Type': 'multipart/form-data',
+            "Content-Type": "multipart/form-data",
           },
         });
         setShowModal(false);
       } catch (err) {
-        console.log(err);
+        console.log("Error:", err);
+        if (err.response && err.response.data) {
+          console.log("Error data:", err.response.data);
+        }
       }
     } else {
       console.error("No task selected or task has no ID!");
@@ -115,7 +138,7 @@ const MyCalendar = ({ tasks }) => {
               <Form.Control
                 type="text"
                 name="title"
-                value={taskData.title || ''}
+                value={taskData.title || ""}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -125,7 +148,7 @@ const MyCalendar = ({ tasks }) => {
                 as="textarea"
                 rows={3}
                 name="content"
-                value={taskData.content || ''}
+                value={taskData.content || ""}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -134,19 +157,23 @@ const MyCalendar = ({ tasks }) => {
               <Form.Control
                 type="date"
                 name="due_date"
-                value={taskData.due_date || ''}
+                value={taskData.due_date || ""}
                 onChange={handleChange}
               />
             </Form.Group>
             <Form.Group>
               <Form.Label>Image</Form.Label>
-              <Form.Control
-                type="file"
-                name="image"
-                onChange={handleChange}
-              />
+              <Form.Control type="file" name="image" onChange={handleChange} />
               {taskData.image && (
-                <Image src={typeof taskData.image === 'string' ? taskData.image : URL.createObjectURL(taskData.image)} alt="Task" fluid />
+                <Image
+                  src={
+                    typeof taskData.image === "string"
+                      ? taskData.image
+                      : URL.createObjectURL(taskData.image)
+                  }
+                  alt="Task"
+                  fluid
+                />
               )}
             </Form.Group>
           </Modal.Body>
