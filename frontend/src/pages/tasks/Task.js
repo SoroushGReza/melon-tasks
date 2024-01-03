@@ -49,7 +49,7 @@ const Task = (props) => {
 
   return (
     <Card className={styles.Task}>
-      <Card.Body>
+      <Card.Body className={styles.TitleSection}>
         <Media className="align-items-center justify-content-between">
           {title && <Card.Title className="text-center">{title}</Card.Title>}
           <div className="d-flex align-items-center">
@@ -65,18 +65,16 @@ const Task = (props) => {
           </div>
         </Media>
       </Card.Body>
-      <Card.Body>
+      <Card.Body className={styles.ContentSection}>
         <Media className="align-items-center justify-content-between">
           <div className="d-flex align-items-center">{content}</div>
         </Media>
       </Card.Body>
-      <Link to={`/tasks/${id}`}>
+      <Link to={`/tasks/${id}`} className={styles.ImageSection}>
         <Card.Img src={image} alt={title} />
       </Link>
-      <Card.Body>
+      <Card.Body className={styles.FooterSection}>
         <span>Due date: {due_date}</span>
-        {/* Add content field in backend below later */}
-        {/* {content && <Card.Text>{content}</Card.Text>} */}
       </Card.Body>
     </Card>
   );

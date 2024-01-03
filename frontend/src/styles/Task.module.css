@@ -1,24 +1,33 @@
 .Task {
-    background-color: #ffffff;
-    border: 1px solid #dadadf;
-    border-radius: 2px;
-    margin-bottom: 16px;
-    text-align: center;
-  }
-  
-  .Task figure,
-  h5 {
-    margin: 0 0;
-  }
-  
-  .Heart {
-    color: #f85032;
-  }
-  
-  .Heart:hover {
-    color: #2142b2;
-  }
-  
-  .HeartOutline:hover {
-    color: #f85032;
-  }
+  border-radius: 2px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.Task figure,
+h5 {
+  margin: 0 0;
+}
+
+.TitleSection {
+  background-color: #000000;
+  color: #ffffff;
+  font-weight: bold;
+  font-family: 'Agbalumo';
+}
+
+.ContentSection {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.ImageSection {
+  background-color: white;
+}
+
+.FooterSection {
+  background-color: #000000;
+  color: #eeff00;
+  font-size: 100%;
+  font-weight: 400;
+}
