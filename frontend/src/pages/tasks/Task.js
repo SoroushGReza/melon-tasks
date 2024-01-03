@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "../../styles/Task.module.css";
 import Card from "react-bootstrap/Card";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import {
+  useCurrentUser,
+  CurrentUserContext,
+} from "../../contexts/CurrentUserContext";
+import { MoreDropdown } from "../../components/MoreDropdown";
 import Media from "react-bootstrap/Media";
 import { Link, useHistory } from "react-router-dom";
-import { MoreDropdown } from "../../components/MoreDropdown";
+import { axiosRes } from "../../api/axiosDefaults";
 
 const Task = (props) => {
   const {
@@ -24,12 +28,23 @@ const Task = (props) => {
     taskPage,
   } = props;
 
-  const currentUser = useCurrentUser();
+  const currentUser = useContext(CurrentUserContext);
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
 
   const handleEdit = () => {
     history.push(`/tasks/${id}/edit`);
+  };
+
+  const { removeTask } = props;
+
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/tasks/${id}/`);
+      removeTask();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -39,7 +54,14 @@ const Task = (props) => {
           {title && <Card.Title className="text-center">{title}</Card.Title>}
           <div className="d-flex align-items-center">
             <span>{updated_at}</span>
-            {is_owner && taskPage && <MoreDropdown handleEdit={handleEdit} />}
+            {is_owner && (
+              <Card.Body>
+                <MoreDropdown
+                  handleEdit={handleEdit}
+                  handleDelete={handleDelete}
+                />
+              </Card.Body>
+            )}
           </div>
         </Media>
       </Card.Body>
