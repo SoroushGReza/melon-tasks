@@ -36,16 +36,17 @@ const NavBar = () => {
   };
 
   const addTaskIcon = (
-    <NavLink
-      className={`${styles.CreateTaskButton}`}
-      to="/tasks/create"
-    >
+    <NavLink className={`${styles.CreateTaskButton}`} to="/tasks/create">
       <i className="fa-solid fa-calendar-plus"></i>Create task
     </NavLink>
   );
 
   const loggedInIcons = (
     <>
+      <NavLink className={styles.NavLink} to="/tasks">
+        <i className="fa-solid fa-list-check"></i>Tasks
+      </NavLink>
+
       <NavLink className={styles.NavLink} to="/" onClick={handleSignout}>
         <i className="fa-solid fa-right-from-bracket"></i>Sign out
       </NavLink>
