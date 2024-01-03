@@ -2,6 +2,12 @@
     display: inline-block;
     max-width: 50%;
     padding: 0px;
+    background-color: rgb(107, 107, 107);
+    border-radius: 10px;
+}
+
+.DropdownItem:hover {
+    background-color: rgb(151, 9, 9);
 }
 
 .Absolute {
@@ -9,3 +15,15 @@
     right: 0;
     z-index: 99;
 }
+
+.MoreDropdownIcon {
+    color: rgb(255, 255, 255);
+}
+
+.MoreDropdownIcon:hover {
+    color: rgb(6, 186, 0);
+}
+
+.CustomDropdownMenu {
+    background-color: transparent;
+  }
