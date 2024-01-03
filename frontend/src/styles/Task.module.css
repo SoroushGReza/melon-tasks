@@ -27,7 +27,17 @@ h5 {
 
 .FooterSection {
   background-color: #000000;
-  color: #eeff00;
+  color: #eeff00b0;
   font-size: 100%;
   font-weight: 400;
+}
+
+.TitleSection .taskTitle {
+  color: #699a68; 
+  font-size: 160%;
+}
+
+.TitleSection .creationDate {
+  color: #777;
+  font-family: 'Noto Serif', serif;
 }

@@ -51,9 +51,13 @@ const Task = (props) => {
     <Card className={styles.Task}>
       <Card.Body className={styles.TitleSection}>
         <Media className="align-items-center justify-content-between">
-          {title && <Card.Title className="text-center">{title}</Card.Title>}
+          {title && (
+            <Card.Title className={`text-center ${styles.taskTitle}`}>
+              {title}
+            </Card.Title>
+          )}
           <div className="d-flex align-items-center">
-            <span>{updated_at}</span>
+          <span className={styles.creationDate}>{updated_at}</span>
             {is_owner && (
               <Card.Body>
                 <MoreDropdown
