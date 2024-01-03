@@ -44,7 +44,7 @@ const Task = (props) => {
           </div>
         </Media>
       </Card.Body>
-      <Link to={`/posts/${id}`}>
+      <Link to={`/tasks/${id}`}>
         <Card.Img src={image} alt={title} />
       </Link>
       <Card.Body>
