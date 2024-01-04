@@ -135,7 +135,7 @@ function TaskEditForm() {
     formData.append("is_public", is_public);
 
     try {
-      const { data } = await axiosReq.post("/tasks/", formData);
+      const { data } = await axiosReq.put("/tasks/", formData);
       history.push(`/tasks/${data.id}`);
     } catch (err) {
       console.log(err);
