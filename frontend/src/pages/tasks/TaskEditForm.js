@@ -50,8 +50,8 @@ function TaskEditForm() {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(`/tasks/${id}/`);
-        // Now include is_owner in the destructured data
         const {
+          is_owner,
           title,
           content,
           image,
@@ -61,7 +61,6 @@ function TaskEditForm() {
           status,
           is_overdue,
           is_public,
-          is_owner, // Make sure this is included in the response from your API
         } = data;
 
         // Use is_owner to decide whether to set task data or redirect
@@ -78,14 +77,14 @@ function TaskEditForm() {
             is_public,
           });
         } else {
-          history.push("/"); // Redirect if not the owner
+          history.push("/"); // Redirect if not owner
         }
       } catch (err) {
         console.log(err);
       }
     };
     handleMount();
-  }, [history, id]); // include all dependencies
+  }, [history, id]);
 
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
@@ -109,11 +108,6 @@ function TaskEditForm() {
     event.preventDefault();
     let newErrors = {};
 
-    // Validation for required fields
-    if (!title.trim()) newErrors.title = ["This field is required."];
-    if (!content.trim()) newErrors.content = ["This field is required."];
-    if (!due_date.trim()) newErrors.due_date = ["This field is required."];
-
     // If any issue, updated 'errors' and abort submission
     if (Object.keys(newErrors).length) {
       setErrors(newErrors);
@@ -135,8 +129,8 @@ function TaskEditForm() {
     formData.append("is_public", is_public);
 
     try {
-      const { data } = await axiosReq.put("/tasks/", formData);
-      history.push(`/tasks/${data.id}`);
+      await axiosReq.put(`/tasks/${id}/`, formData);
+      history.push(`/tasks/${id}`);
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) setErrors(err.response?.data);
