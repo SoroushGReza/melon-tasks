@@ -45,6 +45,7 @@ function TaskEditForm() {
   const imageInput = useRef(null);
   const history = useHistory();
   const { id } = useParams();
+  const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
     const handleMount = async () => {
@@ -76,15 +77,23 @@ function TaskEditForm() {
             is_overdue,
             is_public,
           });
-        } else {
-          history.push("/"); // Redirect if not owner
         }
       } catch (err) {
         console.log(err);
       }
     };
-    handleMount();
-  }, [history, id]);
+
+    // Make a delay before making request
+    const timer = setTimeout(() => {
+      handleMount();
+    }, 1000); // Delay of 1 second
+
+    // Clean up the timer when the component is unmounted
+    // or if dependencies change
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [history, id]); // Ensure to include all dependencies used within the useEffect
 
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
@@ -144,7 +153,7 @@ function TaskEditForm() {
         <Form.Control
           type="text"
           name="title"
-          value={title}
+          value={taskData.title || ''}
           onChange={handleChange}
         />
       </Form.Group>
@@ -160,7 +169,7 @@ function TaskEditForm() {
           as="textarea"
           rows={3}
           name="content"
-          value={content}
+          value={taskData.content || ''}
           onChange={handleChange}
         />
       </Form.Group>
@@ -174,7 +183,7 @@ function TaskEditForm() {
         <Form.Control
           type="date"
           name="due_date"
-          value={due_date}
+          value={taskData.due_date || ''}
           onChange={handleChange}
         />
       </Form.Group>
@@ -189,7 +198,7 @@ function TaskEditForm() {
         <Form.Control
           as="select"
           name="priority"
-          value={priority}
+          value={taskData.priority || ''}
           onChange={handleChange}
         >
           <option value="urgent">🔴 Urgent</option>
@@ -204,7 +213,7 @@ function TaskEditForm() {
         <Form.Control
           as="select"
           name="category"
-          value={category}
+          value={taskData.category || ''}
           onChange={handleChange}
         >
           <option value="work">Work</option>
@@ -218,7 +227,7 @@ function TaskEditForm() {
         <Form.Control
           as="select"
           name="status"
-          value={status}
+          value={taskData.status || ''}
           onChange={handleChange}
         >
           <option value="open">Open</option>
@@ -231,7 +240,7 @@ function TaskEditForm() {
           type="checkbox"
           label="Is Overdue"
           name="is_overdue"
-          checked={is_overdue}
+          checked={taskData.is_overdue}
           onChange={handleChange}
         />
       </Form.Group>
@@ -240,7 +249,7 @@ function TaskEditForm() {
           type="checkbox"
           label="Is Public"
           name="is_public"
-          checked={is_public}
+          checked={taskData.is_public}
           onChange={handleChange}
         />
       </Form.Group>
