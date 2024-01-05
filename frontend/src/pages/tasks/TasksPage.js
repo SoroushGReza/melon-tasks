@@ -39,7 +39,6 @@ function TasksPage({ message, filter = "" }) {
     return () => {
       clearTimeout(timer);
     };
-    fetchTasks();
   }, [filter, query, pathname]);
 
   return (
