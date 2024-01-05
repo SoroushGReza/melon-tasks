@@ -102,10 +102,11 @@ function TaskCreateForm() {
   };
 
   const textFields = (
-    <div className="text-center">
-      <Form.Group>
+    <div className={styles.taskFormDiv}>
+      <Form.Group className={styles.formGroupCustom}>
         <Form.Label>Title</Form.Label>
         <Form.Control
+          className={styles.formPlaceholder}
           type="text"
           name="title"
           value={title}
@@ -121,6 +122,7 @@ function TaskCreateForm() {
       <Form.Group>
         <Form.Label>Content</Form.Label>
         <Form.Control
+          className={styles.formPlaceholder}
           as="textarea"
           rows={3}
           name="content"
@@ -136,6 +138,7 @@ function TaskCreateForm() {
       <Form.Group>
         <Form.Label>Due Date</Form.Label>
         <Form.Control
+          className={styles.formPlaceholder}
           type="date"
           name="due_date"
           value={due_date}
@@ -151,6 +154,7 @@ function TaskCreateForm() {
       <Form.Group>
         <Form.Label>Priority</Form.Label>
         <Form.Control
+          className={styles.formPlaceholder}
           as="select"
           name="priority"
           value={priority}
@@ -166,6 +170,7 @@ function TaskCreateForm() {
       <Form.Group>
         <Form.Label>Category</Form.Label>
         <Form.Control
+          className={styles.formPlaceholder}
           as="select"
           name="category"
           value={category}
@@ -180,6 +185,7 @@ function TaskCreateForm() {
       <Form.Group>
         <Form.Label>Status</Form.Label>
         <Form.Control
+          className={styles.formPlaceholder}
           as="select"
           name="status"
           value={status}
@@ -208,21 +214,19 @@ function TaskCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
-
-      <Button
-        className={`${btnStyles.Button} ${btnStyles.Blue}`}
-        onClick={() => history.goBack()}
-      >
-        cancel
-      </Button>
-      <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
-        create
-      </Button>
+      <div className="text-center">
+        <Button className={styles.closeButton} onClick={() => history.goBack()}>
+          cancel
+        </Button>
+        <Button className={styles.editButton} type="submit">
+          create
+        </Button>
+      </div>
     </div>
   );
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} className={styles.taskForm}>
       <Row>
         <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
           <Container

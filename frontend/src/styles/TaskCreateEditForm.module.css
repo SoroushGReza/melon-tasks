@@ -1,3 +1,67 @@
 .Container {
   min-height: 343px;
+  background-color: rgba(10, 78, 0, 0.354);
+  border: none;
+  color: rgb(255, 255, 255);
+  font-weight: bolder;
+}
+
+
+.taskForm {
+  padding: 20px;
+  background-color: #0000002b;
+  border-radius: 10px;
+}
+
+
+/* Close button */
+.closeButton {
+  background-color: #686868; 
+  color: white;
+  border: none;
+  margin: 5px;
+}
+
+.closeButton:hover {
+  background-color: #7d7d7d; 
+  color: rgb(24, 210, 0);
+  border: none;
+}
+
+/* Edit Task button */
+.editButton {
+  background-color: #740000;
+  color: white;
+  border: none;
+  margin: 5px;
+}
+
+.editButton:hover {
+  background-color: #8a0000;
+  color: rgb(24, 210, 0);
+  border: none;
+}
+
+/* Form Group elements */
+.formGroupCustom {
+  background-color: #003b003a;
+  margin-bottom: 15px; 
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+/* Div element */
+.taskFormDiv {
+  background-color: #003504; 
+  font-weight: bold;
+  color: white;
+  padding: 20px; 
+  border-radius: 5px; 
+}
+
+/* Form Control elements */
+.formPlaceholder {
+  background-color: rgba(120, 120, 120, 0.699);
+  color: white;
 }
