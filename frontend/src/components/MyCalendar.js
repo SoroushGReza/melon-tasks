@@ -45,11 +45,15 @@ const MyCalendar = ({ tasks }) => {
         eventClick={handleEventClick}
       />
 
-      <Modal show={showModal} onHide={() => setShowModal(false)}>
-        <Modal.Header closeButton>
+      <Modal
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        className={styles.calendarModal}
+      >
+        <Modal.Header closeButton className={styles.calendarModalHeader}>
           <Modal.Title>Task Details</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className={styles.calendarModalBody}>
           {selectedTask && (
             <>
               <p>
@@ -89,11 +93,19 @@ const MyCalendar = ({ tasks }) => {
             </>
           )}
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowModal(false)}>
+        <Modal.Footer className={styles.calendarModalFooter}>
+          <Button
+            variant="secondary"
+            onClick={() => setShowModal(false)}
+            className={styles.closeButton}
+          >
             Close
           </Button>
-          <Button variant="primary" onClick={handleEditRedirect}>
+          <Button
+            variant="primary"
+            onClick={handleEditRedirect}
+            className={styles.editButton}
+          >
             Edit Task
           </Button>
         </Modal.Footer>

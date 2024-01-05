@@ -43,3 +43,70 @@
   border-color: white;
   color: white;
 }
+
+/* Modal */
+
+.calendarModal {
+  background-color: transparent;
+}
+
+.calendarModalHeader {
+  background-color: #005205;
+  color: #ffffff;
+  font-weight: bold;
+  font-family: 'Agbalumo';
+  border-bottom: none;
+}
+
+.calendarModalBody {
+  background-color: #002809;
+}
+
+.calendarModalFooter {
+  background-color: #000000;
+  color: #ffffff;
+  border-top: none;
+}
+
+/* Paragraphs in modal body */
+.calendarModalBody p {
+  color: #d3d3d3; 
+  margin-bottom: 2px;
+  font-size: 90%;
+}
+
+/* Strong text in modal body */
+.calendarModalBody strong {
+  color: #c49600; 
+  font-weight: bold;
+  font-family: 'Noto Serif', serif;
+  font-size: 100%;
+  margin-bottom: 2px;
+}
+
+/* Close button */
+.closeButton {
+  background-color: #686868; 
+  color: white;
+  border: none;
+}
+
+.closeButton:hover {
+  background-color: #7d7d7d; 
+  color: rgb(24, 210, 0);
+  border: none;
+}
+
+/* Edit Task button */
+.editButton {
+  background-color: #740000;
+  color: white;
+  border: none;
+}
+
+.editButton:hover {
+  background-color: #8a0000;
+  color: rgb(24, 210, 0);
+  border: none;
+}
+
