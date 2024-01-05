@@ -65,3 +65,14 @@
   background-color: rgba(120, 120, 120, 0.699);
   color: white;
 }
+
+
+.changeImgBtn {
+  background-color: #610000;
+  color: rgb(255, 255, 255);
+}
+
+.changeImgBtn:hover {
+  background-color: rgb(43, 0, 0);
+  color: #00ac0e;
+}

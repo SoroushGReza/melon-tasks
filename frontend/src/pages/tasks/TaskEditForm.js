@@ -12,7 +12,6 @@ import Upload from "../../assets/upload.png";
 
 import styles from "../../styles/TaskCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
-import btnStyles from "../../styles/Button.module.css";
 import { useHistory, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 
@@ -61,7 +60,6 @@ function TaskEditForm() {
 
     fetchTaskData();
   }, [id]); // Re-run when id changes
-
 
   if (!hasLoaded) {
     return (
@@ -130,10 +128,11 @@ function TaskEditForm() {
   };
 
   const textFields = (
-    <div className="text-center">
-      <Form.Group>
+    <div className={styles.taskFormDiv}>
+      <Form.Group className={styles.formGroupCustom}>
         <Form.Label>Title</Form.Label>
         <Form.Control
+          className={styles.formPlaceholder}
           type="text"
           name="title"
           value={taskData.title || ""}
@@ -146,9 +145,10 @@ function TaskEditForm() {
         </Alert>
       ))}
 
-      <Form.Group>
+      <Form.Group className={styles.formGroupCustom}>
         <Form.Label>Content</Form.Label>
         <Form.Control
+          className={styles.formPlaceholder}
           as="textarea"
           rows={3}
           name="content"
@@ -161,9 +161,10 @@ function TaskEditForm() {
           {message}
         </Alert>
       ))}
-      <Form.Group>
+      <Form.Group className={styles.formGroupCustom}>
         <Form.Label>Due Date</Form.Label>
         <Form.Control
+          className={styles.formPlaceholder}
           type="date"
           name="due_date"
           value={taskData.due_date || ""}
@@ -176,9 +177,10 @@ function TaskEditForm() {
         </Alert>
       ))}
 
-      <Form.Group>
+      <Form.Group className={styles.formGroupCustom}>
         <Form.Label>Priority</Form.Label>
         <Form.Control
+          className={styles.formPlaceholder}
           as="select"
           name="priority"
           value={taskData.priority || ""}
@@ -191,9 +193,10 @@ function TaskEditForm() {
         </Form.Control>
       </Form.Group>
 
-      <Form.Group>
+      <Form.Group className={styles.formGroupCustom}>
         <Form.Label>Category</Form.Label>
         <Form.Control
+          className={styles.formPlaceholder}
           as="select"
           name="category"
           value={taskData.category || ""}
@@ -205,9 +208,10 @@ function TaskEditForm() {
         </Form.Control>
       </Form.Group>
 
-      <Form.Group>
+      <Form.Group className={styles.formGroupCustom}>
         <Form.Label>Status</Form.Label>
         <Form.Control
+          className={styles.formPlaceholder}
           as="select"
           name="status"
           value={taskData.status || ""}
@@ -218,7 +222,7 @@ function TaskEditForm() {
           <option value="done">Done</option>
         </Form.Control>
       </Form.Group>
-      <Form.Group>
+      <Form.Group className={styles.formGroupCustom}>
         <Form.Check
           type="checkbox"
           label="Is Overdue"
@@ -227,7 +231,7 @@ function TaskEditForm() {
           onChange={handleChange}
         />
       </Form.Group>
-      <Form.Group>
+      <Form.Group className={styles.formGroupCustom}>
         <Form.Check
           type="checkbox"
           label="Is Public"
@@ -237,20 +241,19 @@ function TaskEditForm() {
         />
       </Form.Group>
 
-      <Button
-        className={`${btnStyles.Button} ${btnStyles.Blue}`}
-        onClick={() => history.goBack()}
-      >
-        cancel
-      </Button>
-      <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
-        save
-      </Button>
+      <div className="text-center">
+        <Button className={styles.closeButton} onClick={() => history.goBack()}>
+          cancel
+        </Button>
+        <Button className={styles.editButton} type="submit">
+          save
+        </Button>
+      </div>
     </div>
   );
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} className={styles.taskForm}>
       <Row>
         <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
           <Container
@@ -267,7 +270,7 @@ function TaskEditForm() {
 
                   <div>
                     <Form.Label
-                      className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
+                      className={`${styles.changeImgBtn} btn`}
                       htmlFor="image-upload"
                     >
                       Change the image
