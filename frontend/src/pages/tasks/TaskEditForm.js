@@ -6,13 +6,13 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import { Alert, Image } from "react-bootstrap";
+import Asset from "../../components/Asset";
 
 import Upload from "../../assets/upload.png";
 
 import styles from "../../styles/TaskCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import Asset from "../../components/Asset";
 import { useHistory, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 
@@ -48,52 +48,35 @@ function TaskEditForm() {
   const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
-    const handleMount = async () => {
+    const fetchTaskData = async () => {
       try {
         const { data } = await axiosReq.get(`/tasks/${id}/`);
-        const {
-          is_owner,
-          title,
-          content,
-          image,
-          due_date,
-          priority,
-          category,
-          status,
-          is_overdue,
-          is_public,
-        } = data;
-
-        // Use is_owner to decide whether to set task data or redirect
-        if (is_owner) {
-          setTaskData({
-            title,
-            content,
-            image,
-            due_date,
-            priority,
-            category,
-            status,
-            is_overdue,
-            is_public,
-          });
-        }
+        setTaskData(data);
+        setHasLoaded(true); // Set hasLoaded to true after data is fetched
       } catch (err) {
-        console.log(err);
+        console.error("Failed to fetch task data:", err);
+        setHasLoaded(true); // Set hasLoaded to true even if there is an error
       }
     };
 
-    // Make a delay before making request
-    const timer = setTimeout(() => {
-      handleMount();
-    }, 1000); // Delay of 1 second
+    fetchTaskData();
+  }, [id]); // Re-run when id changes
 
-    // Clean up the timer when the component is unmounted
-    // or if dependencies change
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [history, id]); // Ensure to include all dependencies used within the useEffect
+
+  if (!hasLoaded) {
+    return (
+      <Container className={appStyles.Content}>
+        <Asset spinner />{" "}
+      </Container>
+    );
+  }
+  if (errors.form) {
+    return (
+      <Container className={appStyles.Content}>
+        <Alert variant="danger">{errors.form}</Alert>
+      </Container>
+    );
+  }
 
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
@@ -153,7 +136,7 @@ function TaskEditForm() {
         <Form.Control
           type="text"
           name="title"
-          value={taskData.title || ''}
+          value={taskData.title || ""}
           onChange={handleChange}
         />
       </Form.Group>
@@ -169,7 +152,7 @@ function TaskEditForm() {
           as="textarea"
           rows={3}
           name="content"
-          value={taskData.content || ''}
+          value={taskData.content || ""}
           onChange={handleChange}
         />
       </Form.Group>
@@ -183,7 +166,7 @@ function TaskEditForm() {
         <Form.Control
           type="date"
           name="due_date"
-          value={taskData.due_date || ''}
+          value={taskData.due_date || ""}
           onChange={handleChange}
         />
       </Form.Group>
@@ -198,7 +181,7 @@ function TaskEditForm() {
         <Form.Control
           as="select"
           name="priority"
-          value={taskData.priority || ''}
+          value={taskData.priority || ""}
           onChange={handleChange}
         >
           <option value="urgent">🔴 Urgent</option>
@@ -213,7 +196,7 @@ function TaskEditForm() {
         <Form.Control
           as="select"
           name="category"
-          value={taskData.category || ''}
+          value={taskData.category || ""}
           onChange={handleChange}
         >
           <option value="work">Work</option>
@@ -227,7 +210,7 @@ function TaskEditForm() {
         <Form.Control
           as="select"
           name="status"
-          value={taskData.status || ''}
+          value={taskData.status || ""}
           onChange={handleChange}
         >
           <option value="open">Open</option>
@@ -261,7 +244,7 @@ function TaskEditForm() {
         cancel
       </Button>
       <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
-        create
+        save
       </Button>
     </div>
   );
