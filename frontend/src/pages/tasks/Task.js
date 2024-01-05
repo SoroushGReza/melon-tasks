@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import styles from "../../styles/Task.module.css";
 import Card from "react-bootstrap/Card";
 import {
-  useCurrentUser,
   CurrentUserContext,
 } from "../../contexts/CurrentUserContext";
 import { MoreDropdown } from "../../components/MoreDropdown";
@@ -14,18 +13,11 @@ const Task = (props) => {
   const {
     id,
     owner,
-    account_id,
     updated_at,
     title,
     content,
     image,
     due_date,
-    priority,
-    category,
-    status,
-    is_overdue,
-    is_public,
-    taskPage,
   } = props;
 
   const currentUser = useContext(CurrentUserContext);
