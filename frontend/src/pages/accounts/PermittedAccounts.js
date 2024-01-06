@@ -4,6 +4,7 @@ import { Container } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Asset from "../../components/Asset";
+import Account from "./Account";
 
 const PermittedAccounts = ({ mobile }) => {
   const [accountData, setAccountData] = useState({
@@ -41,14 +42,16 @@ const PermittedAccounts = ({ mobile }) => {
         <>
           <p>Permitted users</p>
           {mobile ? (
-            <div className={`${styles.PermittedMobile} d-flex justify-content-center`}>
+            <div
+              className={`${styles.PermittedMobile} d-flex justify-content-center`}
+            >
               {permittedAccounts.results.slice(0, 4).map((account) => (
-                <p key={account.id}>{account.owner}</p>
+                <Account key={account.id} account={account} mobile />
               ))}
             </div>
           ) : (
             permittedAccounts.results.map((account) => (
-              <p key={account.id}>{account.owner}</p>
+              <Account key={account.id} account={account} />
             ))
           )}
         </>
