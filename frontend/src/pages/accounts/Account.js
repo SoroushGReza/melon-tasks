@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "../../styles/Account.module.css";
-import btnStyles from "../../styles/Button.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
@@ -30,14 +29,14 @@ const Account = (props) => {
           !is_owner &&
           (permit_users ? (
             <Button
-              className={`${btnStyles.Button} ${btnStyles.BlackOutline}`}
+              className={styles.UnauthorizeBtn}
               onClick={() => {}}
             >
               Unauthorize
             </Button>
           ) : (
             <Button
-              className={`${btnStyles.Button} ${btnStyles.Black}`}
+            className={styles.AuthorizeBtn}
               onClick={() => {}}
             >
               Authorize

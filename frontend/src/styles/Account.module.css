@@ -1,3 +1,29 @@
 .WordBreak {
     word-break: break-all;
 }
+
+.AuthorizeBtn {
+    background-color: rgb(7, 107, 0);
+    color: white;
+    border-radius: 20px;
+    padding: 4px;
+    font-size: 13px;
+    border: none;
+}
+
+.AuthorizeBtn:hover {
+    background-color: rgb(7, 103, 0);
+    color: rgb(143, 143, 143);
+    border-radius: 20px;
+    padding: 4px;
+    font-size: 13px;
+    border: none;
+}
+
+.UnauthorizeBtn {
+    background-color: rgb(178, 0, 0);
+    border-radius: 20px;
+    padding: 4px;
+    font-size: 13px;
+    border: none;
+}
