@@ -7,6 +7,7 @@ import appStyles from "../../App.module.css";
 import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Task from "./Task";
+import PermittedAccounts from "../accounts/PermittedAccounts";
 
 function TaskPage() {
   const { id } = useParams();
@@ -44,7 +45,7 @@ function TaskPage() {
         <Container className={appStyles.Content}>Comments</Container>
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
-        For later
+        <PermittedAccounts />
       </Col>
     </Row>
   );
