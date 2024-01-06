@@ -5,7 +5,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Asset from "../../components/Asset";
 
-const PermittedAccounts = () => {
+const PermittedAccounts = ({ mobile }) => {
   const [accountData, setAccountData] = useState({
     pageAccount: { results: [] },
     permittedAccounts: { results: [] },
@@ -32,13 +32,25 @@ const PermittedAccounts = () => {
   }, [currentUser]);
 
   return (
-    <Container className={styles.PermittedAccounts}>
+    <Container
+      className={`${styles.PermittedAccounts} ${
+        mobile && "d-lg-none text-center mb-3"
+      }`}
+    >
       {permittedAccounts.results.length ? (
         <>
           <p>Permitted users</p>
-          {permittedAccounts.results.map((account) => (
-            <p key={account.id}>{account.owner}</p>
-          ))}
+          {mobile ? (
+            <div className={`${styles.PermittedMobile} d-flex justify-content-center`}>
+              {permittedAccounts.results.slice(0, 4).map((account) => (
+                <p key={account.id}>{account.owner}</p>
+              ))}
+            </div>
+          ) : (
+            permittedAccounts.results.map((account) => (
+              <p key={account.id}>{account.owner}</p>
+            ))
+          )}
         </>
       ) : (
         <Asset spinner />
