@@ -1,24 +1,14 @@
 import React, { useContext } from "react";
 import styles from "../../styles/Task.module.css";
 import Card from "react-bootstrap/Card";
-import {
-  CurrentUserContext,
-} from "../../contexts/CurrentUserContext";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import Media from "react-bootstrap/Media";
 import { Link, useHistory } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
 
 const Task = (props) => {
-  const {
-    id,
-    owner,
-    updated_at,
-    title,
-    content,
-    image,
-    due_date,
-  } = props;
+  const { id, owner, updated_at, title, content, image, due_date } = props;
 
   const currentUser = useContext(CurrentUserContext);
   const is_owner = currentUser?.username === owner;
@@ -49,7 +39,7 @@ const Task = (props) => {
             </Card.Title>
           )}
           <div className="d-flex align-items-center">
-          <span className={styles.creationDate}>{updated_at}</span>
+            <span className={styles.creationDate}>{updated_at}</span>
             {is_owner && (
               <Card.Body>
                 <MoreDropdown
@@ -61,14 +51,14 @@ const Task = (props) => {
           </div>
         </Media>
       </Card.Body>
+      <Link to={`/tasks/${id}`} className={styles.ImageSection}>
+        <Card.Img src={image} alt={title} />
+      </Link>
       <Card.Body className={styles.ContentSection}>
         <Media className="align-items-center justify-content-between">
           <div className="d-flex align-items-center">{content}</div>
         </Media>
       </Card.Body>
-      <Link to={`/tasks/${id}`} className={styles.ImageSection}>
-        <Card.Img src={image} alt={title} />
-      </Link>
       <Card.Body className={styles.FooterSection}>
         <span>Due date: {due_date}</span>
       </Card.Body>
