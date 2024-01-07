@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Post from "./Task";
 import Asset from "../../components/Asset";
 
@@ -6,6 +6,7 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 import appStyles from "../../App.module.css";
 import styles from "../../styles/TasksPage.module.css";
@@ -20,19 +21,37 @@ function TasksPage({ message, filter = "" }) {
   const [tasks, setTasks] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
+  const currentUser = useContext(CurrentUserContext);
 
   const [query, setQuery] = useState("");
 
   useEffect(() => {
+    // const fetchTasks = async () => {
+    //   try {
+    //     const { data } = await axiosReq.get(`/tasks/?${filter}search=${query}`);
+    //     setTasks(data);
+    //     setHasLoaded(true);
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // };
     const fetchTasks = async () => {
       try {
-        const { data } = await axiosReq.get(`/tasks/?${filter}search=${query}`);
+        const username = currentUser?.username; // Make sure currentUser and username exist
+        if (!username) {
+          console.error("No logged-in user found!");
+          return; // Exit the function if no user is found
+        }
+        const { data } = await axiosReq.get(
+          `/tasks/?owner__username=${username}&${filter}search=${query}`
+        );
         setTasks(data);
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
       }
     };
+
     setHasLoaded(false);
     const timer = setTimeout(() => {
       fetchTasks();
@@ -40,7 +59,7 @@ function TasksPage({ message, filter = "" }) {
     return () => {
       clearTimeout(timer);
     };
-  }, [filter, query, pathname]);
+  }, [filter, query, pathname, currentUser]);
 
   return (
     <Row className="h-100">
