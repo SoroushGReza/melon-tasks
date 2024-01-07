@@ -18,19 +18,35 @@ from django.shortcuts import get_object_or_404
 class TaskListCreate(generics.ListCreateAPIView):
     serializer_class = TaskSerializer
     permission_classes = [IsAuthenticated]
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
-    filterset_fields = ['status', 'priority', 'category', 'owner', 'is_public']
-    search_fields = ['title', 'owner__username']
-    ordering_fields = ['due_date', 'created_at']
+    filter_backends = [
+        DjangoFilterBackend,
+        filters.SearchFilter,
+        filters.OrderingFilter,
+    ]
+    filterset_fields = ["status", "priority", "category", "owner", "is_public"]
+    search_fields = ["title", "owner__username"]
+    ordering_fields = ["due_date", "created_at"]
 
     def get_queryset(self):
-        # Filter to only tasks owned by the logged in user
-        user = self.request.user
-        return Task.objects.filter(owner=user)
+        # Filter to only tasks owned by the requested user and
+        # public tasks if the user is not the owner
+        requested_username = self.request.query_params.get("owner__username", None)
+        if requested_username:
+            if requested_username == self.request.user.username:
+                # If the current user is the owner, return all tasks
+                return Task.objects.filter(owner__username=requested_username)
+            else:
+                # If the current user is not the owner, return only public tasks of the owner
+                return Task.objects.filter(
+                    owner__username=requested_username, is_public=True
+                )
+        return (
+            Task.objects.none()
+        )  # Return an empty queryset by default if no username is provided
 
     def perform_create(self, serializer):
         task = serializer.save(owner=self.request.user)
-        permit_usernames = self.request.data.get('permit_users', [])
+        permit_usernames = self.request.data.get("permit_users", [])
         for username in permit_usernames:
             if username != self.request.user.username:
                 try:
@@ -55,27 +71,23 @@ class TaskDetail(APIView):
 
     def get(self, request, pk):
         task = self.get_object(pk)
-        serializer = TaskSerializer(task, context={'request': request})
+        serializer = TaskSerializer(task, context={"request": request})
         return Response(serializer.data)
 
     def put(self, request, pk):
         task = self.get_object(pk)
         serializer = TaskSerializer(
-            task, data=request.data, context={'request': request}
+            task, data=request.data, context={"request": request}
         )
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
-        return Response(
-            serializer.errors, status=status.HTTP_400_BAD_REQUEST
-        )
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk):
         task = self.get_object(pk)
         task.delete()
-        return Response(
-            status=status.HTTP_204_NO_CONTENT
-        )
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class UserSearchView(generics.ListAPIView):
@@ -83,11 +95,11 @@ class UserSearchView(generics.ListAPIView):
     serializer_class = UserSearchSerializer
     permission_classes = [IsAuthenticated]
     filter_backends = [SearchFilter]
-    search_fields = ['username']
+    search_fields = ["username"]
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        username = self.request.query_params.get('username', None)
+        username = self.request.query_params.get("username", None)
         if username is not None:
             queryset = queryset.filter(username__icontains=username)
         return queryset
@@ -95,9 +107,7 @@ class UserSearchView(generics.ListAPIView):
     def list(self, request, *args, **kwargs):
         response = super(UserSearchView, self).list(request, *args, **kwargs)
         if not response.data:
-            return Response(
-                {'User not found'}, status=status.HTTP_404_NOT_FOUND
-            )
+            return Response({"User not found"}, status=status.HTTP_404_NOT_FOUND)
         return response
 
 
@@ -107,12 +117,15 @@ class CommentListCreate(generics.ListCreateAPIView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        task_id = self.request.query_params.get('task_id')
+        task_id = self.request.query_params.get("task_id")
         if task_id:
             task = get_object_or_404(Task, pk=task_id)
             if task.is_public:
                 return queryset.filter(task=task)
-            elif self.request.user in task.permit_users.all() or self.request.user == task.owner:
+            elif (
+                self.request.user in task.permit_users.all()
+                or self.request.user == task.owner
+            ):
                 return queryset.filter(task=task)
             else:
                 raise PermissionDenied(
@@ -121,9 +134,13 @@ class CommentListCreate(generics.ListCreateAPIView):
         return queryset.none()
 
     def perform_create(self, serializer):
-        task_id = self.request.data.get('task')
+        task_id = self.request.data.get("task")
         task = get_object_or_404(Task, pk=task_id)
-        if task.is_public or self.request.user in task.permit_users.all() or self.request.user == task.owner:
+        if (
+            task.is_public
+            or self.request.user in task.permit_users.all()
+            or self.request.user == task.owner
+        ):
             serializer.save(author=self.request.user)
         else:
             raise PermissionDenied(
