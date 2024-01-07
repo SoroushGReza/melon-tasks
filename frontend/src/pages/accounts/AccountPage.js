@@ -38,14 +38,25 @@ function AccountPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [{ data: pageAccount }, { data: accountTasks }] =
-          await Promise.all([
-            axiosReq.get(`/accounts/${id}/`),
-            axiosReq.get(`/tasks/?owner__account=${id}`),
-          ]);
+        // Fetch the account details of the visited account
+        const { data: visitedAccount } = await axiosReq.get(`/accounts/${id}/`);
+
+        // Initialize the tasks URL to fetch tasks of the visited account
+        let tasksUrl = `/tasks/?owner__username=${visitedAccount.owner}`;
+
+        // If the current user is not the owner of the account being visited -
+        // ensure only public tasks are fetched
+        if (currentUser?.username !== visitedAccount.owner) {
+          tasksUrl += "&is_public=true";
+        }
+
+        // Fetch the tasks based on the construct URL
+        const { data: accountTasks } = await axiosReq.get(tasksUrl);
+
+        // Update state with the fetched data
         setAccountData((prevState) => ({
           ...prevState,
-          pageAccount: { results: [pageAccount] },
+          pageAccount: { results: [visitedAccount] },
         }));
         setAccountTasks(accountTasks);
         setHasLoaded(true);
@@ -53,8 +64,9 @@ function AccountPage() {
         console.log(err);
       }
     };
+
     fetchData();
-  }, [id, setAccountData]);
+  }, [id, setAccountData, currentUser]);
 
   const mainAccount = (
     <>
