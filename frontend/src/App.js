@@ -16,20 +16,29 @@ import AccountPage from "./pages/accounts/AccountPage";
 
 function App() {
   const currentUser = useCurrentUser();
-  const account_id = currentUser?.account_id || "";
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const { data } = await axiosReq.get(`/tasks/?account_id=${account_id}`);
+        const username = currentUser?.username; 
+        if (!username) {
+          console.error("No logged-in user found!");
+          return; // Exit the function if no user is found
+        }
+        const { data } = await axiosReq.get(
+          `/tasks/?owner__username=${username}`
+        );
         setTasks(data.results);
       } catch (err) {
         console.log(err);
       }
     };
-    fetchTasks();
-  }, [account_id]);
+
+    if (currentUser) {
+      fetchTasks();
+    }
+  }, [currentUser]); // Dependency on currentUser
 
   return (
     <div className={styles.App}>
