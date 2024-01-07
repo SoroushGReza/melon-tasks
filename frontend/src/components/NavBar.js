@@ -3,7 +3,6 @@ import {
   Navbar,
   Container,
   Nav,
-  NavDropdown,
   Form,
   FormControl,
   Button,
@@ -113,18 +112,6 @@ const NavBar = () => {
               <i className="fa-solid fa-house-chimney"></i>Home
             </NavLink>
             {currentUser ? loggedInIcons : loggedOutIcons}
-            <NavDropdown
-              title={
-                <>
-                  <i className="fa-solid fa-calendar-days">{""}</i>
-                  <span className={styles.viewText}>View</span>
-                </>
-              }
-              id="basic-nav-dropdown"
-            >
-              <NavDropdown.Item href="#action/3.1">Year</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Month</NavDropdown.Item>
-            </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Container>
