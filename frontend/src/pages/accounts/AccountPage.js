@@ -25,6 +25,11 @@ import {
 import { Image } from "react-bootstrap";
 import InfiniteScroll from "react-infinite-scroll-component";
 
+function formatOwnerName(ownerName) {
+  if (!ownerName) return "";
+  return ownerName.toLowerCase().charAt(0).toUpperCase() + ownerName.slice(1);
+}
+
 function AccountPage() {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [accountTasks, setAccountTasks] = useState({ results: [] });
@@ -79,7 +84,7 @@ function AccountPage() {
           />
         </Col>
         <Col lg={6}>
-          <h3 className="m-2">{account?.owner}</h3>
+          <h3 className="m-2">{formatOwnerName(account?.owner)}</h3>
           <Row className="justify-content-center no-gutters">
             <Col xs={3} className="my-2">
               <p>For later</p>
@@ -107,7 +112,7 @@ function AccountPage() {
   const mainAccountTasks = (
     <>
       <hr />
-      <p className="text-center">{account?.owner}'s tasks</p>
+      <p className="text-center">{formatOwnerName(account?.owner)}'s tasks</p>
       <hr />
       {accountTasks.results.length ? (
         <InfiniteScroll
@@ -122,7 +127,7 @@ function AccountPage() {
       ) : (
         <Asset
           src={NoResults}
-          message={`No tasks found, ${account?.owner} hasn't posted yet.`}
+          message={`${formatOwnerName(account?.owner)} has no public tasks.`}
         />
       )}
     </>
