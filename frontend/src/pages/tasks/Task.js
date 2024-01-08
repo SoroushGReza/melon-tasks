@@ -52,8 +52,9 @@ const Task = (props) => {
         </Media>
       </Card.Body>
       <Link to={`/tasks/${id}`} className={styles.ImageSection}>
-        <Card.Img src={image} alt={title} />
+        {image && <Card.Img src={image} alt={title} />}
       </Link>
+
       <Card.Body className={styles.ContentSection}>
         <Media className="align-items-center justify-content-between">
           <div className="d-flex align-items-center">{content}</div>
