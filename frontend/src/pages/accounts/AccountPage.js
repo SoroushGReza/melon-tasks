@@ -91,19 +91,6 @@ function AccountPage() {
             </Col>
           </Row>
         </Col>
-        <Col lg={3} className="text-lg-right">
-          {currentUser &&
-            !is_owner &&
-            (account?.permit_users ? (
-              <Button className={styles.UnauthorizeBtn} onClick={() => {}}>
-                Unauthorize
-              </Button>
-            ) : (
-              <Button className={styles.AuthorizeBtn} onClick={() => {}}>
-                Authorize
-              </Button>
-            ))}
-        </Col>
         {account?.content && <Col className="p-3">{account.content}</Col>}
       </Row>
     </>
