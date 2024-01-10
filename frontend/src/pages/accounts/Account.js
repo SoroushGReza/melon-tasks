@@ -1,15 +1,11 @@
 import React from "react";
 import styles from "../../styles/Account.module.css";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 
 const Account = (props) => {
   const { account, mobile, imageSize = 45 } = props;
   const { id, image, owner } = account;
-
-  const currentUser = useCurrentUser();
-  const is_owner = currentUser?.username === owner;
 
   return (
     <div
