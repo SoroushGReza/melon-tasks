@@ -62,7 +62,12 @@ function TaskPage() {
               )}
               <ul className="list-unstyled">
                 {comments.results.map((comment) => (
-                  <TaskComment key={comment.id} {...comment} />
+                  <TaskComment
+                    key={comment.id}
+                    {...comment}
+                    setTask={setTask}
+                    setComments={setComments}
+                  />
                 ))}
               </ul>
             </Container>
