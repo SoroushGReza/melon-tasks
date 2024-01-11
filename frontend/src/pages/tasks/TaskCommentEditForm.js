@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { axiosRes } from "../../api/axiosDefaults";
+import styles from "../../styles/TaskCommentEditForm.module.css";
 
 function TaskCommentEditForm(props) {
   const { id, taskId, content, setShowEditForm, setComments } = props;
@@ -39,6 +40,7 @@ function TaskCommentEditForm(props) {
     <Form onSubmit={handleSubmit}>
       <Form.Group className="pr-1">
         <Form.Control
+          className={styles.Form}
           as="textarea"
           value={formContent}
           onChange={handleChange}
@@ -46,10 +48,18 @@ function TaskCommentEditForm(props) {
         />
       </Form.Group>
       <div className="text-right">
-        <button onClick={() => setShowEditForm(false)} type="button">
+        <button
+          className={styles.BtnCancel}
+          onClick={() => setShowEditForm(false)}
+          type="button"
+        >
           cancel
         </button>
-        <button disabled={!formContent.trim()} type="submit">
+        <button
+          className={styles.BtnSave}
+          disabled={!formContent.trim()}
+          type="submit"
+        >
           save
         </button>
       </div>
