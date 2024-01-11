@@ -32,11 +32,11 @@ const TaskCommentCreateForm = ({ taskId, setComments }) => {
     <Container className={styles.CommentForm}>
       <Form onSubmit={handleSubmit}>
         <Row>
-          <Col sm={12} md={11} className="pr-md-2">
+          <Col sm={12} md={11} className="pr-md-2 mt-1">
             <InputGroup>
               <Avatar
                 src={currentUser?.account_image}
-                height={20}
+                height={25}
                 className="mr-2"
               />
               <Form.Control
@@ -45,7 +45,8 @@ const TaskCommentCreateForm = ({ taskId, setComments }) => {
                 onChange={handleChange}
                 rows={2}
                 placeholder="Write a comment..."
-                className={`${styles.InputField} mb-1 mt-1`}
+                className={`${styles.InputFieldComments} mb-1 mt-1`}
+                style={{ borderRadius: '3px' }}
               />
             </InputGroup>
           </Col>

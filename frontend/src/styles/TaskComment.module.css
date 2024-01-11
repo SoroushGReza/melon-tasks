@@ -3,7 +3,7 @@
   color: #b22121;
   margin-right: 8px;
   margin-left: 0px;
-  margin-top: 5px;
+  margin-top: 9px;
 }
 
 .Date {
@@ -11,14 +11,18 @@
   color: #3d3d3d;
 }
 
-.InputField {
+.InputFieldComments {
   background-color: rgba(255, 255, 255, 0.367);
   color: #333333;
   width: 100%;
   margin-right: 5px;
   margin-top: 5px;
-  margin-bottom: 3px;
+  margin-bottom: 5px;
   border: 1px solid rgba(128, 128, 128, 0.316);
+}
+
+.TaskCommentCreateForm .InputFieldComments {
+  border-radius: 3px;
 }
 
 .PostCommentBtn {
@@ -37,9 +41,10 @@
 }
 
 .CommentForm {
-  background-color: rgba(255, 255, 255, 0.568);
+  background-color: rgba(255, 255, 255, 0.631);
   width: 100%;
   padding: 0;
+  border-radius: 5px;
 }
 
 @media (max-width: 767.98px) {
@@ -49,7 +54,6 @@
 
   .Avatar {
     background-color: transparent;
-
   }
 }
 

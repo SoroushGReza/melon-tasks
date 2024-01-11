@@ -13,12 +13,11 @@ const TaskComment = (props) => {
 
   return (
     <div className={styles.CommentForm}>
-      <hr />
       <Media as="li" className="mt-3">
-        <Link to={`/accounts/${account_id}`}>
-          <Avatar src={currentUser?.account_image} height={20} />
+        <Link to={`/accounts/${account_id}`} className="mt-1">
+          <Avatar src={currentUser?.account_image} height={25} />
         </Link>
-        <Media.Body>
+        <Media.Body className="mb-1">
           <h6 className={styles.Owner}>{author}</h6>
           <p>{content}</p>
           <small className={styles.Date}>{created_at}</small>
