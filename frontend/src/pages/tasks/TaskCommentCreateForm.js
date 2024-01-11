@@ -29,27 +29,38 @@ const TaskCommentCreateForm = ({ taskId, setComments }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Container className={styles.Container}>
+    <Container className={styles.CommentForm}>
+      <Form onSubmit={handleSubmit}>
         <Row>
-          <Form.Group>
+          <Col sm={12} md={11} className="pr-md-2">
             <InputGroup>
-              <Avatar src={currentUser?.account_image} height={20} />
+              <Avatar
+                src={currentUser?.account_image}
+                height={20}
+                className="mr-2"
+              />
               <Form.Control
                 as="textarea"
                 value={content}
                 onChange={handleChange}
                 rows={2}
                 placeholder="Write a comment..."
+                className={`${styles.InputField} mb-1 mt-1`}
               />
             </InputGroup>
-          </Form.Group>
-          <Button type="submit" disabled={!content.trim()}>
-            Post
-          </Button>
+          </Col>
+          <Col sm={12} md={1} className="pl-md-0 d-flex justify-content-end">
+            <Button
+              type="submit"
+              disabled={!content.trim()}
+              className={`${styles.PostCommentBtn} mt-2 mt-md-0`}
+            >
+              Post
+            </Button>
+          </Col>
         </Row>
-      </Container>
-    </Form>
+      </Form>
+    </Container>
   );
 };
 
