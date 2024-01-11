@@ -2,7 +2,7 @@ import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import styles from "../styles/MoreDropdown.module.css";
 
-const ArrowDown = React.forwardRef(({ onClick }, ref) => (
+const DotsDropDown = React.forwardRef(({ onClick }, ref) => (
   <i
     className="fa-solid fa-ellipsis-vertical"
     ref={ref}
@@ -16,7 +16,7 @@ const ArrowDown = React.forwardRef(({ onClick }, ref) => (
 export const MoreDropdown = ({ handleEdit, handleDelete }) => {
   return (
     <Dropdown className="ml-auto" drop="left">
-      <Dropdown.Toggle as={ArrowDown} />
+      <Dropdown.Toggle as={DotsDropDown} />
 
       <Dropdown.Menu
         className={`text-center ${styles.CustomDropdownMenu}`}
