@@ -27,3 +27,17 @@
 .CustomDropdownMenu {
     background-color: transparent;
   }
+
+.DotsIcon {
+    background-color: rgb(117, 0, 0);
+    color: rgb(255, 255, 255);
+
+    border-radius: 15px;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+.DotsIcon:hover {
+    background-color: rgb(120, 0, 0);
+    color: rgb(47, 255, 0);
+}

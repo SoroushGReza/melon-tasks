@@ -4,7 +4,7 @@ import styles from "../styles/MoreDropdown.module.css";
 
 const DotsDropDown = React.forwardRef(({ onClick }, ref) => (
   <i
-    className="fa-solid fa-ellipsis-vertical"
+    className={`fa-solid fa-ellipsis-vertical ${styles.DotsIcon}`}
     ref={ref}
     onClick={(e) => {
       e.preventDefault();
