@@ -12,7 +12,7 @@ const TaskComment = (props) => {
   const is_owner = currentUser?.username === author;
 
   return (
-    <div>
+    <div className={styles.CommentForm}>
       <hr />
       <Media as="li" className="mt-3">
         <Link to={`/accounts/${account_id}`}>
