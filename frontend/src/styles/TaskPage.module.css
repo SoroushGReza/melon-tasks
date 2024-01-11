@@ -16,3 +16,8 @@
     cursor: default;
     color: #cfced3;
   }
+
+  .CommentContainer{
+    background-color: rgba(68, 68, 68, 0.483);
+    padding-top: 5px;
+  }

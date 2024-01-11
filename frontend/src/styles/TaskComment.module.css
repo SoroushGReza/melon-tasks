@@ -1,11 +1,64 @@
 .Owner {
   font-weight: bold;
-  color: #2142b2;
+  color: #b22121;
   margin-right: 8px;
+  margin-left: 0px;
   margin-top: 5px;
 }
 
 .Date {
   font-weight: lighter;
-  color: #c1c1c5;
+  color: #3d3d3d;
+}
+
+.InputField {
+  background-color: rgba(255, 255, 255, 0.367);
+  color: #333333;
+  width: 100%;
+  margin-right: 5px;
+  margin-top: 5px;
+  margin-bottom: 3px;
+  border: 1px solid rgba(128, 128, 128, 0.316);
+}
+
+.PostCommentBtn {
+  width: auto;
+  height: 38px;
+  background-color: red;
+  border: none;
+  align-self: flex-end;
+  margin-bottom: 5px;
+  margin-right: 5px;
+}
+
+
+.CommentFormCol {
+  padding-left: 0;
+}
+
+.CommentForm {
+  background-color: rgba(255, 255, 255, 0.568);
+  width: 100%;
+  padding: 0;
+}
+
+@media (max-width: 767.98px) {
+  .InputGroup {
+    flex-direction: column;
+  }
+
+  .Avatar {
+    background-color: transparent;
+
+  }
+}
+
+.ButtonContainer {
+  margin-bottom: 10px;
+}
+
+@media (max-width: 767.98px) {
+  .ButtonContainer {
+    margin-bottom: 10px;
+  }
 }
