@@ -41,7 +41,11 @@ const NavBar = () => {
 
   const loggedInIcons = (
     <>
-      <NavLink className={styles.NavLink} to="/tasks">
+      <NavLink
+        activeClassName={styles.Active}
+        className={styles.NavLink}
+        to="/tasks"
+      >
         <i className="fa-solid fa-list-check"></i>Tasks
       </NavLink>
 
