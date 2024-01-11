@@ -1,0 +1,36 @@
+.Form {
+    border: none;
+    border-bottom: 2px #00b42a solid;
+}
+
+.BtnCancel {
+    border: none;
+    background-color: #6c0808;
+    color: whitesmoke;
+    border-radius: 100px;
+    padding: 4px 10px;
+    min-width: 75px;
+    margin: 5px;
+}
+
+.BtnCancel:hover {
+    cursor: pointer;
+    background-color: #400404;
+    color: #05bb33;
+}
+
+.BtnSave {
+    border: none;
+    background-color: #036210;
+    color: whitesmoke;
+    border-radius: 100px;
+    padding: 4px 10px;
+    min-width: 75px;
+    margin: 5px;
+}
+
+.BtnSave:hover {
+    cursor: pointer;
+    background-color: #01400a;
+    color: #05bb33;
+}
