@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 
 import Asset from "../../components/Asset";
@@ -38,7 +37,6 @@ function AccountPage() {
   const setAccountData = useSetAccountData();
   const { pageAccount } = useAccountData();
   const [account] = pageAccount.results;
-  const is_owner = currentUser?.username === account?.owner;
 
   useEffect(() => {
     const fetchData = async () => {
