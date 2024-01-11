@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-import appStyles from "../../App.module.css";
 import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Task from "./Task";
 import PermittedAccounts from "../accounts/PermittedAccounts";
 import TaskComment from "./TaskComment";
 import TaskCommentCreateForm from "./TaskCommentCreateForm";
-import { useCurrentUser } from "../../contexts/CurrentUserContext"; // Import useCurrentUser
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import styles from "../../styles/TaskPage.module.css";
 
 function TaskPage() {
   const { id } = useParams();
@@ -56,7 +56,7 @@ function TaskPage() {
               taskPage
               removeTask={removeTaskFromState}
             />
-            <Container className={appStyles.Content}>
+            <Container className={styles.CommentContainer}>
               {(isPublicTask || isOwner) && (
                 <TaskCommentCreateForm taskId={id} setComments={setComments} />
               )}
