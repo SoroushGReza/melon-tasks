@@ -5,7 +5,6 @@ import Container from "react-bootstrap/Container";
 import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Task from "./Task";
-import PermittedAccounts from "../accounts/PermittedAccounts";
 import TaskComment from "./TaskComment";
 import TaskCommentCreateForm from "./TaskCommentCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -67,6 +66,7 @@ function TaskPage() {
                     {...comment}
                     setTask={setTask}
                     setComments={setComments}
+                    task={id}
                   />
                 ))}
               </ul>
