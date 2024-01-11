@@ -4,7 +4,7 @@ import styles from "../styles/MoreDropdown.module.css";
 
 const ArrowDown = React.forwardRef(({ onClick }, ref) => (
   <i
-    className="fa-solid fa-circle-chevron-down"
+    className="fa-solid fa-ellipsis-vertical"
     ref={ref}
     onClick={(e) => {
       e.preventDefault();
