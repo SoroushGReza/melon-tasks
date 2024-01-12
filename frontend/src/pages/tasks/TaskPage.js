@@ -9,6 +9,9 @@ import TaskComment from "./TaskComment";
 import TaskCommentCreateForm from "./TaskCommentCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/TaskPage.module.css";
+import InfiniteScroll from "react-infinite-scroll-component";
+import Asset from "../../components/Asset";
+import { fetchMoreData } from "../../utils/utils";
 
 function TaskPage() {
   const { id } = useParams();
@@ -59,7 +62,12 @@ function TaskPage() {
               {(isPublicTask || isOwner) && (
                 <TaskCommentCreateForm taskId={id} setComments={setComments} />
               )}
-              <ul className="list-unstyled">
+              <InfiniteScroll
+                dataLength={comments.results.length}
+                next={() => fetchMoreData(comments, setComments)}
+                hasMore={!!comments.next}
+                loader={<Asset spinner />}
+              >
                 {comments.results.map((comment) => (
                   <TaskComment
                     key={comment.id}
@@ -69,7 +77,7 @@ function TaskPage() {
                     task={id}
                   />
                 ))}
-              </ul>
+              </InfiniteScroll>
             </Container>
           </>
         )}
