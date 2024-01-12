@@ -77,6 +77,7 @@ const TaskComment = (props) => {
           )}
         </Media>
       </div>
+      <hr />
     </>
   );
 };
