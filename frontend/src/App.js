@@ -13,6 +13,9 @@ import TasksPage from "./pages/tasks/TasksPage";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
 import TaskEditForm from "./pages/tasks/TaskEditForm";
 import AccountPage from "./pages/accounts/AccountPage";
+import UsernameForm from "./pages/accounts/UsernameForm";
+import UserPasswordForm from "./pages/accounts/UserPasswordForm";
+import AccountEditForm from "./pages/accounts/AccountEditForm";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -21,7 +24,7 @@ function App() {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const username = currentUser?.username; 
+        const username = currentUser?.username;
         if (!username) {
           console.error("No logged-in user found!");
           return; // Exit the function if no user is found
@@ -64,6 +67,21 @@ function App() {
           <Route exact path="/tasks" render={() => <TasksPage />} />
           <Route exact path="/tasks/:id/edit" render={() => <TaskEditForm />} />
           <Route exact path="/accounts/:id" render={() => <AccountPage />} />
+          <Route
+            exact
+            path="/accounts/:id/edit/username"
+            render={() => <UsernameForm />}
+          />
+          <Route
+            exact
+            path="/accounts/:id/edit/password"
+            render={() => <UserPasswordForm />}
+          />
+          <Route
+            exact
+            path="/accounts/:id/edit"
+            render={() => <AccountEditForm />}
+          />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>
