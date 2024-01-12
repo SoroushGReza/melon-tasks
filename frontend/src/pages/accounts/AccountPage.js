@@ -8,6 +8,7 @@ import Asset from "../../components/Asset";
 
 import styles from "../../styles/AccountPage.module.css";
 import appStyles from "../../App.module.css";
+import { AccountEditDropdown } from "../../components/MoreDropdown.js";
 
 import Task from "../tasks/Task.js";
 import { fetchMoreData } from "../../utils/utils.js";
@@ -73,6 +74,7 @@ function AccountPage() {
 
   const mainAccount = (
     <>
+    {account?.is_owner && <AccountEditDropdown id={account?.id} />}
       <Row noGutters className="px-3 text-center">
         <Col lg={3} className="text-lg-left">
           <Image
