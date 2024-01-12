@@ -13,7 +13,7 @@ import { Link, useHistory } from "react-router-dom";
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
-import DidUKnowImage from "../../assets/diduknow.jpg";
+import SignInMelon from "../../assets/melon4.png";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 
 const SignInForm = () => {
@@ -102,7 +102,7 @@ const SignInForm = () => {
         md={6}
         className={`my-auto d-none d-md-block p-2 ${styles.SignInCol}`}
       >
-        <Image className={`${appStyles.FillerImage}`} src={DidUKnowImage} />
+        <Image className={`${appStyles.FillerImage}`} src={SignInMelon} />
       </Col>
     </Row>
   );
