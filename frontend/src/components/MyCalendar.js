@@ -79,7 +79,7 @@ const MyCalendar = ({ tasks }) => {
                 {selectedTask.is_overdue ? "Yes" : "No"}
               </p>
               <p>
-                <strong>Is Public:</strong>{" "}
+                <strong>Public:</strong>{" "}
                 {selectedTask.is_public ? "Yes" : "No"}
               </p>
               {selectedTask.image && (
