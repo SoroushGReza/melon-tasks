@@ -4,6 +4,7 @@ import SignUpMelonImage from "../../assets/melon11.png";
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
+import { useRedirect } from "../../hooks/useRedirect";
 
 import {
   Form,
@@ -17,6 +18,7 @@ import {
 import axios from "axios";
 
 const SignUpForm = () => {
+  useRedirect("loggedIn");
   const [signUpData, setSignUpData] = useState({
     username: "",
     password1: "",
@@ -127,14 +129,10 @@ const SignUpForm = () => {
         md={6}
         className={`my-auto d-none d-md-block p-2 ${styles.SignUpCol}`}
       >
-        <Image
-          className={`${appStyles.FillerImage}`}
-          src={SignUpMelonImage}
-        />
+        <Image className={`${appStyles.FillerImage}`} src={SignUpMelonImage} />
       </Col>
     </Row>
   );
 };
 
 export default SignUpForm;
-

@@ -12,8 +12,10 @@ import styles from "../../styles/TaskPage.module.css";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Asset from "../../components/Asset";
 import { fetchMoreData } from "../../utils/utils";
+import { useRedirect } from "../../hooks/useRedirect";
 
 function TaskPage() {
+  useRedirect("loggedOut");
   const { id } = useParams();
   const [task, setTask] = useState({ results: [] });
   const [comments, setComments] = useState({ results: [] });
