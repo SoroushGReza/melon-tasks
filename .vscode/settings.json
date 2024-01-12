@@ -21,7 +21,7 @@
       "**/CVS": true
    },
    "files.autoSave": "off",
-   "workbench.colorTheme": "Bearded Theme Milkshake Mango",
+   "workbench.colorTheme": "Bearded Theme Monokai Stone",
    "terminal.integrated.gpuAcceleration": "canvas",
    "editor.defaultFormatter": "HookyQR.beautify",
    "[python]": {
