@@ -234,7 +234,7 @@ function TaskEditForm() {
       <Form.Group className={styles.formGroupCustom}>
         <Form.Check
           type="checkbox"
-          label="Is Public"
+          label="Public"
           name="is_public"
           checked={taskData.is_public}
           onChange={handleChange}
