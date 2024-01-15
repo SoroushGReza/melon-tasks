@@ -5,12 +5,17 @@ from .serializers import AccountSerializer
 from .serializers import UserRegistrationSerializer
 from rest_framework.generics import GenericAPIView
 from my_plans_drf_api.permissions import IsOwnerOrReadOnly
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, authenticate
+from rest_framework.permissions import IsAuthenticated
 from rest_framework import permissions, status
 from rest_framework.response import Response
 from rest_framework.generics import RetrieveUpdateDestroyAPIView
 from rest_framework import generics, filters
 from rest_framework_simplejwt.tokens import RefreshToken
+from my_plans_drf_api.settings import (
+    JWT_AUTH_COOKIE, JWT_AUTH_REFRESH_COOKIE, JWT_AUTH_SAMESITE,
+    JWT_AUTH_SECURE,
+)
 
 
 User = get_user_model()
@@ -63,3 +68,33 @@ class AccountDetail(RetrieveUpdateDestroyAPIView):
         obj = super().get_object()
         self.check_object_permissions(self.request, obj)
         return obj
+
+class DeleteUserView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request):
+        password=request.data.get('password')
+        if request.user.check_password(password):
+            response = Response()
+            response.set_cookie(
+                key=JWT_AUTH_COOKIE,
+                value='',
+                httponly=True,
+                expires='Thu, 01 Jan 1970 00:00:00 GMT',
+                max_age=0,
+                samesite=JWT_AUTH_SAMESITE,
+                secure=JWT_AUTH_SECURE,
+            )
+            response.set_cookie(
+                key=JWT_AUTH_REFRESH_COOKIE,
+                value='',
+                httponly=True,
+                expires='Thu, 01 Jan 1970 00:00:00 GMT',
+                max_age=0,
+                samesite=JWT_AUTH_SAMESITE,
+                secure=JWT_AUTH_SECURE,
+            )
+            request.user.delete()
+            return response
+        else:
+            return Response({"error": "Password incorrect"}, status=status.HTTP_400_BAD_REQUEST)
