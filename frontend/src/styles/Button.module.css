@@ -1,67 +1,99 @@
 .Button {
-    font-size: 0.9rem;
-    align-self: center;
-    border-radius: 100px;
-    border-color: transparent;
-    padding: 4px 10px;
-    margin-left: 2px;
-    margin-right: 2px;
-    min-width: 75px;
-  }
-  
-  .Button:hover {
-    opacity: 0.8;
-    border-color: transparent;
-    cursor: pointer;
-  }
-  
-  .Button:hover:active {
-    background-color: #aa0000a5 !important;
-  }
-  
-  .Button:active {
-    background-color: #a1000086 !important;
-  }
-  
-  .Button:focus {
-    background-color: #d9ff00;
-  }
-  
-  .Wide {
-    padding: 10px 50px;
-    width: 100%;
-  }
-  
-  .Blue,
-  .BlueOutline:hover,
-  .Bright:hover {
-    background-color: #042400;
-    color: red;
-  }
-  
-  .BlueOutline,
-  .Blue:hover {
-    /* border: 1px solid #2142b2; */
-    background-color: #ffffff;
-    color: #2142b2;
-  }
-  
-  .Black,
-  .BlackOutline:hover {
-    background-color: #242a3d;
-    color: aliceblue;
-  }
-  
-  .Black:hover,
-  .BlackOutline {
-    /* background-color: #dadadf;
-    color: #242a3d;
-    border-color: #242a3d; */
-    background-color: aliceblue;
-    color: #242a3d;
-  }
-  
-  .Bright {
-    background-color: #093500;
-    color: #ffffff;
-  }
+  font-size: 0.9rem;
+  align-self: center;
+  border-radius: 100px;
+  border-color: transparent;
+  padding: 4px 10px;
+  margin-left: 2px;
+  margin-right: 2px;
+  min-width: 75px;
+}
+
+.Button:hover {
+  opacity: 0.8;
+  border-color: transparent;
+  cursor: pointer;
+}
+
+.Button:hover:active {
+  background-color: #aa0000a5 !important;
+}
+
+.Button:active {
+  background-color: #a1000086 !important;
+}
+
+.Button:focus {
+  background-color: #d9ff00;
+}
+
+.Wide {
+  padding: 10px 50px;
+  width: 100%;
+}
+
+
+/*  Blue button  */
+
+.Blue,
+.BlueOutline:hover,
+.Bright:hover {
+  background-color: #042400;
+  color: rgb(255, 255, 255);
+}
+
+.BlueOutline,
+.Blue:hover {
+  background-color: #ffffff;
+  color: #2142b2;
+}
+
+
+/*  Red button  */
+
+.Red,
+.RedOutline:hover,
+.Bright:hover {
+  background-color: rgb(156, 0, 0);
+  color: whitesmoke;
+}
+
+.RedOutline,
+.Red:hover {
+  border: 1px solid yellow;
+  background-color: #ffffff;
+  color: #2142b2;
+}
+
+
+/* Green button */
+.Green,
+.GreenOutline:hover,
+.Bright:hover {
+  background-color: rgb(153, 255, 0);
+  color: rgb(0, 0, 0);
+}
+
+.GreenOutline,
+.Green:hover {
+  border: 1px solid rgb(153, 255, 0);
+  background-color: #ffffff;
+  color: #2142b2;
+}
+
+.Black,
+.BlackOutline:hover {
+  background-color: #242a3d;
+  color: aliceblue;
+}
+
+.Black:hover,
+.BlackOutline {
+  background-color: aliceblue;
+  color: #242a3d;
+}
+
+.Bright {
+  background-color: #093500;
+  color: #ffffff;
+}

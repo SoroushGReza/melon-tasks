@@ -18,7 +18,7 @@ import {
 
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
-
+import styles from "../../styles/AccountEditForm.module.css";
 
 const AccountEditForm = () => {
   const currentUser = useCurrentUser();
@@ -98,17 +98,33 @@ const AccountEditForm = () => {
         setCurrentUser(null);
         // Redirect to signup page
         history.push("/signup");
-      }
-      else console.log(response)
+      } else console.log(response);
     } catch (err) {
       console.error(err);
     }
   };
 
+  // Delete Account
+  const deleteAccountSection = (
+    <div className={`${styles.DeleteAccountDiv} mt-4`}>
+      <Button
+        className={`${btnStyles.Button} ${btnStyles.Red}`}
+        onClick={() => setShowModal(true)}
+      >
+        Delete Account
+      </Button>
+      <p className={styles.WarningP}>
+        <span className={styles.WarningSpan}>Warning</span>: this action will
+        delete all your user data, and it is not undoable.
+      </p>
+    </div>
+  );
+
+  // Bio
   const textFields = (
     <>
       <Form.Group>
-        <Form.Label>Bio</Form.Label>
+        <Form.Label className={styles.BioLabel}>Bio</Form.Label>
         <Form.Control
           as="textarea"
           value={content}
@@ -129,11 +145,11 @@ const AccountEditForm = () => {
       >
         cancel
       </Button>
-      <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
+      <Button
+        className={`${btnStyles.Button} ${btnStyles.Green}`}
+        type="submit"
+      >
         save
-      </Button>
-      <Button variant="danger" onClick={() => setShowModal(true)}>
-        Delete Account
       </Button>
     </>
   );
@@ -180,12 +196,11 @@ const AccountEditForm = () => {
               <div className="d-md-none">{textFields}</div>
             </Container>
           </Col>
-          <Col
-            md={5}
-            lg={6}
-            className="d-none d-md-block p-0 p-md-2 text-center"
-          >
+          <Col md={5} lg={6} className="py-2 p-0 p-md-2 text-center">
             <Container className={appStyles.Content}>{textFields}</Container>
+            <Container className={appStyles.Content}>
+              {deleteAccountSection}{" "}
+            </Container>
           </Col>
         </Row>
       </Form>
