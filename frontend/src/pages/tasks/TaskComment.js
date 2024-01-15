@@ -31,7 +31,7 @@ const TaskComment = (props) => {
       setTask((prevTask) => ({
         results: [
           {
-            ...(prevTask.results[0].comments_count - 1),
+            ...(prevTask.results[0]),
           },
         ],
       }));
