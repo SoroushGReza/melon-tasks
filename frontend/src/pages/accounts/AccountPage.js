@@ -45,11 +45,11 @@ function AccountPage() {
         // Fetch the account details of the visited account
         const { data: visitedAccount } = await axiosReq.get(`/accounts/${id}/`);
 
-        // Initialize the tasks URL to fetch tasks of the visited account
+        // Add the tasks URL to fetch tasks of the visited account
         let tasksUrl = `/tasks/?owner__username=${visitedAccount.owner}`;
 
-        // If the current user is not the owner of the account being visited -
-        // ensure only public tasks are fetched
+        // If the current user is not owner of account visited -
+        // only public tasks are fetched
         if (currentUser?.username !== visitedAccount.owner) {
           tasksUrl += "&is_public=true";
         }
@@ -74,7 +74,7 @@ function AccountPage() {
 
   const mainAccount = (
     <>
-    {account?.is_owner && <AccountEditDropdown id={account?.id} />}
+      {account?.is_owner && <AccountEditDropdown id={account?.id} />}
       <Row noGutters className="px-3 text-center">
         <Col lg={3} className="text-lg-left">
           <Image
@@ -84,14 +84,18 @@ function AccountPage() {
           />
         </Col>
         <Col lg={6}>
-          <h3 className="m-2">{formatOwnerName(account?.owner)}</h3>
+          <h3 className={`${styles.UsernameHeader} m-2`}>
+            {formatOwnerName(account?.owner)}
+          </h3>
           <Row className="justify-content-center no-gutters">
-            <Col xs={3} className="my-2">
-              <p>For later</p>
-            </Col>
+            <Col xs={3} className="my-2"></Col>
           </Row>
         </Col>
-        {account?.content && <Col className="p-3">{account.content}</Col>}
+        {account?.content && (
+          <Col xs={12} md={12} className={`${styles.BioContent} p-3`}>
+            {account.content}
+          </Col>
+        )}
       </Row>
     </>
   );
@@ -99,7 +103,9 @@ function AccountPage() {
   const mainAccountTasks = (
     <>
       <hr />
-      <p className="text-center">{formatOwnerName(account?.owner)}'s tasks</p>
+      <p className={`${styles.OwnersTasks} text-center`}>
+        {formatOwnerName(account?.owner)}'s tasks
+      </p>
       <hr />
       {accountTasks.results.length ? (
         <InfiniteScroll
@@ -112,10 +118,16 @@ function AccountPage() {
           next={() => fetchMoreData(accountTasks, setAccountTasks)}
         />
       ) : (
-        <Asset
-          src={NoResults}
-          message={`${formatOwnerName(account?.owner)} has no public tasks.`}
-        />
+        <Row className="justify-content-center">
+          <Col xs={12} sm={12} md={12} className={styles.NoTasks}>
+            <Asset
+              src={NoResults}
+              message={`${formatOwnerName(
+                account?.owner
+              )} has no public tasks.`}
+            />
+          </Col>
+        </Row>
       )}
     </>
   );

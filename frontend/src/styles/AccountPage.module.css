@@ -11,3 +11,26 @@
         height: 250px;
     }
 }
+
+.UsernameHeader {
+    color: whitesmoke;
+    font-family: 'Smooch Sans', sans-serif;
+    font-size: 3rem;
+    
+}
+
+.BioContent {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    color: rgb(255, 251, 206);
+}
+
+.OwnersTasks {
+    color: rgb(0, 255, 0);
+    font-size: 120%;
+}
+
+.NoTasks{
+    color: whitesmoke;
+}
