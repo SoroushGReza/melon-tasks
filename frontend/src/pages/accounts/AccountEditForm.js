@@ -8,8 +8,9 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
+import Modal from "react-bootstrap/Modal";
 
-import { axiosReq } from "../../api/axiosDefaults";
+import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import {
   useCurrentUser,
   useSetCurrentUser,
@@ -17,6 +18,7 @@ import {
 
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
+
 
 const AccountEditForm = () => {
   const currentUser = useCurrentUser();
@@ -33,6 +35,9 @@ const AccountEditForm = () => {
   const { name, content, image } = accountData;
 
   const [errors, setErrors] = useState({});
+
+  const [showModal, setShowModal] = useState(false);
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
     const handleMount = async () => {
@@ -83,6 +88,23 @@ const AccountEditForm = () => {
     }
   };
 
+  const handleDelete = async () => {
+    try {
+      const response = await axiosRes.delete("/delete-user/", {
+        data: { password: password },
+      });
+      if (response.status !== 400) {
+        console.log("logged out");
+        setCurrentUser(null);
+        // Redirect to signup page
+        history.push("/signup");
+      }
+      else console.log(response)
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const textFields = (
     <>
       <Form.Group>
@@ -110,55 +132,85 @@ const AccountEditForm = () => {
       <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
         save
       </Button>
+      <Button variant="danger" onClick={() => setShowModal(true)}>
+        Delete Account
+      </Button>
     </>
   );
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Row>
-        <Col className="py-2 p-0 p-md-2 text-center" md={7} lg={6}>
-          <Container className={appStyles.Content}>
-            <Form.Group>
-              {image && (
-                <figure>
-                  <Image src={image} fluid />
-                </figure>
-              )}
-              {errors?.image?.map((message, idx) => (
-                <Alert variant="warning" key={idx}>
-                  {message}
-                </Alert>
-              ))}
-              <div>
-                <Form.Label
-                  className={`${btnStyles.Button} ${btnStyles.Blue} btn my-auto`}
-                  htmlFor="image-upload"
-                >
-                  Change the image
-                </Form.Label>
-              </div>
-              <Form.File
-                id="image-upload"
-                ref={imageFile}
-                accept="image/*"
-                onChange={(e) => {
-                  if (e.target.files.length) {
-                    setAccountData({
-                      ...accountData,
-                      image: URL.createObjectURL(e.target.files[0]),
-                    });
-                  }
-                }}
-              />
-            </Form.Group>
-            <div className="d-md-none">{textFields}</div>
-          </Container>
-        </Col>
-        <Col md={5} lg={6} className="d-none d-md-block p-0 p-md-2 text-center">
-          <Container className={appStyles.Content}>{textFields}</Container>
-        </Col>
-      </Row>
-    </Form>
+    <>
+      <Form onSubmit={handleSubmit}>
+        <Row>
+          <Col className="py-2 p-0 p-md-2 text-center" md={7} lg={6}>
+            <Container className={appStyles.Content}>
+              <Form.Group>
+                {image && (
+                  <figure>
+                    <Image src={image} fluid />
+                  </figure>
+                )}
+                {errors?.image?.map((message, idx) => (
+                  <Alert variant="warning" key={idx}>
+                    {message}
+                  </Alert>
+                ))}
+                <div>
+                  <Form.Label
+                    className={`${btnStyles.Button} ${btnStyles.Blue} btn my-auto`}
+                    htmlFor="image-upload"
+                  >
+                    Change the image
+                  </Form.Label>
+                </div>
+                <Form.File
+                  id="image-upload"
+                  ref={imageFile}
+                  accept="image/*"
+                  onChange={(e) => {
+                    if (e.target.files.length) {
+                      setAccountData({
+                        ...accountData,
+                        image: URL.createObjectURL(e.target.files[0]),
+                      });
+                    }
+                  }}
+                />
+              </Form.Group>
+              <div className="d-md-none">{textFields}</div>
+            </Container>
+          </Col>
+          <Col
+            md={5}
+            lg={6}
+            className="d-none d-md-block p-0 p-md-2 text-center"
+          >
+            <Container className={appStyles.Content}>{textFields}</Container>
+          </Col>
+        </Row>
+      </Form>
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Delete Account</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>Please enter your password to confirm account deletion:</p>
+          <Form.Control
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            Close
+          </Button>
+          <Button variant="danger" onClick={handleDelete}>
+            Delete Account
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
 };
 
