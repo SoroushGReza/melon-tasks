@@ -12,7 +12,7 @@ class Account(models.Model):
     image = models.ImageField(
         # Cloudinary Account image (Default)
         upload_to='images/',
-        default='../account_default_lhrxjr'
+        default='../account_default_hhjogh'
     )
 
     class Meta:
