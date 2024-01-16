@@ -22,13 +22,14 @@ export const CurrentUserProvider = ({ children }) => {
 
   const handleMount = useCallback(async () => {
     try {
-      const { data } = await axiosRes.get("dj-rest-auth/user/");
+      const { data } = await axiosRes.get(
+        `${window.location.origin}/dj-rest-auth/user/`
+      );
       setCurrentUser(data);
-      history.push("/");
     } catch (err) {
       console.log(err);
     }
-  }, [history]);
+  }, []);
 
   useEffect(() => {
     handleMount();

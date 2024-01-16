@@ -15,38 +15,36 @@ import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 import SignInMelon from "../../assets/melon4.png";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
-import { useRedirect } from "../../hooks/useRedirect";
 
 const SignInForm = () => {
   const setCurrentUser = useSetCurrentUser();
-  useRedirect("loggedIn");
-
   const [signInData, setSignInData] = useState({
     username: "",
     password: "",
   });
   const { username, password } = signInData;
-
   const [errors, setErrors] = useState({});
-
   const history = useHistory();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const response = await axios.post("/dj-rest-auth/login/", signInData);
       const data = response.data;
       setCurrentUser(data.user);
-      history.goBack();
+      history.push("/");
     } catch (err) {
       setErrors(err.response.data);
     }
   };
+
   const handleChange = (event) => {
     setSignInData({
       ...signInData,
       [event.target.name]: event.target.value,
     });
   };
+
   return (
     <Row className={styles.Row}>
       <Col className="my-auto p-0 p-md-2" md={6}>
