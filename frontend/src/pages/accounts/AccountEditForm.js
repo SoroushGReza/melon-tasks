@@ -57,6 +57,7 @@ const AccountEditForm = () => {
 
     handleMount();
   }, [currentUser, history, id]);
+  
 
   const handleChange = (event) => {
     setAccountData({
