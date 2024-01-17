@@ -1,0 +1,30 @@
+.NewestAccounts {
+  background-color: rgba(0, 0, 0, 0.795);
+  padding: 8px;
+  color: white;
+}
+
+.NewestUsersP {
+  font-family: 'Font Awesome 6 Pro';
+  font-size: 1rem;
+  text-align: center;
+  text-shadow: 4px 4px 8px rgba(9, 255, 0, 0.68);
+}
+
+/* Mobile view */
+@media (max-width: 991px) {
+  .NewestAccountsMobile .col {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/* Large screens */
+@media (min-width: 992px) {
+  .NewestAccounts .col-lg-12 {
+    display: flex;
+    justify-content: center;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
