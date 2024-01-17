@@ -1,21 +1,20 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 
-const useClickOutsideToggle = () => {
-  const [expanded, setExpanded] = useState(false);
-  const ref = useRef(null);
+const useClickOutsideToggle = (callback, ...refs) => {
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (ref.current && !ref.current.contains(event.target)) {
-        setExpanded(false);
+      if (
+        refs.every((ref) => ref.current && !ref.current.contains(event.target))
+      ) {
+        callback();
       }
     };
 
-    document.addEventListener("mouseup", handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener("mouseup", handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [ref]);
-  return { expanded, setExpanded, ref };
+  }, [callback, refs]);
 };
 
 export default useClickOutsideToggle;
