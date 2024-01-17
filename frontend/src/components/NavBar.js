@@ -25,7 +25,7 @@ const NavBar = () => {
     setSearchQuery(query);
 
     if (query.length === 0) {
-      setSearchResults([]); // Clear results when the input is empty
+      setSearchResults([]); // Clear results when input is empty
     } else {
       try {
         const { data } = await axiosReq.get(`/search-users/?username=${query}`);
