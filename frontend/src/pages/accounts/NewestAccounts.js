@@ -16,7 +16,6 @@ const NewestAccounts = ({ mobile }) => {
         (a, b) =>
           new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
       );
-      console.log("Sorted accounts:", sortedAccounts); // DEBUGGING
 
       // Determine nr of accounts to display based on screen size
       const numAccountsToShow = mobile ? 3 : 5;
