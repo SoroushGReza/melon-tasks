@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useCurrentUser } from "./CurrentUserContext";
-import { axiosReq } from "../api/axiosDefaults"; 
+import { axiosReq } from "../api/axiosDefaults";
 
 export const AccountDataContext = createContext();
 export const SetAccountDataContext = createContext();
@@ -20,7 +20,7 @@ export const AccountDataProvider = ({ children }) => {
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const { data } = await axiosReq.get("/accounts/?ordering=-permit_users");
+        const { data } = await axiosReq.get("/accounts/?ordering=-created_at");
         setAccountData((prevState) => ({
           ...prevState,
           permittedAccounts: data,
