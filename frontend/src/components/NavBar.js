@@ -1,21 +1,14 @@
-import React from "react";
-import {
-  Navbar,
-  Container,
-  Nav,
-  Form,
-  FormControl,
-  Button,
-} from "react-bootstrap";
+import React, { useState } from "react";
+import { Form, FormControl, Button } from "react-bootstrap";
+import { Navbar, Container, Nav } from "react-bootstrap";
 import logo from "../assets/logo.png";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
-import {
-  useCurrentUser,
-  useSetCurrentUser,
-} from "../contexts/CurrentUserContext";
+import { useSetCurrentUser } from "../contexts/CurrentUserContext";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
 import Avatar from "./Avatar";
 import axios from "axios";
+import { axiosReq } from "../api/axiosDefaults";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 
 const NavBar = () => {
@@ -23,6 +16,31 @@ const NavBar = () => {
   const setCurrentUser = useSetCurrentUser();
 
   const { expanded, setExpanded, ref } = useClickOutsideToggle();
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+
+  const handleSearchChange = async (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+
+    if (query.length === 0) {
+      setSearchResults([]); // Clear results when the input is empty
+    } else {
+      try {
+        const { data } = await axiosReq.get(`/search-users/?username=${query}`);
+        setSearchResults(data.results);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
+
+  const addTaskIcon = (
+    <NavLink className={`${styles.CreateTaskButton}`} to="/tasks/create">
+      <i className="fa-solid fa-calendar-plus"></i>Create task
+    </NavLink>
+  );
 
   const handleSignout = async () => {
     try {
@@ -32,12 +50,6 @@ const NavBar = () => {
       console.log(err);
     }
   };
-
-  const addTaskIcon = (
-    <NavLink className={`${styles.CreateTaskButton}`} to="/tasks/create">
-      <i className="fa-solid fa-calendar-plus"></i>Create task
-    </NavLink>
-  );
 
   const loggedInIcons = (
     <>
@@ -99,10 +111,31 @@ const NavBar = () => {
           aria-controls="basic-navbar-nav"
         />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Form inline>
-            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-            <Button variant="outline-success">Search</Button>
-          </Form>
+          <div className={styles.SearchInputContainer}>
+            <Form inline>
+              <FormControl
+                type="text"
+                placeholder="Search for users"
+                className="mr-sm-2"
+                value={searchQuery}
+                onChange={handleSearchChange}
+                onClick={(e) => e.key === "Enter" && handleSearchChange(e)}
+              />
+              <Button variant="outline-success" onClick={handleSearchChange}>
+                Search
+              </Button>
+            </Form>
+
+            {searchResults.length > 0 && (
+              <div className={styles.SearchResultsDropdown}>
+                {searchResults.map((user) => (
+                  <NavLink key={user.id} to={`/accounts/${user.id}`}>
+                    {user.username}
+                  </NavLink>
+                ))}
+              </div>
+            )}
+          </div>
 
           {currentUser && addTaskIcon}
 
