@@ -15,7 +15,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import NoResults from "../../assets/no-results.png";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
-import PermittedAccounts from "../accounts/PermittedAccounts";
+import NewestAccounts from "../accounts/NewestAccounts";
 import { useRedirect } from "../../hooks/useRedirect";
 
 function TasksPage({ message, filter = "" }) {
@@ -57,7 +57,7 @@ function TasksPage({ message, filter = "" }) {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <PermittedAccounts mobile />
+        <NewestAccounts mobile />
         <i className={`fa-solid fa-magnifying-glass ${styles.SearchIcon}`} />
         <Form
           className={styles.SearchBar}
@@ -97,7 +97,7 @@ function TasksPage({ message, filter = "" }) {
         )}
       </Col>
       <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
-        <PermittedAccounts />
+        <NewestAccounts />
       </Col>
     </Row>
   );

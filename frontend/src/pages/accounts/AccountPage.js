@@ -14,7 +14,7 @@ import Task from "../tasks/Task.js";
 import { fetchMoreData } from "../../utils/utils.js";
 import NoResults from "../../assets/no-results.png";
 
-import PermittedAccounts from "./PermittedAccounts";
+import NewestAccounts from "./NewestAccounts";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -135,7 +135,7 @@ function AccountPage() {
   return (
     <Row>
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <PermittedAccounts mobile />
+        <NewestAccounts mobile />
         <Container className={appStyles.Content}>
           {hasLoaded ? (
             <>
@@ -148,7 +148,7 @@ function AccountPage() {
         </Container>
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
-        <PermittedAccounts />
+        <NewestAccounts />
       </Col>
     </Row>
   );

@@ -12,7 +12,7 @@ export const useSetAccountData = () => useContext(SetAccountDataContext);
 export const AccountDataProvider = ({ children }) => {
   const [accountData, setAccountData] = useState({
     pageAccount: { results: [] },
-    permittedAccounts: { results: [] },
+    newestAccounts: { results: [] },
   });
 
   const currentUser = useCurrentUser();
@@ -23,7 +23,7 @@ export const AccountDataProvider = ({ children }) => {
         const { data } = await axiosReq.get("/accounts/?ordering=-created_at");
         setAccountData((prevState) => ({
           ...prevState,
-          permittedAccounts: data,
+          newestAccounts: data,
         }));
       } catch (err) {
         console.log(err);
