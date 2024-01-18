@@ -33,17 +33,17 @@
 }
 
 
-/*  Blue button  */
+/*  Dark button  */
 
-.Blue,
-.BlueOutline:hover,
+.Dark,
+.DarkOutline:hover,
 .Bright:hover {
   background-color: #042400;
   color: rgb(255, 255, 255);
 }
 
-.BlueOutline,
-.Blue:hover {
+.DarkOutline,
+.Dark:hover {
   background-color: #ffffff;
   color: #2142b2;
 }
