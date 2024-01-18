@@ -1,12 +1,5 @@
 import React, { useState, useRef } from "react";
-import {
-  Form,
-  FormControl,
-  Button,
-  Navbar,
-  Container,
-  Nav,
-} from "react-bootstrap";
+import { Form, FormControl, Navbar, Container, Nav } from "react-bootstrap";
 import logo from "../assets/logo.png";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
@@ -65,8 +58,12 @@ const NavBar = () => {
   };
 
   const addTaskIcon = (
-    <NavLink className={`${styles.CreateTaskButton}`} to="/tasks/create">
-      <i className="fa-solid fa-calendar-plus"></i>Create task
+    <NavLink
+      className={`${styles.CreateTaskButton} d-flex align-items-center`}
+      to="/tasks/create"
+    >
+      <i className="fa-solid fa-calendar-plus"></i>
+      <span className={`${styles.CreateTaskText}`}>Create task</span>
     </NavLink>
   );
 
@@ -77,16 +74,23 @@ const NavBar = () => {
         className={styles.NavLink}
         to="/tasks"
       >
-        <i className="fa-solid fa-list-check"></i>Tasks
+        <i className="fa-solid fa-list-check"></i>
+        <span className={styles.NavLinkTexts}>Tasks</span>
       </NavLink>
+
       <NavLink className={styles.NavLink} to="/" onClick={handleSignout}>
-        <i className="fa-solid fa-right-from-bracket"></i>Sign out
+        <i className="fa-solid fa-right-from-bracket"></i>
+        <span className={styles.NavLinkTexts}>Sign out</span>
       </NavLink>
+
       <NavLink
         className={styles.NavLink}
         to={`/accounts/${currentUser?.account_id}`}
       >
-        <Avatar src={currentUser?.account_image} text="Account" height={40} />
+        <div>
+          <Avatar src={currentUser?.account_image} height={40} />
+        </div>
+        <span className={styles.NavLinkTexts}>Account</span>
       </NavLink>
     </>
   );
@@ -98,14 +102,16 @@ const NavBar = () => {
         activeClassName={styles.Active}
         to="/signin"
       >
-        <i className="fa-solid fa-right-to-bracket"></i>Sign in
+        <i className="fa-solid fa-right-to-bracket"></i>
+        <span className={styles.NavLinkTexts}>Sign in</span>
       </NavLink>
       <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
         to="/signup"
       >
-        <i className="fa-solid fa-user-plus"></i>Sign up
+        <i className="fa-solid fa-user-plus"></i>
+        <span className={styles.NavLinkTexts}>Sign up</span>
       </NavLink>
     </>
   );
@@ -124,11 +130,35 @@ const NavBar = () => {
             <img src={logo} alt="logo" height="45" />
           </Navbar.Brand>
         </NavLink>
-        <Navbar.Toggle
-          onClick={() => setNavbarExpanded(!navbarExpanded)}
-          aria-controls="basic-navbar-nav"
-        />
-        <Navbar.Collapse id="basic-navbar-nav">
+        {/* <div className={styles.SearchInputContainer} ref={searchRef}>
+          <Form inline onSubmit={(e) => e.preventDefault()}>
+            <FormControl
+              type="text"
+              placeholder="Search for users"
+              className="mr-sm-2"
+              value={searchQuery}
+              onChange={handleSearchChange}
+            />
+          </Form>
+          {searchExpanded && (
+            <div className={styles.SearchResultsDropdown}>
+              {searchResults.length > 0 ? (
+                searchResults.map((user) => (
+                  <NavLink
+                    key={user.id}
+                    to={`/accounts/${user.id}`}
+                    onClick={closeSearchResults}
+                  >
+                    {user.username}
+                  </NavLink>
+                ))
+              ) : (
+                <div className={styles.NoUserFound}>No user found</div>
+              )}
+            </div>
+          )}
+        </div> */}
+        {currentUser && (
           <div className={styles.SearchInputContainer} ref={searchRef}>
             <Form inline onSubmit={(e) => e.preventDefault()}>
               <FormControl
@@ -157,7 +187,12 @@ const NavBar = () => {
               </div>
             )}
           </div>
-
+        )}
+        <Navbar.Toggle
+          onClick={() => setNavbarExpanded(!navbarExpanded)}
+          aria-controls="basic-navbar-nav"
+        />
+        <Navbar.Collapse id="basic-navbar-nav">
           {currentUser && addTaskIcon}
 
           <Nav className="ml-auto text-left">
@@ -167,8 +202,10 @@ const NavBar = () => {
               activeClassName={styles.Active}
               to="/"
             >
-              <i className="fa-solid fa-house-chimney"></i>Home
+              <i className="fa-solid fa-house-chimney"></i>
+              <span className={styles.NavLinkTexts}>Home</span>
             </NavLink>
+
             {currentUser ? loggedInIcons : loggedOutIcons}
           </Nav>
         </Navbar.Collapse>
