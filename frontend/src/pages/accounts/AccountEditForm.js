@@ -15,12 +15,14 @@ import {
   useCurrentUser,
   useSetCurrentUser,
 } from "../../contexts/CurrentUserContext";
+import { useRedirect } from "../../hooks/useRedirect";
 
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 import styles from "../../styles/AccountEditForm.module.css";
 
 const AccountEditForm = () => {
+  useRedirect("loggedOut");
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   const { id } = useParams();
@@ -141,7 +143,7 @@ const AccountEditForm = () => {
         </Alert>
       ))}
       <Button
-        className={`${btnStyles.Button} ${btnStyles.Blue}`}
+        className={`${btnStyles.Button} ${btnStyles.Dark}`}
         onClick={() => history.goBack()}
       >
         cancel
@@ -174,7 +176,7 @@ const AccountEditForm = () => {
                 ))}
                 <div>
                   <Form.Label
-                    className={`${btnStyles.Button} ${btnStyles.Blue} btn my-auto`}
+                    className={`${btnStyles.Button} ${btnStyles.Dark} btn my-auto`}
                     htmlFor="image-upload"
                   >
                     Change the image
