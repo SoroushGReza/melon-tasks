@@ -14,6 +14,7 @@ import { useRedirect } from "../../hooks/useRedirect";
 
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
+import styles from "../../styles/UsernamePasswordForm.module.css";
 
 const UserPasswordForm = () => {
   useRedirect("loggedOut");
@@ -60,7 +61,7 @@ const UserPasswordForm = () => {
         <Container className={appStyles.Content}>
           <Form onSubmit={handleSubmit}>
             <Form.Group>
-              <Form.Label>New password</Form.Label>
+              <Form.Label className={styles.CustomUsernamePasswordLabel}>New password</Form.Label>
               <Form.Control
                 placeholder="new password"
                 type="password"
@@ -75,7 +76,7 @@ const UserPasswordForm = () => {
               </Alert>
             ))}
             <Form.Group>
-              <Form.Label>Confirm password</Form.Label>
+              <Form.Label className={styles.CustomUsernamePasswordLabel}>Confirm password</Form.Label>
               <Form.Control
                 placeholder="confirm new password"
                 type="password"
