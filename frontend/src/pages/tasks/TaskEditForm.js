@@ -12,6 +12,7 @@ import Upload from "../../assets/upload.png";
 
 import styles from "../../styles/TaskCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
+import btnStyles from "../../styles/Button.module.css";
 import { useHistory, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 
@@ -225,7 +226,7 @@ function TaskEditForm() {
       <Form.Group className={styles.formGroupCustom}>
         <Form.Check
           type="checkbox"
-          label="Is Overdue"
+          label="Overdue"
           name="is_overdue"
           checked={taskData.is_overdue}
           onChange={handleChange}
@@ -242,10 +243,16 @@ function TaskEditForm() {
       </Form.Group>
 
       <div className="text-center">
-        <Button className={styles.closeButton} onClick={() => history.goBack()}>
+        <Button
+          className={`${btnStyles.Button} ${btnStyles.Dark} btn my-auto`}
+          onClick={() => history.goBack()}
+        >
           cancel
         </Button>
-        <Button className={styles.editButton} type="submit">
+        <Button
+          className={`${btnStyles.Button} ${btnStyles.Green} btn my-auto`}
+          type="submit"
+        >
           save
         </Button>
       </div>
@@ -270,7 +277,7 @@ function TaskEditForm() {
 
                   <div>
                     <Form.Label
-                      className={`${styles.changeImgBtn} btn`}
+                      className={`${btnStyles.Button} ${btnStyles.Dark} btn my-auto`}
                       htmlFor="image-upload"
                     >
                       Change the image
