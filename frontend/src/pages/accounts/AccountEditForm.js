@@ -59,7 +59,6 @@ const AccountEditForm = () => {
 
     handleMount();
   }, [currentUser, history, id]);
-  
 
   const handleChange = (event) => {
     setAccountData({
@@ -196,7 +195,6 @@ const AccountEditForm = () => {
                   }}
                 />
               </Form.Group>
-              <div className="d-md-none">{textFields}</div>
             </Container>
           </Col>
           <Col md={5} lg={6} className="py-2 p-0 p-md-2 text-center">
