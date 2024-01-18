@@ -1,3 +1,5 @@
+/* Username */
+
 .Owner {
   font-weight: bold;
   color: #b22121;
@@ -6,10 +8,16 @@
   margin-top: 9px;
 }
 
+
+/* Date */
+
 .Date {
   font-weight: lighter;
   color: #3d3d3d;
 }
+
+
+/* Comment input field */
 
 .InputFieldComments {
   background-color: rgba(255, 255, 255, 0.367);
@@ -25,14 +33,34 @@
   border-radius: 3px;
 }
 
+
+/* Post comment button */
+
+.PostCommentBtn:disabled {
+  color: #fff;
+  background-color: #ff0000;
+  border: none;
+}
+
+.PostCommentBtn:disabled:hover {
+  background-color: rgb(120, 0, 0);
+  color: rgb(103, 103, 103);
+}
+
 .PostCommentBtn {
   width: auto;
   height: 38px;
-  background-color: red;
+  background-color: rgb(0, 132, 9);
   border: none;
   align-self: flex-end;
-  margin-bottom: 5px;
-  margin-right: 5px;
+  margin-bottom: 3px;
+  margin-right: 3px;
+  padding: 3px 9px 3px 9px;
+}
+
+.PostCommentBtn:hover {
+  background-color: rgb(0, 73, 5);
+  color: limegreen;
 }
 
 
@@ -47,7 +75,7 @@
   border-radius: 5px;
 }
 
-@media (max-width: 767.98px) {
+@media (max-width: 767px) {
   .InputGroup {
     flex-direction: column;
   }
