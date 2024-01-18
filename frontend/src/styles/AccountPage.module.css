@@ -13,10 +13,9 @@
 }
 
 .UsernameHeader {
-    color: whitesmoke;
-    font-family: 'Smooch Sans', sans-serif;
-    font-size: 3rem;
-    
+    color: rgba(183, 255, 0, 0.945);
+    font-family: 'Rubik Doodle Shadow', system-ui;
+    font-size: 3rem;   
 }
 
 .BioContent {
@@ -26,9 +25,28 @@
     color: rgb(255, 251, 206);
 }
 
+.CustomHR {
+    width: 35%;
+    border-color: rgba(102, 255, 0, 0.311);
+    border-width: 3px;
+    border-radius: 60%;
+}
+
 .OwnersTasks {
-    color: rgb(0, 255, 0);
-    font-size: 120%;
+    color: rgb(199, 199, 199);
+    font-family: 'Rubik Burned', system-ui;
+    font-size: 160%;
+    background-color: rgba(255, 0, 0, 0.55);
+    border-radius: 100px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    width: 70%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
 .NoTasks{
