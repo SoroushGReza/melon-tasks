@@ -8,6 +8,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 
 import { useHistory, useParams } from "react-router-dom";
+import { useRedirect } from "../../hooks/useRedirect";
 import { axiosRes } from "../../api/axiosDefaults";
 import {
   useCurrentUser,
@@ -16,8 +17,10 @@ import {
 
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
+import styles from "../../styles/UsernamePasswordForm.module.css";
 
 const UsernameForm = () => {
+  useRedirect("loggedOut");
   const [username, setUsername] = useState("");
   const [errors, setErrors] = useState({});
 
@@ -58,7 +61,7 @@ const UsernameForm = () => {
         <Container className={appStyles.Content}>
           <Form onSubmit={handleSubmit} className="my-2">
             <Form.Group>
-              <Form.Label>Change username</Form.Label>
+              <Form.Label className={styles.CustomUsernamePasswordLabel}>Change username</Form.Label>
               <Form.Control
                 placeholder="username"
                 type="text"
@@ -72,13 +75,13 @@ const UsernameForm = () => {
               </Alert>
             ))}
             <Button
-              className={`${btnStyles.Button} ${btnStyles.Blue}`}
+              className={`${btnStyles.Button} ${btnStyles.Dark}`}
               onClick={() => history.goBack()}
             >
               cancel
             </Button>
             <Button
-              className={`${btnStyles.Button} ${btnStyles.Blue}`}
+              className={`${btnStyles.Button} ${btnStyles.Green}`}
               type="submit"
             >
               save
