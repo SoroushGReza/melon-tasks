@@ -87,8 +87,6 @@ function AccountPage() {
           <h3 className={`${styles.UsernameHeader} m-2`}>
             {formatOwnerName(account?.owner)}
           </h3>
-          <Row className="justify-content-center no-gutters">
-          </Row>
         </Col>
         {account?.content && (
           <Col xs={12} md={12} className={`${styles.BioContent} p-3`}>
