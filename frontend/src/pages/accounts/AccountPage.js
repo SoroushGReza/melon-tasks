@@ -88,7 +88,6 @@ function AccountPage() {
             {formatOwnerName(account?.owner)}
           </h3>
           <Row className="justify-content-center no-gutters">
-            <Col xs={3} className="my-2"></Col>
           </Row>
         </Col>
         {account?.content && (
@@ -102,11 +101,10 @@ function AccountPage() {
 
   const mainAccountTasks = (
     <>
-      <hr />
+      <hr className={styles.CustomHR} />
       <p className={`${styles.OwnersTasks} text-center`}>
         {formatOwnerName(account?.owner)}'s tasks
       </p>
-      <hr />
       {accountTasks.results.length ? (
         <InfiniteScroll
           children={accountTasks.results.map((task) => (
