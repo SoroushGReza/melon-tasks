@@ -13,6 +13,14 @@ const Task = (props) => {
   const currentUser = useContext(CurrentUserContext);
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
+  const dueDateObj = new Date(due_date);
+  
+  // Format due date 
+  const formattedDueDate = dueDateObj.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
 
   const handleEdit = () => {
     history.push(`/tasks/${id}/edit`);
@@ -61,7 +69,7 @@ const Task = (props) => {
         </Media>
       </Card.Body>
       <Card.Body className={styles.FooterSection}>
-        <span>Due date: {due_date}</span>
+        <p className={styles.DueDateP}>Due date: <span className={styles.DueDateSpan}>{formattedDueDate}</span></p>
       </Card.Body>
     </Card>
   );
