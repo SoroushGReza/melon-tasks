@@ -28,17 +28,20 @@
     display: block;
     margin: auto;
     color: white;
-    font-size: 20px;
+    font-size: 100%;
+    font-weight: 500;
   }
   
   .Link span {
     color: #fff200;
-    font-size: 20px;
+    font-size: 100%;
+    font-weight: 600;
   }
 
   .Link span:hover {
     color: #ffffff;
-    font-size: 20px;
+    font-size: 100%;
+    font-weight: 600;
   }
   
   .Container {
