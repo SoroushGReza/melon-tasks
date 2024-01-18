@@ -27,6 +27,13 @@ function TasksPage({ message, filter = "" }) {
 
   const [query, setQuery] = useState("");
 
+  const removeTaskFromList = (taskId) => {
+    setTasks((prevTasks) => ({
+      ...prevTasks,
+      results: prevTasks.results.filter((task) => task.id !== taskId),
+    }));
+  };
+
   useEffect(() => {
     const fetchTasks = async () => {
       try {
@@ -76,7 +83,12 @@ function TasksPage({ message, filter = "" }) {
             {tasks.results.length ? (
               <InfiniteScroll
                 children={tasks.results.map((task) => (
-                  <Post key={task.id} {...task} setTasks={setTasks} />
+                  <Post
+                    key={task.id}
+                    {...task}
+                    setTasks={setTasks}
+                    onTaskDelete={removeTaskFromList}
+                  />
                 ))}
                 dataLength={tasks.results.length}
                 loader={<Asset spinner />}
