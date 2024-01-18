@@ -7,15 +7,21 @@
 
 @media screen and (max-width: 991px) {
     .AccountImage {
-        width: 250px;
-        height: 250px;
+        width: 150px;
+        height: 150px;
     }
 }
 
 .UsernameHeader {
     color: rgba(183, 255, 0, 0.945);
     font-family: 'Rubik Doodle Shadow', system-ui;
-    font-size: 3rem;   
+    font-size: 230%;
+}
+
+@media screen and (max-width: 600px) {
+    .UsernameHeader {
+        font-size: 160%;
+    }
 }
 
 .BioContent {
@@ -35,12 +41,10 @@
 .OwnersTasks {
     color: rgb(199, 199, 199);
     font-family: 'Rubik Burned', system-ui;
-    font-size: 160%;
-    background-color: rgba(255, 0, 0, 0.55);
-    border-radius: 100px;
-    padding-top: 1px;
-    padding-bottom: 1px;
-    width: 70%;
+    font-size: 140%;
+    background-color: rgba(0, 0, 0, 0.466);
+    border-radius: 18px;
+    width: 40%;
     text-align: center;
     justify-content: center;
     align-items: center;
@@ -49,6 +53,12 @@
     display: block;
 }
 
-.NoTasks{
+@media screen and (max-width: 600px) {
+    .OwnersTasks {
+        font-size: 100%;
+    }
+}
+
+.NoTasks {
     color: whitesmoke;
 }
