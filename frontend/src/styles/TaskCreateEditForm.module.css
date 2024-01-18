@@ -44,7 +44,6 @@
 
 /* Form Group elements */
 .formGroupCustom {
-  background-color: #003b003a;
   margin-bottom: 15px; 
   padding: 10px;
   border-radius: 5px;
@@ -52,8 +51,7 @@
 }
 
 /* Div element */
-.taskFormDiv {
-  background-color: #003504; 
+.taskFormDiv { 
   font-weight: bold;
   color: white;
   padding: 20px; 
