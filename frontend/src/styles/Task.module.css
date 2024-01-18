@@ -47,9 +47,23 @@ h5 {
   margin-bottom: 5px;
 }
 
+/* Responsive publicicon for smaller screens */
 
+@media (max-width: 600px) {
+  .PublicIcon {
+    font-size: 70%;
+  }
 
+  .PublicText {
+    font-size: 20%;
+  }
 
+  .PublicInfo {
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: .1rem;
+  }
+}
 
 /* Task title */
 
