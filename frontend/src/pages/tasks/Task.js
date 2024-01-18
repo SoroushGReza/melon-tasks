@@ -8,30 +8,38 @@ import { Link, useHistory } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
 
 const Task = (props) => {
-  const { id, owner, updated_at, title, content, image, due_date } = props;
+  const {
+    id,
+    owner,
+    updated_at,
+    title,
+    content,
+    image,
+    due_date,
+    onTaskDelete,
+    is_public,
+  } = props;
 
   const currentUser = useContext(CurrentUserContext);
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
   const dueDateObj = new Date(due_date);
-  
-  // Format due date 
-  const formattedDueDate = dueDateObj.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
+
+  // Format due date
+  const formattedDueDate = dueDateObj.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
   });
 
   const handleEdit = () => {
     history.push(`/tasks/${id}/edit`);
   };
 
-  const { removeTask } = props;
-
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/tasks/${id}/`);
-      removeTask();
+      onTaskDelete(id);
     } catch (err) {
       console.log(err);
     }
@@ -39,26 +47,38 @@ const Task = (props) => {
 
   return (
     <Card className={styles.Task}>
-      <Card.Body className={styles.TitleSection}>
-        <Media className="align-items-center justify-content-between">
-          {title && (
-            <Card.Title className={`text-center ${styles.taskTitle}`}>
-              {title}
-            </Card.Title>
+      <Card.Body
+        className={`${styles.TitleSection} d-flex justify-content-between`}
+      >
+        <div className={`d-flex align-items-center ${styles.TitleContainer}`}>
+          {is_public && (
+            <div className={styles.PublicInfo}>
+              <i className={`fa-solid fa-users ${styles.PublicIcon}`} />
+              <span className={styles.PublicText}>public</span>
+            </div>
           )}
-          <div className="d-flex align-items-center">
-            <span className={styles.creationDate}>{updated_at}</span>
-            {is_owner && (
-              <Card.Body>
-                <MoreDropdown
-                  handleEdit={handleEdit}
-                  handleDelete={handleDelete}
-                />
-              </Card.Body>
-            )}
-          </div>
-        </Media>
+          {title && (
+            <Link to={`/tasks/${id}`} className={styles.taskTitleLink}>
+              <Card.Title className={styles.taskTitle}>{title}</Card.Title>
+            </Link>
+          )}
+        </div>
+
+        <div
+          className={`d-flex align-items-center ${styles.DateAndDropdownContainer}`}
+        >
+          <span className={styles.creationDate}>{updated_at}</span>
+          {is_owner && (
+            <div className="ml-2">
+              <MoreDropdown
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              />
+            </div>
+          )}
+        </div>
       </Card.Body>
+
       <Link to={`/tasks/${id}`} className={styles.ImageSection}>
         {image && <Card.Img src={image} alt={title} />}
       </Link>
@@ -69,7 +89,10 @@ const Task = (props) => {
         </Media>
       </Card.Body>
       <Card.Body className={styles.FooterSection}>
-        <p className={styles.DueDateP}>Due date: <span className={styles.DueDateSpan}>{formattedDueDate}</span></p>
+        <p className={styles.DueDateP}>
+          Due date:{" "}
+          <span className={styles.DueDateSpan}>{formattedDueDate}</span>
+        </p>
       </Card.Body>
     </Card>
   );
