@@ -34,7 +34,26 @@
 
 /*  Nav links  */
 .NavLink {
-    padding: 5px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    margin-right: 5px;
+}
+
+@media (max-width: 991px) {
+    .NavLink {
+        font-size: 0.9rem;
+    }
+
+    .NavLink i {
+        margin-right: 5px;
+    }
+}
+
+@media (max-width: 768px) {
+    .NavLink {
+        font-size: 0.9rem;
+    }
 }
 
 
@@ -43,20 +62,55 @@
     color: #64ff35;
 }
 
+/* Active navlink texts */
+
+.Active .NavLinkTexts {
+    color: #15ff0076;
+}
+
 
 /* Create Task Button */
+
 .CreateTaskButton {
     background-color: #e85038;
     color: rgb(255, 255, 255);
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 2px;
     margin-left: 5px;
-    padding-right: 8px;
+    margin-right: 5px;
 }
 
 .CreateTaskButton:hover {
     background-color: #903123;
+}
+
+/* Responsive visibility for create task btn text */
+
+.CreateTaskText {
+    display: inline;
+}
+
+@media (max-width: 991px) {
+    .CreateTaskText {
+        display: none;
+    }
+
+    .CreateTaskButton {
+        padding: 3px;
+    }
+}
+
+@media (max-width: 768px) {
+    .CreateTaskButton {
+        width: 48px;
+        padding: 5px;
+        margin-top: 5px;
+    }
 }
 
 
@@ -92,6 +146,7 @@
 .SearchResultsDropdown a:hover {
     background-color: #002d02;
     color: rgba(55, 255, 0, 0.642);
+    border-radius: 4px;
 }
 
 .SearchInputContainer {
