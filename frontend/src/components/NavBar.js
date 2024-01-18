@@ -85,6 +85,7 @@ const NavBar = () => {
 
       <NavLink
         className={styles.NavLink}
+        activeClassName={styles.Active}
         to={`/accounts/${currentUser?.account_id}`}
       >
         <div>
