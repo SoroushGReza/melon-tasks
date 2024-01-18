@@ -18,7 +18,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
 
 function TaskCreateForm() {
-  useRedirect("loggedOut")
+  useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
 
   const [taskData, setTaskData] = useState({
@@ -201,7 +201,7 @@ function TaskCreateForm() {
       <Form.Group>
         <Form.Check
           type="checkbox"
-          label="Is Overdue"
+          label="Overdue"
           name="is_overdue"
           checked={is_overdue}
           onChange={handleChange}
@@ -210,17 +210,23 @@ function TaskCreateForm() {
       <Form.Group>
         <Form.Check
           type="checkbox"
-          label="Is Public"
+          label="Public"
           name="is_public"
           checked={is_public}
           onChange={handleChange}
         />
       </Form.Group>
       <div className="text-center">
-        <Button className={styles.closeButton} onClick={() => history.goBack()}>
+        <Button
+          className={`${btnStyles.Button} ${btnStyles.Dark} btn my-auto`}
+          onClick={() => history.goBack()}
+        >
           cancel
         </Button>
-        <Button className={styles.editButton} type="submit">
+        <Button
+          className={`${btnStyles.Button} ${btnStyles.Green} btn my-auto`}
+          type="submit"
+        >
           create
         </Button>
       </div>
@@ -245,7 +251,7 @@ function TaskCreateForm() {
 
                   <div>
                     <Form.Label
-                      className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
+                      className={`${btnStyles.Button} ${btnStyles.Dark} btn`}
                       htmlFor="image-upload"
                     >
                       Change the image
