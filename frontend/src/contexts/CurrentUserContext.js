@@ -23,7 +23,7 @@ export const CurrentUserProvider = ({ children }) => {
   const handleMount = useCallback(async () => {
     try {
       const { data } = await axiosRes.get(
-        `${window.location.origin}/dj-rest-auth/user/`
+        `/dj-rest-auth/user/`
       );
       setCurrentUser(data);
     } catch (err) {
@@ -40,7 +40,7 @@ export const CurrentUserProvider = ({ children }) => {
       async (config) => {
         try {
           await axios.post(
-            `${window.location.origin}/dj-rest-auth/token/refresh/`
+            `/dj-rest-auth/token/refresh/`
           );
         } catch (err) {
           setCurrentUser((prevCurrentUser) => {
@@ -64,7 +64,7 @@ export const CurrentUserProvider = ({ children }) => {
         if (err.response?.status === 401) {
           try {
             await axios.post(
-              `${window.location.origin}/dj-rest-auth/token/refresh/`
+              `/dj-rest-auth/token/refresh/`
             );
           } catch (err) {
             setCurrentUser((prevCurrentUser) => {
