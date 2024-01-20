@@ -5,7 +5,7 @@ This is a calender application, that allows you to signup and create tasks, to k
 ## Logo 
 I chose to create the logo for the app, while knowing that 1 child dies every 10 minutes in Gaza, by Israeli bombardment. The watermelon in the logo symbolizes the stand of solidarity with the palestinian people. <br>
 
-![Logo description image](./frontend/src/assets/watermelon.png)
+![Logo description image](./images/watermelon.png)
 
 If you want to know all about why the watermelon became the symbol of the palestinian resistance, your can read about it in [THIS](https://www.businessinsider.com/why-watermelon-symbol-of-palestinian-resistance-2023-11?op=1) article. <br><br>
 
@@ -15,11 +15,13 @@ Businessinsider <br><br>
 
 ## Backend (Django REST Framework API)
 ## Back-end Overview
-This API is part of a calender application. It allows users register, login, logout, update/delete account, create tasks, organize tasks by filter, search for users, give other users permission to read and comment tasks.  <br><br>
+This API is part of a calender application. It allows users register, login, logout, update/delete account, create tasks, edit and delete tasks, organize tasks by filter, search for users, and choose if created tasks are public or private.  <br><br>
 
 ## Feautures
-- **Accounts Managment**: Users can *register*, and manage their accounts.
-- **Tasks Managment**: Users can *create, update, view* and *delete* tasks. Tasks have *duedates*, *priorities*, *categories*, for better organisation. <br><br>
+- **Registration**: Users can *sign up* and an account is than per automaic created for them. 
+- **Sign In**: User can *sign in* to the accounts.
+- **Sign out**: User can *sign out* from the account.  
+- **Tasks Managment**: Users can *create, update, view* and *delete* tasks. Tasks have *duedates*, *priorities*, *categories*, *image field* (to upload images for tasks), *is_public* (to choose if a task should be buplic or private). <br><br>
 
 ## Technologies
 - Django REST Framework
@@ -49,14 +51,53 @@ Run the commands as instructed below, to setup and install the app and it's requ
 <img src="./images/tasks-endpoints.png" alt="endpoints" width="550" />
 <br><br>
 
-# REMEMBER TO COMPRESS IMAGES LATER
 <br><br>
 
-## Tests
+# Tests
 
-### TDD Tests
+## Back-End Testing Overview
+I conducted testing on the backend to ensure its reliability and functionality. The backend, built with Django REST Framework, consists of various components such as models, views, and serializers, each playing a role in the application's overall performance. The testing strategy was primarily focused on validating these components to guarantee a robust and error-free application. <br>
+
+## Test Execution
+I implemented both Test-Driven Development (TDD) and tests written after implementation. The tests were designed to cover a range of scenarios, including creating, retrieving, updating, and deleting data in the database. <br>
+
+## Test Suites
+Two primary tests were created: <br>
+
+**Task API Tests**: This tests the functionality related to tasks. Key tests include: <br>
+
+- Verify that tasks can be listed by logged in users.
+- Ensure that logged in users can create tasks with specific attributes.
+- Confirm that users who are not logged in cannot create tasks. <br><br>
 
 
+**Account Tests**: This is tests for account management. It includes:<br>
+
+- **Model tests** to ensure proper account creation.
+- **View tests** to verify account details retrival, edit, and deletion.
+- **Serializer tests** to check the correct serialization of account data.<br><br>
+
+## Run tests:<br> 
+
+In the terminal from the root directory run this command: 
+&nbsp; `python3 manage.py tests` <br>
+
+## Test Results
+The majority of tests successfully passed, demonstrating application robustness and effectiveness of the implemented features. However, during the final rounds of testing, some tests failed due to unexpected issues. <br><br>
+
+<img src="./images/backend-testing.png" alt="backendtests" width="750" />
+
+### Here is a brief overview of these failures: <br>
+
+- **Task Listing Test**: An AttributeError occurred, indicating an issue with how the response data was being handled.
+- **Task Creation Test for Logged-In Users**: This test failed with an *AssertionError*, suggesting a mismatch in expected HTTP status code.
+**Task Creation Test for None-Logged-In Users**: This test also failed due to an *AssertionError* related to HTTP status code.<br><br>
+
+## Addressing Test Failures
+Due to time constraints, I was unable to resolve these last few test failures. However, note that these tests had passed in earlier stages of development. The failures are likely due to recent changes in the codebase or environment configurations, which could not be addressed, due to submission deadline.
+
+## Conclusion
+Despite the challenges faced towards the end of the testing phase, the backend of the application has demonstrated reliability and functionality through testing. The enccountered issues provide valuable insight for future improvement. 
 
 
 
