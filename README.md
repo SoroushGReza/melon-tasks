@@ -168,8 +168,34 @@ Despite the challenges faced towards the end of the testing phase, the backend o
 
 # Front-end (React)
 ## Front-end Overview
+This front-end is built using React, to give the application an interactive user experience. <br>
 
-### React Architecture
+It provides the following functionality: <br>
+- **Sign up** - Users can register to create an personal account.<br>
+- **Sign in** - Users can than *sign in* after registration. <br>
+- **Sign out** - Users can *sign out* by using the "**Sign out**" link in the navbar.<br>
+- **Account managment** - Users can manage their personal account, by being able to update user data such as *account image* (Avatar), *bio*, *username*, *password* and to *delete* the account. <br>
+- **Task creation** - Users can create tasks, that will show in the *calendar* (Home page) when logged in. <br>
+
+There is a various number of fields to choose from when creating a task, however only three of them is required *title*, *content* and *due date*.
+
+Rest of the fields *priority*, *category*, *status*, *overdue*, *public* (is set to non-public per default) and *imagefield* (to upload images) for the task created.<br>
+
+- **Search** - Users can search other user accounts and navigate to the account and see the users public tasks. <br>
+- **Commenting** - Users can comment on other users public tasks. 
+- **Comment managment** - Users can manage their comments, by being able to *edit* and *delete* posted comments that they own. <br>
+
+- **Task managment** - Users can manage the created tasks, by being able to *edit* and *delete* tasks. <br><br>
+
+## User Feedback / Error handling: 
+
+This application gives user feedback by *Alert* messages. <br> 
+
+I would like to add more *alerts* to enhance the user experience, but due to the complexity of the project, and the timestamp to submission deadline, I had to prioritize. <br> 
+
+However for future improvements of this application, adding more user feedback, and error handling should be implemented, such as **verifying** when tasks are *created*, *edited*, *deleted*, and the same goes for the account managment, such as *registration*, acoount *deletion* and when *updating* user data. <br><br>
+
+## React Architecture
 In the development of "Melon tasks", I used React (version 17.0.2), JavaScript library for building user interfaces. The application architecture is built by modular and reusable components.
 
 ### Key React dependencies and libraries used include:
@@ -183,6 +209,18 @@ In the development of "Melon tasks", I used React (version 17.0.2), JavaScript l
 
 These dependencies highlight the focus on creating a user-friendly and interactive application, with emphasis on functionality and aesthetics. <br><br>
 
+# UI/UX Design & Features
+
+## This Application is made responsive with React bootstrap and Media queries
+<img src="./images/Responsiveness.png" alt="Responsiveness" width="750" /><br>
+
+Credits to: [ui.dev/amiresponsive](https://ui.dev/amiresponsive) where the image above was provided from. <br><br>
+
+# Color theme <br>
+
+<img src="./images/color-theme.png" alt="Color Theme" width="750" /><br>
+<br><br>
+
 ## UX Design Approach
 ### The UX design of "Melon Taks" was driven by the goal of providing a intuitive user experience. <br> 
 
@@ -194,15 +232,66 @@ Key considerations in the design process included:
 #### The application's design and development were guided by these UX principles, ensuring that *Melon Tasks* is not only functional but also enjoyable to use.
 <br><br>
 
-# UI/UX Design & Features
+# Tests
 
-## This Application is made responsive with React bootstrap and Media queries
-<img src="./images/Responsiveness.png" alt="Responsiveness" width="750" /><br>
+## Front-End Testing Overview
+To ensure the functionality and user experience of the front-end, I carried out testing using React Testing Library. This involved verifying the components, their rendering under various conditions, and the user interactions within the React-based front-end. <br>
 
-Credits to: [ui.dev/amiresponsive](https://ui.dev/amiresponsive) where the image above was provided from. <br><br>
+## Test Execution
+The tests were executed using a combination of automated testing and manual checks. Automated tests were written to simulate user interactions and to check the precence and functionality of key components in the application.
 
-# Color theme <br>
+## Test Suites
+NavBar Component Tests: <br>
+Ensuring proper rendering and interaction within the NavBar. The tests include:
 
-<img src="./images/color-theme.png" alt="Color Theme" width="750" /><br>
+- Rendering the **NavBar** as **Logged Out** User: <br>
+
+This test checks if the '*Sign In*' link is visible when the user is not logged in. <br>
+**Purpose:** To ensure that the navbar correctly reflects the login state of the user.<br><br>
+
+- Rendering Link to User *Account* for logged in Users: <br>
+
+Verifies that the '*Account*' text and icon appears for logged in users. <br>
+
+**Purpose**: To confirm that logged in users can see and access their account details through **NavBar**. <br><br>
+
+- NavBar Links After Logging Out: <br>
+
+This test indicate clicking '*Sign Out*' link, and than checking if '*Sign In*' and '*Sign Up*' links appear, simulating a user logging out. <br>
+
+**Purpose**: To ensure the **NavBar** updates to show relevant links when a user logs out. <br><br>
+
+## How to Run Tests <br>
+
+To run these tests, navigate to the '**frontend**' directory. In you terminal run:
+`cd frontend` <br>
+<img src="./images/cdfrontend.png" alt="cd frontend" width="350" /> <br>
+
+Once in the frontend directory run:
+&nbsp; `npm test` <br>
+<img src="./images/runtestcommand.png" alt="cd frontend" width="350" /> <br>
+
+Choose which tests to run. In this case we will run all tests by pressing **A** on the keyborard. <br>
+
+<img src="./images/choosetests.png" alt="cd frontend" width="350" /> <br>
+
+
+## Test Results
+The tests on the NavBar component passed successfully, which indicates the component behaves as expected under different states as user. The **NavBar** correctly shows links based on whether the user is *logged in* or *logged out*.
+<br>
+<img src="./images/runtests.png" alt="cd frontend" width="350" /> <br>
+
+## Notable Observations:
+- NavBar Rendering for logged out users: **Passed**, confirming the visibility of the '*Sign In*' link for un-authenticated users. <br>
+
+- User Account Link for logged in users: **Passed**, successfully identifying the '*Account*' text and icon for authenticated users.<br>
+
+- NavBar State  after *Log out*: **Passed**, accuratly reflected the '*Sign In*' and '*Sign Up*' links after the '*Sign Out*' was simulated. <br><br>
+
+## Conclusion
+The frontend testing, particularly for the **NavBar** component, demonstrates that the application responds correctly to user authentication states. These tests ensures a reliable and user friendly navigation experience.
+
+
+
 
 
