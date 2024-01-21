@@ -14,9 +14,14 @@ If you want to know all about why the watermelon became the symbol of the palest
 Businessinsider <br><br>
 
 # Agile Development & User Stories
-I built this application using Agile methodology.
+I built this application using Agile methodology. To keep track of all the user stories I used GitHub Projects. <br>
 
-Below is all the user stories of this project, to see the tasks for each user story, press the "**Tasks**" link.<br>
+Below is links to the full project containing all the user stories in GitHub.  
+- [*Board-view*](https://github.com/users/SoroushGReza/projects/12/views/1?layout=board) <br>
+- [*Table-view*](https://github.com/users/SoroushGReza/projects/12/views/1) <br><br>
+
+
+### Below is all the user stories of this project, to see the tasks for each user story, use the "**Tasks**" links.<br>
 
 ## Back-end user stories:
 
@@ -50,7 +55,26 @@ Below is all the user stories of this project, to see the tasks for each user st
 
 ## Future improvements user stories:
 
-&#9744; As a **Developer** I want to **make improvements for the application** so that **it is more user friendly** [**Tasks**](https://github.com/users/SoroushGReza/projects/12/views/1?layout=board&pane=issue&itemId=49267934) <br>
+&#9744; As a **Developer** I want to **make improvements for the application** so that **it is more user friendly** [**Tasks**](https://github.com/users/SoroushGReza/projects/12/views/1?layout=board&pane=issue&itemId=49267934) 
+
+**User Stories**: 
+
+&#9744; **Calendar-view**: dropdown, to choose month/year view for the calendar <br>
+&#9744; Functionality to **permit** single/several users to **view/comment** tasks that is non-public. <br>
+&#9744; **Start-time & end-time**: Add start and end time fields for tasks.<br>
+&#9744; **Notifications**: Get notifications for tasks 1 day before due date. <br>
+&#9744; **Confirmation email** sent to signed up users, with **confirmation link**. <br> 
+
+&#9744; **Task-view**: to show tasks in different layouts. (**3 layouts**) <br>
+- Layout 1: **Preview-view**, full tasks are shown in TasksPage. **(Current)** 
+- Layout 2: **List-view**, tasks shown as a list without images and full content.
+- Layout 3: **Board-view**, tasks shown as smaller previews, with 4 tasks in each row. 
+
+&#9744; **Color themes**: possibility to change application color themes <br>
+- Dark 
+- Light
+- Watermelon (**Current**) 
+- Reversed watermelon<br>
 
 ## General user stories:
 
@@ -141,9 +165,44 @@ Due to time constraints, I was unable to resolve these last few test failures. H
 ## Conclusion
 Despite the challenges faced towards the end of the testing phase, the backend of the application has demonstrated reliability and functionality through testing. The enccountered issues provide valuable insight for future improvement. <br><br>
 <br>
+
 # Front-end (React)
 ## Front-end Overview
 
+### React Architecture
+In the development of "Melon tasks", I used React (version 17.0.2), JavaScript library for building user interfaces. The application architecture is built by modular and reusable components.
 
+### Key React dependencies and libraries used include:
+
+- **React Full Calandar**: Interactive calendar.
+- **React-bootstrap and bootstrap**: Used for styling and responsive design.
+- **Axios**: Used for making HTTP requests to the back-end.
+- **React Router Dom**: Enabled navigation within the application.
+- **JWT Decode**: Assisted in decoding JWT's for authentication.
+- **React Datepicker**: For a better user interface with an interactive date picker. <br><br>
+
+These dependencies highlight the focus on creating a user-friendly and interactive application, with emphasis on functionality and aesthetics. <br><br>
+
+## UX Design Approach
+### The UX design of "Melon Taks" was driven by the goal of providing a intuitive user experience. <br> 
+
+Key considerations in the design process included:
+
+- **Simplicity and Ease of Use**: The interface was designed to be straightforward, minimizing the learning curve for new users.
+- **Responsiveness**: Using Bootstrap, the design is responsive, ensuring the app looks and functions well on various screen sizes and devices.
+- **Interactive Components**: The use of FullCalendar and React DatePicker makes the app interactive and enhance user engagement. <br>
+#### The application's design and development were guided by these UX principles, ensuring that *Melon Tasks* is not only functional but also enjoyable to use.
+<br><br>
+
+# UI/UX Design & Features
+
+## This Application is made responsive with React bootstrap and Media queries
+<img src="./images/Responsiveness.png" alt="Responsiveness" width="750" /><br>
+
+Credits to: [ui.dev/amiresponsive](https://ui.dev/amiresponsive) where the image above was provided from. <br><br>
+
+# Color theme <br>
+
+<img src="./images/color-theme.png" alt="Color Theme" width="750" /><br>
 
 
