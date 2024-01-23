@@ -5,11 +5,10 @@ from rest_framework.test import APITestCase
 from datetime import date
 
 
-# ------------- TDD TESTS -------------
-
 class TaskAPITests(APITestCase):
     def setUp(self):
-        # Create a user for the test
+        # Sets up testing environment before each test
+        # Here we create a test user and a URL for task related requests
         self.user = User.objects.create_user(
             username='testuser',
             password='hejhej'
@@ -17,58 +16,58 @@ class TaskAPITests(APITestCase):
         self.task_url = '/tasks/'
 
     def test_can_list_tasks(self):
-        # Log in before making the GET request
-        self.client.login(username='testuser', password='hejhej')
+        # This test checks if tasks can be listed by a logged in user
+        self.client.login(username='testuser', password='hejhej')  # User login
 
-        # Create a task
+        # Create a test task assigned to 'testuser'
         Task.objects.create(
             owner=self.user,
             title='Test Task',
             due_date=date.today(),
-            is_public=True  # Make sure task is public
+            is_public=True
         )
 
-        # Make a GET request to list tasks
+        # Perform GET request to list tasks and check response
         response = self.client.get(self.task_url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 1)
 
     def test_logged_in_user_can_create_task(self):
-        # Log in
-        self.client.login(username='testuser', password='hejhej')
+        # Verifies if a logged in user can create a task
+        self.client.login(username='testuser', password='hejhej')  # User login
 
-        # Make a POST request to create a task
+        # Perform POST request to create new task
         response = self.client.post(self.task_url, {
             'title': 'New Task',
             'due_date': date.today().isoformat(),
             'category': 'work',
             'priority': 'high',
-            'is_public': True  # Specify the visibility of the task
+            'is_public': True
         })
 
-        # Assert that the response code is 201 Created,
-        # indicating that the task was successfully created
+        # Check if task creation was successful
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-        # Check if the task was actually created
-        # with correct category and priority
+        # Verify the created task properties
         task = Task.objects.get(title='New Task')
-        self.assertEqual(task.category, 'work')
-        self.assertEqual(task.priority, 'high')
+        self.assertEqual(task.category, 'work')  # Check task category
+        self.assertEqual(task.priority, 'high')  # Check task priority
 
-        # Check if the task was actually created
+        # Confirm task was added to the database
         count = Task.objects.count()
-        self.assertEqual(count, 1)
+        self.assertEqual(count, 1)  # Verify one task is present in database
 
     def test_user_not_logged_in_cant_create_task(self):
-        # Make a POST request without logging in
+        # Ensure that logged out users cannot create a task
+
+        # Attempt to create task without logging in
         response = self.client.post(
             self.task_url,
             {'title': 'Another Task',
              'due_date': date.today().isoformat(),
              'is_public': True}
         )
+
+        # Check if server forbids task creation
+        # due to lack of authentication
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-
-
-# ------------- END OF TDD TESTS -------------

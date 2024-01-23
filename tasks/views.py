@@ -16,35 +16,37 @@ from django.shortcuts import get_object_or_404
 
 
 class TaskListCreate(generics.ListCreateAPIView):
+    # Specify serializer class and permission
+    # classes for the TaskListCreate view
     serializer_class = TaskSerializer
     permission_classes = [IsAuthenticated]
+    # Set up filtering, searching, and ordering for task listing
     filter_backends = [
         DjangoFilterBackend,
         filters.SearchFilter,
         filters.OrderingFilter,
     ]
+    # Define fields for filtering, searching, and ordering
     filterset_fields = ["status", "priority", "category", "owner", "is_public"]
     search_fields = ["title", "owner__username"]
     ordering_fields = ["due_date", "created_at"]
 
     def get_queryset(self):
-        # Filter to only tasks owned by the requested user and
-        # public tasks if the user is not the owner
-        requested_username = self.request.query_params.get("owner__username", None)
+        # Filter tasks based on the owner username and public visibility
+        requested_username = self.request.query_params.get(
+            "owner__username", None
+        )
         if requested_username:
             if requested_username == self.request.user.username:
-                # If the current user is the owner, return all tasks
                 return Task.objects.filter(owner__username=requested_username)
             else:
-                # If the current user is not the owner, return only public tasks of the owner
                 return Task.objects.filter(
                     owner__username=requested_username, is_public=True
                 )
-        return (
-            Task.objects.none()
-        )  # Return an empty queryset by default if no username is provided
+        return Task.objects.none()
 
     def perform_create(self, serializer):
+        # Assign logged in user as owner of a new task created
         task = serializer.save(owner=self.request.user)
         permit_usernames = self.request.data.get("permit_users", [])
         for username in permit_usernames:
@@ -61,20 +63,29 @@ class TaskDetail(APIView):
     permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
 
     def get_object(self, pk):
+        # Retrieve task and check permissions
+        # based on ownership and public status
         user = self.request.user
         task = get_object_or_404(Task, pk=pk)
-        if task.is_public or task.owner == user or user in task.permit_users.all():
+        if (
+            task.is_public or
+            task.owner == user or
+            user in task.permit_users.all()
+        ):
+
             self.check_object_permissions(self.request, task)
             return task
         else:
             raise Http404
 
     def get(self, request, pk):
+        # Handle GET request for task detail
         task = self.get_object(pk)
         serializer = TaskSerializer(task, context={"request": request})
         return Response(serializer.data)
 
     def put(self, request, pk):
+        # Handles PUT request for updating task
         task = self.get_object(pk)
         serializer = TaskSerializer(
             task, data=request.data, context={"request": request}
@@ -85,6 +96,7 @@ class TaskDetail(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk):
+        # Handles DELETE request for task
         task = self.get_object(pk)
         task.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
@@ -98,6 +110,7 @@ class UserSearchView(generics.ListAPIView):
     search_fields = ["username"]
 
     def get_queryset(self):
+        # Filter users based on a partal or full username match
         queryset = super().get_queryset()
         username = self.request.query_params.get("username", None)
         if username is not None:
@@ -105,9 +118,12 @@ class UserSearchView(generics.ListAPIView):
         return queryset
 
     def list(self, request, *args, **kwargs):
+        # Override the default list to provide custom response
         response = super(UserSearchView, self).list(request, *args, **kwargs)
         if not response.data:
-            return Response({"User not found"}, status=status.HTTP_404_NOT_FOUND)
+            return Response(
+                {"User not found"}, status=status.HTTP_404_NOT_FOUND
+            )
         return response
 
 
@@ -116,6 +132,7 @@ class CommentListCreate(generics.ListCreateAPIView):
     serializer_class = CommentSerializer
 
     def get_queryset(self):
+        # Filter comments based on specific task ID and visibility
         queryset = super().get_queryset()
         task_id = self.request.query_params.get("task_id")
         if task_id:
@@ -134,6 +151,8 @@ class CommentListCreate(generics.ListCreateAPIView):
         return queryset.none()
 
     def perform_create(self, serializer):
+        # Handle comment creation, ensuring user
+        # has permission to comment the task
         task_id = self.request.data.get("task")
         task = get_object_or_404(Task, pk=task_id)
         if (
@@ -151,3 +170,4 @@ class CommentListCreate(generics.ListCreateAPIView):
 class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
+    # Inherit default permission classes and queryset handling
