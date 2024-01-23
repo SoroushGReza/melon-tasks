@@ -1,17 +1,51 @@
-# <img src="./frontend/src/assets/logo.png" width="30" height="30"> My Plans - Calender Application
+# <img src="./frontend/src/assets/logo.png" width="30" height="30"> Melon Tasks
+
+## Table of contents
+
+> 1. [Overview](#overview)
+> 2. [Logo](#logo)
+> 3. [Setup and Installation](#setup-and-installation)
+> 4. [Agile Development & User Stories](#agile-development--user-stories)
+> 5. [Backend (Django REST Framework API)](#backend-django-rest-framework-api)
+> 6. [Tests (Backend)](#back-end-testing-overview)
+> 7. [Frontend (React)](#frontend-react)
+> 8. [UI/UX Design & Features](#uiux-design--features)
+> 9. [Tests (Frontend)](#frontend-testing-overview)
+> 10. [Deployment](#deployment)
+
+
 ## Overview
-This is a calender application, that allows you to signup and create tasks, to keep your days organized, and to make sure your not forgetting to buy a birthday gift for a loved one. You can also permit other user to be able to see see and comment your tasks. 
+This is a social calender application, that allows you to signup and create tasks, while being able to post tasks that are public that you can share with others. Users can comment their own or other users public tasks as well. Keep your days organized, while being social allows you to distance yourself from feeling bored while you go through your daily routine. 
 
 ## Logo 
 I chose to create the logo for the app, while knowing that 1 child dies every 10 minutes in Gaza, by Israeli bombardment. The watermelon in the logo symbolizes the stand of solidarity with the palestinian people. <br>
 
 ![Logo description image](./images/watermelon.png)
 
-If you want to know all about why the watermelon became the symbol of the palestinian resistance, your can read about it in [THIS](https://www.businessinsider.com/why-watermelon-symbol-of-palestinian-resistance-2023-11?op=1) article. <br><br>
+If you want to know all about why the watermelon became the symbol of the palestinian resistance, your can read about it in [THIS](https://www.businessinsider.com/why-watermelon-symbol-of-palestinian-resistance-2023-11?op=1) article published by Business Insider.<br><br>
 
+# Setup and Installation
+Run the commands as instructed below, to setup and install the app and all required packages in a new workspace. <br>
 
-## Credits for the article:
-Businessinsider <br><br>
+### Commands: 
+**1. Clone the repository:** <br>
+&nbsp; `git clone https://github.com/SoroushGReza/melon-tasks.git` <br><br>
+**2. Navigate to the project directory:** <br>
+&nbsp; `cd my-plans` <br><br>
+**3. Install dependencies:**  (**Backend**)<br>
+&nbsp; `pip3 install -r requirements.txt` <br>
+<br>
+**4. Run migrations:** <br>
+&nbsp;  `python3 manage.py makemigrations` followed by<br>
+&nbsp;  `python3 manage.py migrate`<br><br>
+
+**5. Install packages (Frontend):**<br>
+&nbsp; 1. `cd frontend` to navigate to the frontend folder.<br>
+&nbsp; 2. `npm install` to install all packages.<br>
+
+**5. Start the server:** <br>
+&nbsp; `python3 manage.py runserver` <br><br>
+
 
 # Agile Development & User Stories
 I built this application using Agile methodology. To keep track of all the user stories I used GitHub Projects. <br>
@@ -97,21 +131,6 @@ This API is part of a calender application. It allows users register, login, log
 - SQLite (for development)
 - PostgreSQL (ElephantSQL for production) <br><br>
 
-## Setup and Installation
-Run the commands as instructed below, to setup and install the app and it's requirements in a new workspace. <br>
-
-### Commands: 
-**1. Clone the repository:** <br>
-&nbsp; `git clone https://github.com/SoroushGReza/my-plans.git` <br><br>
-**2. Navigate to the project directory:** <br>
-&nbsp; `cd my-plans` <br><br>
-**3. Install dependencies:** <br>
-&nbsp; `pip3 install -r requirements.txt` <br><br>
-**4. Run migrations:** <br>
-&nbsp;  `python3 manage.py migrate` <br><br>
-**5. Start the server:** <br>
-&nbsp; `python3 manage.py runserver` <br><br>
-
 ## API Endpoints
 
 <img src="./images/my_plans_drf_api-endpoints.png" alt="endpoints" width="550" style="display-inline-block" />
@@ -166,8 +185,8 @@ Due to time constraints, I was unable to resolve these last few test failures. H
 Despite the challenges faced towards the end of the testing phase, the backend of the application has demonstrated reliability and functionality through testing. The enccountered issues provide valuable insight for future improvement. <br><br>
 <br>
 
-# Front-end (React)
-## Front-end Overview
+# Frontend (React)
+## Frontend Overview
 This front-end is built using React, to give the application an interactive user experience. <br>
 
 It provides the following functionality: <br>
@@ -234,7 +253,7 @@ Key considerations in the design process included:
 
 # Tests
 
-## Front-End Testing Overview
+## Frontend Testing Overview
 To ensure the functionality and user experience of the front-end, I carried out testing using React Testing Library. This involved verifying the components, their rendering under various conditions, and the user interactions within the React-based front-end. <br>
 
 ## Test Execution
@@ -289,9 +308,38 @@ The tests on the NavBar component passed successfully, which indicates the compo
 - NavBar State  after *Log out*: **Passed**, accuratly reflected the '*Sign In*' and '*Sign Up*' links after the '*Sign Out*' was simulated. <br><br>
 
 ## Conclusion
-The frontend testing, particularly for the **NavBar** component, demonstrates that the application responds correctly to user authentication states. These tests ensures a reliable and user friendly navigation experience.
+The frontend testing, particularly for the **NavBar** component, demonstrates that the application responds correctly to user authentication states. These tests ensures a reliable and user friendly navigation experience. <br><br>
 
+# Deployment
 
+## Backend Deployment (Django REST Framework): <br>
 
+### Database and Static Files:
 
+- The project uses *PostgreSQL* in production. Ensure the **DATABASE_URL** is set in your environment variables. <br>
+- Static files are managed by *WhiteNoise*, as configured in *settings.py*. The **STATIC_ROOT** is set to the staticfiles directory. <br>
 
+## Heroku Configuration
+
+- **Set environment variables in Heroku**: **ALLOWED_HOSTS** (*your Heroku URL without 'https://'*) and **CLIENT_ORIGIN** (*the front-end URL*). <br>
+- **Configure**: **CSRF_TRUSTED_ORIGINS** and **CORS_ALLOWED_ORIGINS** in *settings.py* to match your deployment URLs. <br>
+
+## Deployment to Heroku:
+
+- Push your code to Heroku. <br>
+- **Your Procfile should have**: <br> 
+`release: python manage.py makemigrations && python manage.py migrate and web: gunicorn my_plans_drf_api.wsgi`. <br><br>
+
+After deployment, Heroku runs this command to handle database migrations. <br>
+
+## Frontend Deployment (React): <br>
+
+### Deploying to Heroku:
+
+- Deploy the frontend to Heroku, which will automatically run the build script.
+- Ensure the *axiosDefaults.js* file correctly sets the **baseURL** to your deployed backend API. <br><br> For deployment, this URL should be the base URL of your Django API. <br>
+
+### Verification:
+
+After deployment, open the URL provided by Heroku to ensure the React app loads and connects to the backend API. <br>
+By following these steps, you should be able to deploy your frontend and backend to heroku.
