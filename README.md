@@ -9,15 +9,16 @@
 > 5. [Backend (Django REST Framework API)](#backend-django-rest-framework-api)
 > 6. [Tests (Backend)](#back-end-testing-overview)
 > 7. [Frontend (React)](#frontend-react)
-> 8. [UI/UX Design & Features](#uiux-design--features)
-> 9. [Tests (Frontend)](#frontend-testing-overview)
-> 10. [Deployment](#deployment)
+> 8. [Custom React Components](#custom-react-components)
+> 9. [UI/UX Design & Features](#uiux-design--features)
+> 10. [Tests (Frontend)](#frontend-testing-overview)
+> 11. [Deployment](#deployment)
 
 
 ## Overview
-This is a social calender application, that allows you to signup and create tasks, while being able to post tasks that are public that you can share with others. Users can comment their own or other users public tasks as well. Keep your days organized, while being social allows you to distance yourself from feeling bored while you go through your daily routine. 
+This is a social calender application, that allows you to signup and create tasks, while being able to post tasks that are public that you can share with others. Users can comment their own or other users public tasks as well. Keep your days organized, while being social allows you to distance yourself from feeling bored while you go through your daily routine.
 
-## Logo 
+## Logo
 I chose to create the logo for the app, while knowing that 1 child dies every 10 minutes in Gaza, by Israeli bombardment. The watermelon in the logo symbolizes the stand of solidarity with the palestinian people. <br>
 
 ![Logo description image](./images/watermelon.png)
@@ -27,7 +28,7 @@ If you want to know all about why the watermelon became the symbol of the palest
 # Setup and Installation
 Run the commands as instructed below, to setup and install the app and all required packages in a new workspace. <br>
 
-### Commands: 
+### Commands:
 **1. Clone the repository:** <br>
 &nbsp; `git clone https://github.com/SoroushGReza/melon-tasks.git` <br><br>
 **2. Navigate to the project directory:** <br>
@@ -50,7 +51,7 @@ Run the commands as instructed below, to setup and install the app and all requi
 # Agile Development & User Stories
 I built this application using Agile methodology. To keep track of all the user stories I used GitHub Projects. <br>
 
-Below is links to the full project containing all the user stories in GitHub.  
+Below is links to the full project containing all the user stories in GitHub.
 - [*Board-view*](https://github.com/users/SoroushGReza/projects/12/views/1?layout=board) <br>
 - [*Table-view*](https://github.com/users/SoroushGReza/projects/12/views/1) <br><br>
 
@@ -89,25 +90,25 @@ Below is links to the full project containing all the user stories in GitHub.
 
 ## Future improvements user stories:
 
-&#9744; As a **Developer** I want to **make improvements for the application** so that **it is more user friendly** [**Tasks**](https://github.com/users/SoroushGReza/projects/12/views/1?layout=board&pane=issue&itemId=49267934) 
+&#9744; As a **Developer** I want to **make improvements for the application** so that **it is more user friendly** [**Tasks**](https://github.com/users/SoroushGReza/projects/12/views/1?layout=board&pane=issue&itemId=49267934)
 
-**User Stories**: 
+**User Stories**:
 
 &#9744; **Calendar-view**: dropdown, to choose month/year view for the calendar <br>
 &#9744; Functionality to **permit** single/several users to **view/comment** tasks that is non-public. <br>
 &#9744; **Start-time & end-time**: Add start and end time fields for tasks.<br>
 &#9744; **Notifications**: Get notifications for tasks 1 day before due date. <br>
-&#9744; **Confirmation email** sent to signed up users, with **confirmation link**. <br> 
+&#9744; **Confirmation email** sent to signed up users, with **confirmation link**. <br>
 
 &#9744; **Task-view**: to show tasks in different layouts. (**3 layouts**) <br>
-- Layout 1: **Preview-view**, full tasks are shown in TasksPage. **(Current)** 
+- Layout 1: **Preview-view**, full tasks are shown in TasksPage. **(Current)**
 - Layout 2: **List-view**, tasks shown as a list without images and full content.
-- Layout 3: **Board-view**, tasks shown as smaller previews, with 4 tasks in each row. 
+- Layout 3: **Board-view**, tasks shown as smaller previews, with 4 tasks in each row.
 
 &#9744; **Color themes**: possibility to change application color themes <br>
-- Dark 
+- Dark
 - Light
-- Watermelon (**Current**) 
+- Watermelon (**Current**)
 - Reversed watermelon<br>
 
 ## General user stories:
@@ -121,8 +122,9 @@ This API is part of a calender application. It allows users register, login, log
 
 ## Features
 - **Registration**: Users can *sign up* and an account is than per automaic created for them. 
+
 - **Sign In**: User can *sign in* to the accounts.
-- **Sign out**: User can *sign out* from the account.  
+- **Sign out**: User can *sign out* from the account.
 - **Tasks Managment**: Users can *create, update, view* and *delete* tasks. Tasks have *duedates*, *priorities*, *categories*, *image field* (to upload images for tasks), *is_public* (to choose if a task should be buplic or private). <br><br>
 
 ## Technologies
@@ -162,24 +164,24 @@ Two primary tests were created: <br>
 - **View tests** to verify account details retrival, edit, and deletion.
 - **Serializer tests** to check the correct serialization of account data.<br><br>
 
-## Run tests:<br> 
+## Run tests:<br>
 
-In the terminal from the root directory run this command: 
+### First, configure the backends settings for the Django REST Framework API before running the tests. <br>
+Then in the terminal, from the root directory, run this command: <br>
 &nbsp; `python3 manage.py tests` <br>
 
 ## Test Results
-The majority of tests successfully passed, demonstrating application robustness and effectiveness of the implemented features. However, during the final rounds of testing, some tests failed due to unexpected issues. <br><br>
+The majority of tests successfully passed, demonstrating application robustness and effectiveness of the implemented features. However, during the final rounds of testing, two tests failed.
 
 <img src="./images/backend-testing.png" alt="backendtests" width="750" />
 
 ### Here is a brief overview of these failures: <br>
 
-- **Task Listing Test**: An AttributeError occurred, indicating an issue with how the response data was being handled.
 - **Task Creation Test for Logged-In Users**: This test failed with an *AssertionError*, suggesting a mismatch in expected HTTP status code.
 - **Task Creation Test for None-Logged-In Users**: This test also failed due to an *AssertionError* related to HTTP status code.<br>
 
 ## Addressing Test Failures
-Due to time constraints, I was unable to resolve these last few test failures. However, note that these tests had passed in earlier stages of development. The failures are likely due to recent changes in the codebase or environment configurations, which could not be addressed, due to submission deadline.<br>
+Due to time constraints, I was unable to resolve these last few test failures. However, note that these tests had passed in earlier stages of development. The failures are likely due to recent changes in the codebase or environment configurations, which could not be addressed before the submission deadline.<br>
 
 ## Conclusion
 Despite the challenges faced towards the end of the testing phase, the backend of the application has demonstrated reliability and functionality through testing. The enccountered issues provide valuable insight for future improvement. <br><br>
@@ -201,16 +203,16 @@ There is a various number of fields to choose from when creating a task, however
 Rest of the fields *priority*, *category*, *status*, *overdue*, *public* (is set to non-public per default) and *imagefield* (to upload images) for the task created.<br>
 
 - **Search** - Users can search other user accounts and navigate to the account and see the users public tasks. <br>
-- **Commenting** - Users can comment on other users public tasks. 
+- **Commenting** - Users can comment on other users public tasks.
 - **Comment managment** - Users can manage their comments, by being able to *edit* and *delete* posted comments that they own. <br>
 
 - **Task managment** - Users can manage the created tasks, by being able to *edit* and *delete* tasks. <br><br>
 
-## User Feedback / Error handling: 
+## User Feedback / Error handling:
 
-This application gives user feedback by *Alert* messages. <br> 
+This application gives user feedback by *Alert* messages. <br>
 
-I would like to add more *alerts* to enhance the user experience, but due to the complexity of the project, and the timestamp to submission deadline, I had to prioritize. <br> 
+I would like to add more *alerts* to enhance the user experience, but due to the complexity of the project, and the timestamp to submission deadline, I had to prioritize. <br>
 
 However for future improvements of this application, adding more user feedback, and error handling should be implemented, such as **verifying** when tasks are *created*, *edited*, *deleted*, and the same goes for the account managment, such as *registration*, acoount *deletion* and when *updating* user data. <br><br>
 
@@ -228,6 +230,82 @@ In the development of "Melon tasks", I used React (version 17.0.2), JavaScript l
 
 These dependencies highlight the focus on creating a user-friendly and interactive application, with emphasis on functionality and aesthetics. <br><br>
 
+# Custom React Components
+This is the custom React components for this application. Each component is designed to enhance user experience.
+
+## NavBar Component
+
+### [NavBar.js](https://github.com/SoroushGReza/melon-tasks/blob/main/frontend/src/components/NavBar.js)
+The **NavBar** component is the primary navigation bar of the application. It includes features like a dynamic *search bar*, navigation links that change based on the user's authentication status. The component uses *react-bootstrap* for UI, *axios* for API requests, and custom hooks for managing click events outside the component. <br>
+
+### Use in this application:
+
+#### For logged out users:
+<img src="./images/n-b-signedout.png" alt="signedoutnav" width="350" /><br>
+For the users that is not authenticated, the **NavBar** shows the following links:
+- **Home**: This page shows a calendar with a monthly view.
+- **Sign in**: Where the user can sign in to their personal account.
+- **Sign up**: Users can create a personal account by signing up. <br>
+
+#### For logged in users:
+<img src="./images/n-b-signedin.png" alt="signedinnav" width="750" /><br>
+For user that are logged in, the **NavBar** shows the following links:
+- **Create task**: Where users get directed to the **TaskCreateForm** page to create tasks.
+- **Home**: Shows the same calendar as for the logged out users, but includes the user tasks in the calendar.
+- **Tasks**: navigates to the users **TasksPage**, where all the tasks created by the logged in user is previewed.
+- **Sign out**: Signs out the user, and the user is getting navigated to the *sign in* page.
+- **Account**: This page shows the user **Account** data, and includes the user tasks that are puclic for other users to se. <br>
+
+## Asset Component
+### [Asset.js](https://github.com/SoroushGReza/melon-tasks/blob/main/frontend/src/components/Asset.js)
+The **Asset** component is a flexible component used to display different types of content, such as a loading *spinner*, *image*, or a *message*. It accepts props for *spinner*, *src*, and *message*. When the spinner prop is true, it displays a loading animation. If the src prop is provided, it renders an image with the source URL. The message prop, when present, shows a text message. This component is styled using CSS modules.
+
+### Use in this application:
+<img src="./images/assets.png" alt="assets" width="450" /><br>
+- **Primary use**: This component is used primarily as a **Spinner** animation that shows when a page and data is loading. <br>
+- **Secondary use**: for showing a small *image* and a *message* (e.g to upload images, or to show when users doesn't have public tasks in their account page) and also to show the application **Logo** in the NavBar.<br><br>
+
+##  Avatar component
+
+### [Avatar.js](https://github.com/SoroushGReza/melon-tasks/blob/main/frontend/src/components/Avatar.js)
+The **Avatar** component displays a user avatar image. It takes *src* for the image source, an optional *height* to set the image size (default 45px), and text to display with the avatar.<br>
+
+### Use in this application:
+<img src="./images/avatars.png" alt="avatars" width="750" /><br>
+- This component is used where user identification is required, like in the **NavBar** as *logged in* and the users **Account** page.
+
+## MoreDropdown Components
+
+### [MoreDropdown.js](https://github.com/SoroushGReza/melon-tasks/blob/main/frontend/src/components/MoreDropdown.js)
+This component includes two dropdowns: **AccountEditDropdown** and **MoreDropdown**.
+
+### About each dropdown, and where they are used:
+<br>
+
+**AccountEditDropdown**: Used for managing user account settings. It uses React Router *useHistory* hook for navigation and *react-bootstrap* for UI components. This dropdown allows users to navigate to account management pages such as editing the *avatar*, *bio*, account *deletion*, *username* or *password*. <br>
+<img src="./images/account-dropdown.png" alt="accounedit" width="350" /><br>
+
+**MoreDropdown**: Provides options for *editing* or *deleting* **tasks** and **comments**. It accepts *handleEdit* and *handleDelete* functions as props, which are triggered on item selection. It's a flexible component for parts in the application where item management is necessary. <br>
+<img src="./images/taskcomment-dropdown.png" alt="taskcommentedit" width="350" /><br>
+
+## MyCalendar Component
+
+### [MyCalendar.js](https://github.com/SoroushGReza/melon-tasks/blob/main/frontend/src/components/MyCalendar.js)
+MyCalendar is component using *@fullcalendar/react* for rendering a calendar view. It displays tasks by title. The component manages its state for tasks, modal visibility, and selected tasks using React **useState** and **useEffect** hooks. Clicking on a task in the calendar opens a *modal* displaying detailed task information, and provides an option to *edit* the task, enabled by React Router's **useHistory** hook.<br>
+
+### Use in this application:
+- This component is used in the **Home** page. <br>
+
+#### Calendar as a logged out user:
+<img src="./images/calendar-loggedout.png" alt="calendarloggedout" width="650" /><br>
+
+#### Calendar as a logged in user:
+<img src="./images/calendar-loggedin.png" alt="calendarloggedout" width="350" /><br>
+
+
+## [Overview of Componenets](https://github.com/SoroushGReza/melon-tasks/tree/main/frontend/src/components)
+Each of these components are designed to be modular and reusable. They are a significant part of the application and makes it more user friendly, and easier to further develop in the future. <br><br>
+
 # UI/UX Design & Features
 
 ## This Application is made responsive with React bootstrap and Media queries
@@ -241,7 +319,7 @@ Credits to: [ui.dev/amiresponsive](https://ui.dev/amiresponsive) where the image
 <br><br>
 
 ## UX Design Approach
-### The UX design of "Melon Taks" was driven by the goal of providing a intuitive user experience. <br> 
+### The UX design of "Melon Taks" was driven by the goal of providing a intuitive user experience. <br>
 
 Key considerations in the design process included:
 
@@ -310,6 +388,91 @@ The tests on the NavBar component passed successfully, which indicates the compo
 ## Conclusion
 The frontend testing, particularly for the **NavBar** component, demonstrates that the application responds correctly to user authentication states. These tests ensures a reliable and user friendly navigation experience. <br><br>
 
+# Manual Testing
+To ensure that the application works as intended, I performed manual testing. Below we will go through the steps, including print screens to show the existing functionality of the calendar application. <br>
+
+## Sign up
+As e new user you will need to sign up to access the full functionality of this application. You will do that by navigating to the "*Sign up*" page through the **Navbar**. <br>
+<img src="./images/manual-testing/signuplink.png" alt="Sign up link" width="100" /> <br>
+
+Once on the *Sign up* page, you need to choose a *username* and a *password*, and you need to *confirm password* as well for a succesfull registration. <br>
+
+#### **Notes**: 
+- If you choose a username that already exists in the database, you will see an *Alert* message. <br>
+<img src="./images/manual-testing/userexists.png" alt="User already exists" width="350" /> <br>
+If that happens, please try with another username.<br>
+
+- When choosing you password, make sure to type in the same exact password in the *confirm password* field. Otherwise you will get another *Alert* message, informing you that the passwords doesn't match. <br>
+<img src="./images/manual-testing/signup.png" alt="Sign Up" width="350" /> <br>
+
+Once you have successfully registered, you will be redirected to the *Sign in* page. <br><br>
+
+## Sign in 
+Now that you have completed the registration, its time to *sign in* into your newly created account. <br>  
+
+Just make sure to enter the correct *username* and *password*, but don't sweat it. If you type the invalid username or password, you will get notified about that as well. <br>
+<img src="./images/manual-testing/invalidcredentials.png" alt="Sign in" width="350" /> <br>
+
+Once you successfully *Sign in* you will get redirected to the Home page, and you will be able to see the NavBar links change, as you will now see the *Sign out* link, and the *Account* link now. 
+
+## Creating a task
+Now that you are logged-in, we will take a look at how you can create your first task. <br> 
+
+### How to create a task:
+1. Press the **Create task** link in the navbar. <br>
+<img src="./images/manual-testing/createtasklink.png" alt="Create task link" width="100" /> <br>
+
+2. When you press the create task link, you will be navigated to the *TaskCreateForm* page. This is where you can add relevant data from several fields, which most of is optional, except for three fields (*Title*, *Content* and *Due date*) that is required. <br>
+<img src="./images/manual-testing/required-fields.png" alt="Required fields" width="200" /> <br>
+
+3. Fill in those fields as an minimum, and update the default values of the rest of the fields as needed. Otherwise the default values will be asigned to the created task. The task is private as default, make sure to only check in the "**Public**" check-box if you want other users to be able to see your task, otherwise, it will be created as a private task, that only you can see. When feeling satisfied with the data in the form, press the **Create** button. <br>
+<img src="./images/manual-testing/publicbox.png" alt="Public check-box" width="200" /> <br>
+
+4. When the task is created, you will be redirected to the *TaskPage* for that specific task, and will now see a full preview of the task. <br>
+
+5. If the task is "**Public**" you will see this icon, next to the task title. <br>
+<img src="./images/manual-testing/publicicon.png" alt="Public icon" width="100" /> <br>
+
+6. When on the **TaskPage**, you can see others comments for the task, you can comment you own task as well. <br>
+<img src="./images/manual-testing/taskpage.png" alt="Task page" width="650" /><br><br>
+
+### How to edit a task / comment
+
+1. You can now *Edit* and *Delete* the task, and comments by using the dropdown dots. <br>
+<img src="./images/manual-testing/dropdowndots.png" alt="Dropdown dots" width="250" /> <br>
+
+2. Make sure to press the "**Save**" button after updating your data, whether its your task or comment, or the "**Cancel**" button if you chnaged your mind. <br>
+<img src="./images/manual-testing/commentedit.png" alt="Comment edit" width="650" /> <br><br>
+
+### How to search for other users
+
+1. In the search field in the navbar you can search for other registered users, when you type in the username searching for, you will see suggestions of the user with the search query. Press on the username to navigate to the *Account page* of that user. <br>
+<img src="./images/manual-testing/searchusers.png" alt="Search for users" width="350" /> <br><br>
+
+### Account Managment
+
+When you visit your "**Account**" by pressing the link in the navbar, you can manage your account by pressing the Dropdown icon, and choose to, *manage account*, *change username* or *change password*. <br>
+
+<img src="./images/manual-testing/accountpage.png" alt="Account page" width="650" /> <br><br>
+
+If you navigate to the "**account managment**" page, you will be able to change your account *avatar*, by uploading a new one, update you *bio*, but also to *delete account*. <br> 
+
+<img src="./images/manual-testing/accountmanagment.png" alt="Account managment page" width="650" /> <br><br>
+
+### How to delete your account 
+On this page you can also *delete* your account. <br>
+
+**Warning**: This action will delete **ALL** of your user data, including you tasks. <br>
+
+1. Press "**Delete account**" button. This will make a modal to pop up. <br>
+
+<img src="./images/manual-testing/modal.png" alt="Delete account modal" width="350" /> 
+
+2. If you are certain that you want to delete your account, type in your password and press the "**Delete Account**" button. <br>
+
+3. If you changed your mind just press "**Close**".
+<br><br>
+
 # Deployment
 
 ## Backend Deployment (Django REST Framework): <br>
@@ -327,7 +490,7 @@ The frontend testing, particularly for the **NavBar** component, demonstrates th
 ## Deployment to Heroku:
 
 - Push your code to Heroku. <br>
-- **Your Procfile should have**: <br> 
+- **Your Procfile should have**: <br>
 `release: python manage.py makemigrations && python manage.py migrate and web: gunicorn my_plans_drf_api.wsgi`. <br><br>
 
 After deployment, Heroku runs this command to handle database migrations. <br>
