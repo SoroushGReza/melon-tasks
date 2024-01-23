@@ -1,14 +1,10 @@
-// IMPORTANT!!
-// Because this React app is running in the same workspace as the API,
-
-// there is no need to set a separate baseURL until you reach deployment.
-
-// Setting a baseURL before you reach deployment will cause errors
 import axios from "axios";
 
-axios.defaults.baseURL = "/api";
-axios.defaults.headers.post["Content-Type"] = "multipart/form-data";
-axios.defaults.withCredentials = true;
+// Set default configurations for axios
+axios.defaults.baseURL = "/api";  // Set base URL for all axios requests to API endpoint
+axios.defaults.headers.post["Content-Type"] = "multipart/form-data";  // Set default Content type for POST requests
+axios.defaults.withCredentials = true;  // Include credentials in every request
 
-export const axiosReq = axios.create();
-export const axiosRes = axios.create();
+// Create axios instances for request and response
+export const axiosReq = axios.create();  // sending requests
+export const axiosRes = axios.create();  // handling responses

@@ -16,29 +16,42 @@ import appStyles from "../../App.module.css";
 import SignInMelon from "../../assets/melon4.png";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 
+// SignInForm to handle sign ins
 const SignInForm = () => {
+  // Custom hook to set current user context
   const setCurrentUser = useSetCurrentUser();
+  // Manage sign in form data and error
   const [signInData, setSignInData] = useState({
     username: "",
     password: "",
   });
+  // Destructure to extract username and password from signInData
   const { username, password } = signInData;
+  // useState hook for managing form errors
   const [errors, setErrors] = useState({});
   const history = useHistory();
 
+  // Handle form submission.
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    event.preventDefault(); // Prevents the default form submission
     try {
+      // POST request to the sign-in endpoint with the form data
       const response = await axios.post("/dj-rest-auth/login/", signInData);
+      // Extracts data from the response
       const data = response.data;
+      // Set current user in the context to the signed in user
       setCurrentUser(data.user);
+      // Redirect to homepage after successful sign in
       history.push("/");
     } catch (err) {
+      // Set form errors if the sign in attempt fails
       setErrors(err.response.data);
     }
   };
 
+  // Function to handle changes in form inputs
   const handleChange = (event) => {
+    // Updates signInData state with new input values
     setSignInData({
       ...signInData,
       [event.target.name]: event.target.value,

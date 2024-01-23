@@ -22,27 +22,27 @@ import appStyles from "../../App.module.css";
 import styles from "../../styles/AccountEditForm.module.css";
 
 const AccountEditForm = () => {
-  useRedirect("loggedOut");
-  const currentUser = useCurrentUser();
-  const setCurrentUser = useSetCurrentUser();
-  const { id } = useParams();
+  // Custom hook to redirect unlogged users
+  const currentUser = useCurrentUser(); // Retrieve current user data
+  const setCurrentUser = useSetCurrentUser(); // Update current user data
+  const { id } = useParams(); // Retrieve 'id' from the URL
   const history = useHistory();
-  const imageFile = useRef();
+  const imageFile = useRef(); // Ref for image file input
 
+  // State for the account data, errors from the server,
+  //modal display, and password input
   const [accountData, setAccountData] = useState({
     name: "",
     content: "",
     image: "",
   });
-  const { name, content, image } = accountData;
-
   const [errors, setErrors] = useState({});
-
   const [showModal, setShowModal] = useState(false);
   const [password, setPassword] = useState("");
 
   useEffect(() => {
     const handleMount = async () => {
+      // Checks if current user's account matches ID in the URL
       if (currentUser?.account_id?.toString() === id) {
         try {
           const { data } = await axiosReq.get(`/accounts/${id}/`);
@@ -59,14 +59,14 @@ const AccountEditForm = () => {
 
     handleMount();
   }, [currentUser, history, id]);
-
+  // Update accountData state when input fields change
   const handleChange = (event) => {
     setAccountData({
       ...accountData,
       [event.target.name]: event.target.value,
     });
   };
-
+  // Handle form submission for updating account data
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -89,7 +89,7 @@ const AccountEditForm = () => {
       setErrors(err.response?.data);
     }
   };
-
+  // Handle account deletion
   const handleDelete = async () => {
     try {
       const response = await axiosRes.delete("/delete-user/", {

@@ -32,10 +32,12 @@ const Task = (props) => {
     day: "numeric",
   });
 
+  // Handle editing and redirecting
   const handleEdit = () => {
     history.push(`/tasks/${id}/edit`);
   };
 
+  // Handles deletion of task
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/tasks/${id}/`);

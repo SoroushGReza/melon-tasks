@@ -18,15 +18,25 @@ import { fetchMoreData } from "../../utils/utils";
 import NewestAccounts from "../accounts/NewestAccounts";
 import { useRedirect } from "../../hooks/useRedirect";
 
+// TasksPage component, accepting props for an optional message and filter
 function TasksPage({ message, filter = "" }) {
+  // Redirect user if not logged in
   useRedirect("loggedOut");
+
+  // State for storing tasks and loading status
   const [tasks, setTasks] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
+
+  // Get current location path
   const { pathname } = useLocation();
+
+  // Access current user information from context
   const currentUser = useContext(CurrentUserContext);
 
+  // State to store search query
   const [query, setQuery] = useState("");
 
+  // remove task from the list by it ID
   const removeTaskFromList = (taskId) => {
     setTasks((prevTasks) => ({
       ...prevTasks,
@@ -34,17 +44,23 @@ function TasksPage({ message, filter = "" }) {
     }));
   };
 
+  // Fetch tasks when dependencies change
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const username = currentUser?.username; // Make sure currentUser and username exist
+        // Check if a user is logged in
+        const username = currentUser?.username;
         if (!username) {
           console.error("No logged-in user found!");
-          return; // Exit the function if no user is found
+          return; // Exit if no user is found
         }
+
+        // Fetch tasks data from the API
         const { data } = await axiosReq.get(
           `/tasks/?owner__username=${username}&${filter}search=${query}`
         );
+
+        // Update state with fetched tasks and set loading status
         setTasks(data);
         setHasLoaded(true);
       } catch (err) {
@@ -52,10 +68,13 @@ function TasksPage({ message, filter = "" }) {
       }
     };
 
+    // Reset loading state and set a timer to delay the fetch
     setHasLoaded(false);
     const timer = setTimeout(() => {
       fetchTasks();
-    }, 1000);
+    }, 1000); // Delayed fetch
+
+    // Cleanup function to clear the timer
     return () => {
       clearTimeout(timer);
     };

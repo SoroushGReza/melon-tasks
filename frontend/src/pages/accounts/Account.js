@@ -3,8 +3,11 @@ import styles from "../../styles/Account.module.css";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 
+// Account component
 const Account = (props) => {
+  // Destructuring props to extract 'account', 'mobile', and 'imageSize' with default value
   const { account, mobile, imageSize = 45 } = props;
+  // Ddestructuring 'account' to get 'id', 'image' and 'owner'
   const { id, image, owner } = account;
 
   return (

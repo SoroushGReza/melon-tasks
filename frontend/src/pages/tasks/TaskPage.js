@@ -14,38 +14,52 @@ import Asset from "../../components/Asset";
 import { fetchMoreData } from "../../utils/utils";
 import { useRedirect } from "../../hooks/useRedirect";
 
+// TaskPage to display a specific task and its comments
 function TaskPage() {
+  // Redirects logged out users
   useRedirect("loggedOut");
   const { id } = useParams();
   const [task, setTask] = useState({ results: [] });
+  // State to hold comments associated with the task
   const [comments, setComments] = useState({ results: [] });
+  // Retrieves current user information
   const currentUser = useCurrentUser();
 
+  // Boolean to check if the task data is loaded
   const isDataLoaded = task.results && task.results.length > 0;
+  // Extract first task data if loaded, else null
   const taskData = isDataLoaded ? task.results[0] : null;
+  // Check if current user is the owner of the task
   const isOwner = taskData && currentUser?.username === taskData.owner;
+  // Check if the task is public
   const isPublicTask = taskData && taskData.is_public;
 
+  // Clear task data from the state
   const removeTaskFromState = () => {
-    setTask({ results: [] }); // Clear task from state
+    setTask({ results: [] });
   };
 
+  // Fetch task and comments data when the component mounts or the ID changes
   useEffect(() => {
     const fetchTaskAndComments = async () => {
       try {
+        // Fetches task and comments data from the server using the task ID
         const [{ data: taskResponse }, { data: commentsResponse }] =
           await Promise.all([
             axiosReq.get(`/tasks/${id}`),
             axiosReq.get(`/comments/?task_id=${id}`),
           ]);
 
+        // Set fetched task and comments data to their respective states
         setTask({ results: [taskResponse] });
         setComments(commentsResponse);
       } catch (err) {
+        // Logs the error if the fetching fails
         console.log(err);
       }
     };
 
+    // Calls the fetch function
     fetchTaskAndComments();
   }, [id]);
 

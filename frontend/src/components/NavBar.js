@@ -12,21 +12,27 @@ import axios from "axios";
 import { axiosReq } from "../api/axiosDefaults";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 
+// Navbar component
 const NavBar = () => {
+  // For managing current user data and navbar behavior
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
 
   const navbarRef = useRef(null);
   const searchRef = useRef(null);
 
+  // managing navbar, search expansion and search functionality
   const [navbarExpanded, setNavbarExpanded] = useState(false);
   const [searchExpanded, setSearchExpanded] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
+  // Close navbar when clicking outside
   useClickOutsideToggle(() => setNavbarExpanded(false), navbarRef);
+  // Close searchbar when clicking otside
   useClickOutsideToggle(() => setSearchExpanded(false), searchRef);
 
+  // Handle search input changes and fetch results
   const handleSearchChange = async (e) => {
     const query = e.target.value;
     setSearchQuery(query);
@@ -35,6 +41,7 @@ const NavBar = () => {
       setSearchResults([]);
     } else {
       try {
+        // Fetch search result based on query
         const { data } = await axiosReq.get(`/search-users/?username=${query}`);
         setSearchResults(data.results);
         setSearchExpanded(true);
@@ -44,19 +51,22 @@ const NavBar = () => {
     }
   };
 
+  // Close search results dropdown
   const closeSearchResults = () => {
     setSearchExpanded(false);
   };
 
+  // Handle sign out
   const handleSignout = async () => {
     try {
       await axios.post("/dj-rest-auth/logout/");
-      setCurrentUser(null);
+      setCurrentUser(null); // Clear current user context
     } catch (err) {
       console.log(err);
     }
   };
 
+  // Create task icon
   const addTaskIcon = (
     <NavLink
       className={`${styles.CreateTaskButton} d-flex align-items-center`}
@@ -67,6 +77,7 @@ const NavBar = () => {
     </NavLink>
   );
 
+  // Links shown to logged in users
   const loggedInIcons = (
     <>
       <NavLink
@@ -96,6 +107,7 @@ const NavBar = () => {
     </>
   );
 
+  // Links shown to logged out users
   const loggedOutIcons = (
     <>
       <NavLink
@@ -131,34 +143,6 @@ const NavBar = () => {
             <img src={logo} alt="logo" height="45" />
           </Navbar.Brand>
         </NavLink>
-        {/* <div className={styles.SearchInputContainer} ref={searchRef}>
-          <Form inline onSubmit={(e) => e.preventDefault()}>
-            <FormControl
-              type="text"
-              placeholder="Search for users"
-              className="mr-sm-2"
-              value={searchQuery}
-              onChange={handleSearchChange}
-            />
-          </Form>
-          {searchExpanded && (
-            <div className={styles.SearchResultsDropdown}>
-              {searchResults.length > 0 ? (
-                searchResults.map((user) => (
-                  <NavLink
-                    key={user.id}
-                    to={`/accounts/${user.id}`}
-                    onClick={closeSearchResults}
-                  >
-                    {user.username}
-                  </NavLink>
-                ))
-              ) : (
-                <div className={styles.NoUserFound}>No user found</div>
-              )}
-            </div>
-          )}
-        </div> */}
         {currentUser && (
           <div className={styles.SearchInputContainer} ref={searchRef}>
             <Form inline onSubmit={(e) => e.preventDefault()}>

@@ -17,32 +17,41 @@ import {
 } from "react-bootstrap";
 import axios from "axios";
 
+// Handles user registration
 const SignUpForm = () => {
+  // redirect logged in users away from the signup page
   useRedirect("loggedIn");
+  // managing sign up form data
   const [signUpData, setSignUpData] = useState({
     username: "",
     password1: "",
     password2: "",
   });
   const { username, password1, password2 } = signUpData;
-
+  // managing form errors
   const [errors, setErrors] = useState({});
 
   const history = useHistory();
 
+  // Handle changes in form inputs
   const handleChange = (event) => {
+    // Updates signUpData state with new input values
     setSignUpData({
       ...signUpData,
       [event.target.name]: event.target.value,
     });
   };
 
+  // Handle form submission.
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    event.preventDefault(); // Prevents the default form submission
     try {
+      // POST request to the registration endpoint with the form data
       await axios.post("/dj-rest-auth/registration/", signUpData);
+      // Redirects to the sign in page after successful registration
       history.push("/signin");
     } catch (err) {
+      // Set form errors if registration attempt fails
       setErrors(err.response?.data);
     }
   };

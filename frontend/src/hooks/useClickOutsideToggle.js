@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 
+// Handle click event
 const useClickOutsideToggle = (callback, ...refs) => {
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -10,6 +11,7 @@ const useClickOutsideToggle = (callback, ...refs) => {
       }
     };
 
+    // Add event listener for mousedown events
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);

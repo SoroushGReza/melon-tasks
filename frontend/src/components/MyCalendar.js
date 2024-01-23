@@ -6,12 +6,14 @@ import { Modal, Button, Image } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import styles from "../styles/MyCalendar.module.css";
 
+// Calendar component
 const MyCalendar = ({ tasks }) => {
   const [calendarTasks, setCalendarTasks] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
   const history = useHistory();
 
+  // hook to process tasks data when prop changes
   useEffect(() => {
     const calendarTasksPreview = tasks.map((task) => ({
       title: task.title,
@@ -21,6 +23,7 @@ const MyCalendar = ({ tasks }) => {
     setCalendarTasks(calendarTasksPreview);
   }, [tasks]);
 
+  // Handle click events
   const handleEventClick = (clickInfo) => {
     const taskId = clickInfo.event.id;
     const task = tasks.find((task) => task.id.toString() === taskId);
@@ -32,6 +35,7 @@ const MyCalendar = ({ tasks }) => {
     }
   };
 
+  // Redirection after editing
   const handleEditRedirect = () => {
     history.push(`/tasks/${selectedTask.id}/edit`);
   };
@@ -79,8 +83,7 @@ const MyCalendar = ({ tasks }) => {
                 {selectedTask.is_overdue ? "Yes" : "No"}
               </p>
               <p>
-                <strong>Public:</strong>{" "}
-                {selectedTask.is_public ? "Yes" : "No"}
+                <strong>Public:</strong> {selectedTask.is_public ? "Yes" : "No"}
               </p>
               {selectedTask.image && (
                 <div>

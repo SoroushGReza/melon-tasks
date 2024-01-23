@@ -16,42 +16,46 @@ import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 import styles from "../../styles/UsernamePasswordForm.module.css";
 
+// UserPasswordForm for changing user password
 const UserPasswordForm = () => {
+  // Redirects logged out users.
   useRedirect("loggedOut");
   const history = useHistory();
   const { id } = useParams();
+  // Access current user data
   const currentUser = useCurrentUser();
 
+  // useState hook to manage form data and errors
   const [userData, setUserData] = useState({
     new_password1: "",
     new_password2: "",
   });
   const { new_password1, new_password2 } = userData;
-
   const [errors, setErrors] = useState({});
 
+  // Handle form field changes
   const handleChange = (event) => {
-    setUserData({
-      ...userData,
-      [event.target.name]: event.target.value,
-    });
+    setUserData({ ...userData, [event.target.name]: event.target.value });
   };
 
+  // Perform actions on component mount and when dependencies changes
   useEffect(() => {
+    // Redirect user if not the owner of account
     if (currentUser?.account_id?.toString() !== id) {
-      // redirect user if they are not the owner of this profile
       history.push("/");
     }
   }, [currentUser, history, id]);
 
+  // Handle form submission
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    event.preventDefault(); // Prevents default form submission action
     try {
+      // POST request to change user password
       await axiosRes.post("/dj-rest-auth/password/change/", userData);
-      history.goBack();
+      history.goBack(); // Navigate back to previous page
     } catch (err) {
       console.log(err);
-      setErrors(err.response?.data);
+      setErrors(err.response?.data); // Set any errors from the response
     }
   };
 
@@ -61,7 +65,9 @@ const UserPasswordForm = () => {
         <Container className={appStyles.Content}>
           <Form onSubmit={handleSubmit}>
             <Form.Group>
-              <Form.Label className={styles.CustomUsernamePasswordLabel}>New password</Form.Label>
+              <Form.Label className={styles.CustomUsernamePasswordLabel}>
+                New password
+              </Form.Label>
               <Form.Control
                 placeholder="new password"
                 type="password"
@@ -76,7 +82,9 @@ const UserPasswordForm = () => {
               </Alert>
             ))}
             <Form.Group>
-              <Form.Label className={styles.CustomUsernamePasswordLabel}>Confirm password</Form.Label>
+              <Form.Label className={styles.CustomUsernamePasswordLabel}>
+                Confirm password
+              </Form.Label>
               <Form.Control
                 placeholder="confirm new password"
                 type="password"

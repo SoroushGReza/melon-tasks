@@ -18,9 +18,12 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
 
 function TaskCreateForm() {
+  // Redirect user if not logged in
   useRedirect("loggedOut");
+  // State to manage form errors
   const [errors, setErrors] = useState({});
 
+  // State for managing task data
   const [taskData, setTaskData] = useState({
     title: "",
     content: "",

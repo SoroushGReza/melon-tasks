@@ -25,6 +25,7 @@ const TaskComment = (props) => {
   const is_owner = currentUser?.username === author;
   const taskId = props.task;
 
+  // Delete comments 
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/comments/${id}/`);
