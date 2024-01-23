@@ -119,7 +119,7 @@ Below is links to the full project containing all the user stories in GitHub.
 ## Back-end Overview
 This API is part of a calender application. It allows users register, login, logout, update/delete account, create tasks, edit and delete tasks, organize tasks by filter, search for users, and choose if created tasks are public or private.  <br><br>
 
-## Feautures
+## Features
 - **Registration**: Users can *sign up* and an account is than per automaic created for them. 
 - **Sign In**: User can *sign in* to the accounts.
 - **Sign out**: User can *sign out* from the account.  
