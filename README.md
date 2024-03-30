@@ -19,11 +19,7 @@
 This is a social calender application, that allows you to signup and create tasks, while being able to post tasks that are public that you can share with others. Users can comment their own or other users public tasks as well. Keep your days organized, while being social allows you to distance yourself from feeling bored while you go through your daily routine.
 
 ## Logo
-I chose to create the logo for the app, while knowing that 1 child dies every 10 minutes in Gaza, by Israeli bombardment. The watermelon in the logo symbolizes the stand of solidarity with the palestinian people. <br>
-
-![Logo description image](./images/watermelon.png)
-
-If you want to know all about why the watermelon became the symbol of the palestinian resistance, your can read about it in [THIS](https://www.businessinsider.com/why-watermelon-symbol-of-palestinian-resistance-2023-11?op=1) article published by Business Insider.<br><br>
+<br><br>
 
 # Setup and Installation
 Run the commands as instructed below, to setup and install the app and all required packages in a new workspace. <br>
