@@ -19,8 +19,7 @@
 This is a social calender application, that allows you to signup and create tasks, while being able to post tasks that are public that you can share with others. Users can comment their own or other users public tasks as well. Keep your days organized, while being social allows you to distance yourself from feeling bored while you go through your daily routine.
 
 ## Logo
-<img src="./images/logo.png" alt="logo" width="250" style="display-inline-block" />
-<br><br>
+<img src="./images/logo.png" alt="logo" width="200" style="display-inline-block" /> <br>
 
 # Setup and Installation
 Run the commands as instructed below, to setup and install the app and all required packages in a new workspace. <br>
