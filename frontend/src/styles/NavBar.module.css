@@ -1,6 +1,5 @@
 .NavBar {
-    /* background-color: rgba(0, 74, 11, 0.986); */
-    background-color: rgba(0, 0, 0, 0.986);
+    background-color: rgba(0, 74, 11, 0.986);
     position: fixed;
 }
 
@@ -95,7 +94,7 @@
 
 .CreateTaskText {
     display: inline;
-    padding-right: 8px;
+    padding-right: 5px;
 }
 
 @media (max-width: 991px) {
