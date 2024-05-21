@@ -34,7 +34,7 @@ const NewestAccounts = ({ mobile }) => {
     >
       {displayedAccounts.length ? (
         <>
-          <p className={styles.NewestUsersP}>Newest users</p>
+          <p className={styles.NewestUsersP}>Newest Users</p>
           <Row className={`${mobile ? styles.NewestAccountsMobile : ""}`}>
             {displayedAccounts.map((account) => (
               <Col key={account.id} xs={columnSize} className="mb-3">

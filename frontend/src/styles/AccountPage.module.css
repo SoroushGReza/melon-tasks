@@ -13,9 +13,12 @@
 }
 
 .UsernameHeader {
-    color: rgba(183, 255, 0, 0.945);
-    font-family: 'Rubik Doodle Shadow', system-ui;
-    font-size: 230%;
+    color: rgba(255, 255, 255, 0.87);
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 280%;
+    letter-spacing: 2px;
 }
 
 @media screen and (max-width: 600px) {
@@ -33,7 +36,7 @@
 
 .CustomHR {
     width: 35%;
-    border-color: rgba(102, 255, 0, 0.311);
+    border-color: rgba(0, 0, 0, 0.311);
     border-width: 3px;
     border-radius: 60%;
 }
@@ -42,7 +45,7 @@
     color: rgb(199, 199, 199);
     font-family: 'Rubik Burned', system-ui;
     font-size: 140%;
-    background-color: rgba(0, 0, 0, 0.466);
+    background-color: rgba(0, 69, 17, 0.466);
     border-radius: 18px;
     width: 40%;
     text-align: center;

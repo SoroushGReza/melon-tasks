@@ -1,14 +1,16 @@
 .NewestAccounts {
   background-color: rgba(0, 0, 0, 0.795);
   padding: 8px;
-  color: white;
+  color: rgba(255, 255, 255, 0.719);
 }
 
 .NewestUsersP {
-  font-family: 'Font Awesome 6 Pro';
-  font-size: 1rem;
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-size: 1.8rem;
+  letter-spacing: 2px;
   text-align: center;
-  text-shadow: 4px 4px 8px rgba(9, 255, 0, 0.68);
+  text-shadow: 4px 4px 8px rgba(130, 130, 130, 0.333);
 }
 
 /* Mobile view */
