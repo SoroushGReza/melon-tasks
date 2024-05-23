@@ -68,6 +68,7 @@ const MyCalendar = ({ tasks }) => {
         }}
         events={calendarTasks}
         eventClick={handleEventClick}
+        dayCellClassNames={styles.dayCell}
       />
 
       <Modal

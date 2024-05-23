@@ -25,11 +25,24 @@
   background-color: #023900b7;
 }
 
+/* Day cell height and overflow */
+:global(.fc .fc-daygrid-day-frame) {
+  height: 50px; /* Fixed height for day cells */
+  overflow-y: auto; /* Scroll if content overflows */
+  display: flex;
+  flex-direction: column;
+}
+
+:global(.fc .fc-daygrid-day-events) {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
 /*   Buttons   */
 :global(.fc .fc-button-primary) {
-  background-color: rgba(255, 0, 0, 0.742); 
-  border-color: rgb(164, 164, 164); 
-  color: #ffffff; 
+  background-color: rgba(255, 0, 0, 0.742);
+  border-color: rgb(164, 164, 164);
+  color: #ffffff;
 }
 
 :global(.fc .fc-button-primary:disabled) {
@@ -70,14 +83,14 @@
 
 /* Paragraphs in modal body */
 .calendarModalBody p {
-  color: #d3d3d3; 
+  color: #d3d3d3;
   margin-bottom: 2px;
   font-size: 90%;
 }
 
 /* Strong text in modal body */
 .calendarModalBody strong {
-  color: #c49600; 
+  color: #c49600;
   font-weight: bold;
   font-family: 'Noto Serif', serif;
   font-size: 100%;
@@ -86,13 +99,13 @@
 
 /* Close button */
 .closeButton {
-  background-color: #686868; 
+  background-color: #686868;
   color: white;
   border: none;
 }
 
 .closeButton:hover {
-  background-color: #7d7d7d; 
+  background-color: #7d7d7d;
   color: rgb(24, 210, 0);
   border: none;
 }
@@ -109,4 +122,3 @@
   color: rgb(24, 210, 0);
   border: none;
 }
-
