@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import Container from "react-bootstrap/Container";
-import { Modal, Button, Image } from "react-bootstrap";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import Image from "react-bootstrap/Image";
 import { useHistory } from "react-router-dom";
 import styles from "../styles/MyCalendar.module.css";
 
@@ -11,6 +13,7 @@ const MyCalendar = ({ tasks }) => {
   const [calendarTasks, setCalendarTasks] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
+  const [currentView, setCurrentView] = useState("dayGridMonth"); // State to manage current view
   const history = useHistory();
 
   // hook to process tasks data when prop changes
@@ -43,8 +46,26 @@ const MyCalendar = ({ tasks }) => {
   return (
     <Container className={`p-4 ${styles.calendarContainer}`}>
       <FullCalendar
-        plugins={[dayGridPlugin]}
-        initialView="dayGridMonth"
+        plugins={[dayGridPlugin]} // Using only the dayGrid plugin
+        initialView={currentView}
+        views={{
+          dayGridYear: {
+            type: "dayGrid",
+            duration: { year: 1 },
+            buttonText: "Year",
+          },
+        }}
+        customButtons={{
+          year: {
+            text: "Year",
+            click: () => setCurrentView("dayGridYear"),
+          },
+        }}
+        headerToolbar={{
+          left: "prev,next today",
+          center: "title",
+          right: "dayGridMonth,dayGridYear",
+        }}
         events={calendarTasks}
         eventClick={handleEventClick}
       />
