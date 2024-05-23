@@ -132,3 +132,13 @@
   color: rgb(24, 210, 0);
   border: none;
 }
+
+/* Year view month name styling */
+:global(.fc .fc-daygrid-day-number.fc-daygrid-month-start) {
+  margin-top: 3px;
+  margin-right: 3px;
+  color: #000000; 
+  font-size: 0.9rem;
+  background-color: #ffff00ac;
+  border-radius: 6px;
+}
