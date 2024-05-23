@@ -38,7 +38,17 @@
   overflow-y: auto;
 }
 
-/*   Buttons   */
+/* Task events color */
+:global(.fc .fc-event) {
+  background-color: #da00008d !important; /* Task events color */
+  border: none;
+}
+
+:global(.fc .fc-event .fc-event-title) {
+  color: #ffffff !important; /* Task events text */
+}
+
+/* Buttons */
 :global(.fc .fc-button-primary) {
   background-color: rgba(255, 0, 0, 0.742);
   border-color: rgb(164, 164, 164);
