@@ -142,5 +142,28 @@
   font-size: 0.9rem;
   background-color: #ff7b00;
   border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+@media (max-width: 715px) {
+  :global(.fc .fc-daygrid-day-number.fc-daygrid-month-start) {
+    font-size: 1.2rem; 
+    height: 100%; 
+    width: 100%; 
+    margin: 0; 
+  }
+}
+
+:global(.fc .fc-daygrid-day-frame) {
+  height: 50px;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+
 
