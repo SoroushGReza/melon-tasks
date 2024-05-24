@@ -134,29 +134,7 @@
   border: none;
 }
 
-/* Year view month name styling */
+/* Year view month 1st day text hidden */
 :global(.fc .fc-daygrid-day-number.fc-daygrid-month-start) {
-  margin-top: 3px;
-  margin-right: 3px;
-  color: #000000; 
-  font-size: 0.9rem;
-  background-color: #ff7b00;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Month start date gets a smaller font-size */
-@media (max-width: 825px) {
-  :global(.fc .fc-daygrid-day-number.fc-daygrid-month-start) {
-    font-size: 0.7rem; 
-  }
-}
-
-/* Month start date text dissapears on smaller screens */
-@media (max-width: 676px) {
-  :global(.fc .fc-daygrid-day-number.fc-daygrid-month-start) {
-    display: none;
-  }
+  display: none;
 }

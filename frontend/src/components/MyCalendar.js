@@ -17,11 +17,11 @@ const monthImages = {
   4: require("../assets/months/5may.webp"),
   5: require("../assets/months/6june.webp"),
   6: require("../assets/months/7july.webp"),
-  7: require("../assets/months/8august.png"),
-  8: require("../assets/months/9september.png"),
-  9: require("../assets/months/10october.png"),
-  10: require("../assets/months/11november.png"),
-  11: require("../assets/months/12december.png"),
+  7: require("../assets/months/8august.webp"),
+  8: require("../assets/months/9september.webp"),
+  9: require("../assets/months/10october.webp"),
+  10: require("../assets/months/11november.webp"),
+  11: require("../assets/months/12december.webp"),
 };
 
 // Calendar component
