@@ -8,6 +8,22 @@ import Image from "react-bootstrap/Image";
 import { useHistory } from "react-router-dom";
 import styles from "../styles/MyCalendar.module.css";
 
+// Show unique image for each months 1st day
+const monthImages = {
+  0: require("../assets/months/1january.webp"),
+  1: require("../assets/months/2februari.webp"),
+  2: require("../assets/months/3march.webp"),
+  3: require("../assets/months/4april.webp"),
+  4: require("../assets/months/5may.webp"),
+  5: require("../assets/months/6june.webp"),
+  6: require("../assets/months/7july.webp"),
+  7: require("../assets/months/8august.png"),
+  8: require("../assets/months/9september.png"),
+  9: require("../assets/months/10october.png"),
+  10: require("../assets/months/11november.png"),
+  11: require("../assets/months/12december.png"),
+};
+
 // Calendar component
 const MyCalendar = ({ tasks }) => {
   const [calendarTasks, setCalendarTasks] = useState([]);
@@ -16,7 +32,7 @@ const MyCalendar = ({ tasks }) => {
   const [currentView, setCurrentView] = useState("dayGridMonth"); // State to manage current view
   const history = useHistory();
 
-  // hook to process tasks data when prop changes
+  // Hook to process tasks data when prop changes
   useEffect(() => {
     const calendarTasksPreview = tasks.map((task) => ({
       title: task.title,
@@ -41,6 +57,20 @@ const MyCalendar = ({ tasks }) => {
   // Redirection after editing
   const handleEditRedirect = () => {
     history.push(`/tasks/${selectedTask.id}/edit`);
+  };
+
+  // Add background image to the first day of each month
+  const handleDayCellDidMount = (info) => {
+    const date = new Date(info.date);
+    if (date.getDate() === 1) {
+      const month = date.getMonth();
+      const imageUrl = monthImages[month];
+      if (imageUrl) {
+        info.el.style.backgroundImage = `url(${imageUrl.default})`;
+        info.el.style.backgroundSize = "cover";
+        info.el.style.backgroundPosition = "center";
+      }
+    }
   };
 
   return (
@@ -68,7 +98,7 @@ const MyCalendar = ({ tasks }) => {
         }}
         events={calendarTasks}
         eventClick={handleEventClick}
-        dayCellClassNames={styles.dayCell}
+        dayCellDidMount={handleDayCellDidMount}
       />
 
       <Modal

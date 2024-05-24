@@ -40,12 +40,13 @@
 
 /* Task events color */
 :global(.fc .fc-event) {
-  background-color: #da00008d !important; /* Task events color */
+  background-color: #008109; /* Task events color */
   border: none;
 }
 
 :global(.fc .fc-event .fc-event-title) {
-  color: #ffffff !important; /* Task events text */
+  color: #ffffff; /* Task events text */
+  font-weight: bold;
 }
 
 /* Buttons */
@@ -139,6 +140,7 @@
   margin-right: 3px;
   color: #000000; 
   font-size: 0.9rem;
-  background-color: #ffff00ac;
+  background-color: #ff7b00;
   border-radius: 6px;
 }
+
