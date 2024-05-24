@@ -27,8 +27,8 @@
 
 /* Day cell height and overflow */
 :global(.fc .fc-daygrid-day-frame) {
-  height: 50px; /* Fixed height for day cells */
-  overflow-y: auto; /* Scroll if content overflows */
+  height: 50px;
+  overflow-y: hidden;
   display: flex;
   flex-direction: column;
 }
@@ -147,23 +147,16 @@
   justify-content: center;
 }
 
-@media (max-width: 715px) {
+/* Month start date gets a smaller font-size */
+@media (max-width: 825px) {
   :global(.fc .fc-daygrid-day-number.fc-daygrid-month-start) {
-    font-size: 1.2rem; 
-    height: 100%; 
-    width: 100%; 
-    margin: 0; 
+    font-size: 0.7rem; 
   }
 }
 
-:global(.fc .fc-daygrid-day-frame) {
-  height: 50px;
-  overflow-y: hidden;
-  display: flex;
-  flex-direction: column;
+/* Month start date text dissapears on smaller screens */
+@media (max-width: 676px) {
+  :global(.fc .fc-daygrid-day-number.fc-daygrid-month-start) {
+    display: none;
+  }
 }
-
-
-
-
-
