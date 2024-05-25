@@ -60,7 +60,6 @@
   color: #333333;
 }
 
-
 /* Buttons */
 :global(.fc .fc-button-primary) {
   background-color: rgba(255, 0, 0, 0.742);
@@ -151,7 +150,6 @@
   display: none;
 }
 
-
 /* Darken background for the first day of the month if tasks exist */
 .darkenBackground::before {
   content: "";
@@ -173,4 +171,17 @@
 .darkenBackground .fc-daygrid-event {
   position: relative;
   z-index: 2;
+}
+
+/* Hide tasks on small screens */
+@media (max-width: 797px) {
+  :global(.fc .fc-daygrid-day-events) {
+    display: none;
+  }
+
+  .fa-tasks {
+    color: #00ff1a;
+    font-size: 20px;
+    cursor: pointer;
+  }
 }
