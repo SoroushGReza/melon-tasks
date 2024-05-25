@@ -116,6 +116,14 @@ const MyCalendar = ({ tasks }) => {
     console.log("Deleting task with ID:", taskId);
   };
 
+  // Function to truncate text
+  const truncateText = (text) => {
+    const maxLength = windowWidth <= 451 ? 15 : 40;
+    return text.length > maxLength
+      ? text.substring(0, maxLength) + "..."
+      : text;
+  };
+
   return (
     <Container className={`p-4 ${styles.calendarContainer}`}>
       <FullCalendar
@@ -240,7 +248,7 @@ const MyCalendar = ({ tasks }) => {
         </Modal.Header>
         <Modal.Body className={styles.taskListModalBody}>
           {selectedDate && (
-            <ul>
+            <ul className={styles.ulTaskList}>
               {tasks
                 .filter(
                   (task) =>
@@ -250,24 +258,26 @@ const MyCalendar = ({ tasks }) => {
                 .map((task) => (
                   <li key={task.id} className={styles.taskListItem}>
                     <Link to={`/tasks/${task.id}`} className={styles.taskLink}>
-                      <strong>{task.title}</strong> - {task.content}
+                      <strong>{truncateText(task.title)}</strong>
                     </Link>
-                    <Button
-                      variant="warning"
-                      size="sm"
-                      className={styles.editButton}
-                      onClick={() => handleEditRedirect(task.id)}
-                    >
-                      Edit
-                    </Button>
-                    <Button
-                      variant="danger"
-                      size="sm"
-                      className={styles.deleteButton}
-                      onClick={() => handleDelete(task.id)}
-                    >
-                      Delete
-                    </Button>
+                    <div className={styles.buttonGroup}>
+                      <Button
+                        variant="warning"
+                        size="sm"
+                        className={styles.editButton}
+                        onClick={() => handleEditRedirect(task.id)}
+                      >
+                        Edit
+                      </Button>
+                      <Button
+                        variant="danger"
+                        size="sm"
+                        className={styles.deleteButton}
+                        onClick={() => handleDelete(task.id)}
+                      >
+                        Delete
+                      </Button>
+                    </div>
                   </li>
                 ))}
             </ul>
