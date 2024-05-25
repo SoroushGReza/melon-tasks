@@ -40,12 +40,12 @@
 
 /* Task events color */
 :global(.fc .fc-event) {
-  background-color: #008109; /* Task events color */
+  background-color: #ffffff; /* Task events color */
   border: none;
 }
 
 :global(.fc .fc-event .fc-event-title) {
-  color: #ffffff; /* Task events text */
+  color: #000000; /* Task events text */
   font-weight: bold;
 }
 
