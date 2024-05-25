@@ -77,12 +77,13 @@ figure {
   width: 5px;
 }
 *::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #000000;
 }
 *::-webkit-scrollbar-thumb {
-  background: #888;
+  background: #a70000;
+  border-radius: 4px;
 }
 *::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: #860000;
 }
 
