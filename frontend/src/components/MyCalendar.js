@@ -5,7 +5,7 @@ import Container from "react-bootstrap/Container";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import styles from "../styles/MyCalendar.module.css";
 
 // Show unique image for each month's 1st day
@@ -29,6 +29,8 @@ const MyCalendar = ({ tasks }) => {
   const [calendarTasks, setCalendarTasks] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
+  const [showTaskListModal, setShowTaskListModal] = useState(false); // State for task list modal
+  const [selectedDate, setSelectedDate] = useState(null); // State for selected date
   const [currentView, setCurrentView] = useState("dayGridMonth"); // State to manage current view
   const [windowWidth, setWindowWidth] = useState(window.innerWidth); // State to track window width
   const history = useHistory();
@@ -97,9 +99,21 @@ const MyCalendar = ({ tasks }) => {
     }
   };
 
+  // Handle icon click for task list
+  const handleIconClick = (date) => {
+    setSelectedDate(date);
+    setShowTaskListModal(true);
+  };
+
   // Redirection after editing
-  const handleEditRedirect = () => {
-    history.push(`/tasks/${selectedTask.id}/edit`);
+  const handleEditRedirect = (taskId) => {
+    history.push(`/tasks/${taskId}/edit`);
+  };
+
+  // Handle task delete
+  const handleDelete = (taskId) => {
+    // Implement task delete here
+    console.log("Deleting task with ID:", taskId);
   };
 
   return (
@@ -138,7 +152,7 @@ const MyCalendar = ({ tasks }) => {
               {windowWidth <= 797 && tasksOnDate.length > 0 && (
                 <i
                   className="fas fa-tasks"
-                  onClick={() => setShowModal(true)}
+                  onClick={() => handleIconClick(date)}
                 ></i>
               )}
             </>
@@ -146,6 +160,7 @@ const MyCalendar = ({ tasks }) => {
         }}
       />
 
+      {/* Task details modal */}
       <Modal
         show={showModal}
         onHide={() => setShowModal(false)}
@@ -204,10 +219,67 @@ const MyCalendar = ({ tasks }) => {
           </Button>
           <Button
             variant="primary"
-            onClick={handleEditRedirect}
+            onClick={() => handleEditRedirect(selectedTask.id)}
             className={styles.editButton}
           >
             Edit Task
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Task list modal */}
+      <Modal
+        show={showTaskListModal}
+        onHide={() => setShowTaskListModal(false)}
+        className={styles.taskListModal}
+      >
+        <Modal.Header closeButton className={styles.taskListModalHeader}>
+          <Modal.Title>
+            Tasks on {selectedDate ? selectedDate.toDateString() : ""}
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className={styles.taskListModalBody}>
+          {selectedDate && (
+            <ul>
+              {tasks
+                .filter(
+                  (task) =>
+                    new Date(task.due_date).toDateString() ===
+                    selectedDate.toDateString()
+                )
+                .map((task) => (
+                  <li key={task.id} className={styles.taskListItem}>
+                    <Link to={`/tasks/${task.id}`} className={styles.taskLink}>
+                      <strong>{task.title}</strong> - {task.content}
+                    </Link>
+                    <Button
+                      variant="warning"
+                      size="sm"
+                      className={styles.editButton}
+                      onClick={() => handleEditRedirect(task.id)}
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      variant="danger"
+                      size="sm"
+                      className={styles.deleteButton}
+                      onClick={() => handleDelete(task.id)}
+                    >
+                      Delete
+                    </Button>
+                  </li>
+                ))}
+            </ul>
+          )}
+        </Modal.Body>
+        <Modal.Footer className={styles.taskListModalFooter}>
+          <Button
+            variant="secondary"
+            onClick={() => setShowTaskListModal(false)}
+            className={styles.closeButton}
+          >
+            Close
           </Button>
         </Modal.Footer>
       </Modal>
