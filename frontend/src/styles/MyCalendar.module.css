@@ -40,14 +40,26 @@
 
 /* Task events color */
 :global(.fc .fc-event) {
-  background-color: #ffffff; /* Task events color */
+  background-color: #ffffff;
   border: none;
 }
 
+/* Event hover */
+:global(.fc .fc-event:hover) {
+  background-color: #dedede;
+}
+
+/* Task events text */
 :global(.fc .fc-event .fc-event-title) {
-  color: #000000; /* Task events text */
+  color: #000000;
   font-weight: bold;
 }
+
+/* Event text hover */
+:global(.fc .fc-event:hover .fc-event-title) {
+  color: #333333;
+}
+
 
 /* Buttons */
 :global(.fc .fc-button-primary) {
@@ -148,13 +160,17 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7); /* Darkness of overlay */
-  z-index: 1; /* Place over above BG image */
-  pointer-events: none; /* Ensure overlay doesnt interfere clicking */
+  background-color: rgba(0, 0, 0, 0.7);
+  /* Darkness of overlay */
+  z-index: 1;
+  /* Place over above BG image */
+  pointer-events: none;
+  /* Ensure overlay doesnt interfere clicking */
 }
 
 /* Ensure text is above the overlay */
-.darkenBackground .fc-daygrid-day-number, .darkenBackground .fc-daygrid-event {
+.darkenBackground .fc-daygrid-day-number,
+.darkenBackground .fc-daygrid-event {
   position: relative;
   z-index: 2;
 }
