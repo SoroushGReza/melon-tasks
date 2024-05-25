@@ -163,12 +163,13 @@
 }
 
 .taskLink {
+  font-family: 'Noto Serif', serif;
   color: #cceeff;
   text-decoration: none;
 }
 
 .taskLink:hover {
-  text-decoration: underline;
+  color: #a0b8c4;
 }
 
 /* Close button */
@@ -179,21 +180,21 @@
 }
 
 .closeButton:hover {
-  background-color: #7d7d7d;
-  color: rgb(24, 210, 0);
+  background-color: #484848;
+  color: rgb(161, 161, 161);
   border: none;
 }
 
 /* Edit Task button */
 .editButton {
-  background-color: #740000;
-  color: white;
+  background-color: #0a9a00;
+  color: rgb(0, 0, 0);
   border: none;
 }
 
 .editButton:hover {
-  background-color: #8a0000;
-  color: rgb(24, 210, 0);
+  background-color: #087800;
+  color: rgb(0, 0, 0);
   border: none;
 }
 
