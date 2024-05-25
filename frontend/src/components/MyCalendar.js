@@ -8,7 +8,7 @@ import Image from "react-bootstrap/Image";
 import { useHistory } from "react-router-dom";
 import styles from "../styles/MyCalendar.module.css";
 
-// Show unique image for each months 1st day
+// Show unique image for each month's 1st day
 const monthImages = {
   0: require("../assets/months/1january.webp"),
   1: require("../assets/months/2februari.webp"),
@@ -42,6 +42,39 @@ const MyCalendar = ({ tasks }) => {
     setCalendarTasks(calendarTasksPreview);
   }, [tasks]);
 
+  useEffect(() => {
+    const handleFirstDayCellCheck = () => {
+      const allDayCells = document.querySelectorAll(".fc-daygrid-day");
+
+      allDayCells.forEach((dayCell) => {
+        const date = new Date(dayCell.dataset.date);
+        if (date.getDate() === 1) {
+          const month = date.getMonth();
+          const imageUrl = monthImages[month];
+          if (imageUrl) {
+            dayCell.style.backgroundImage = `url(${imageUrl.default})`;
+            dayCell.style.backgroundSize = "cover";
+            dayCell.style.backgroundPosition = "center";
+            dayCell.style.position = "relative";
+
+            // Check if there are tasks on the first day of the month
+            const tasksOnFirstDay = tasks.filter(
+              (task) =>
+                new Date(task.due_date).toDateString() === date.toDateString()
+            );
+
+            // Add class to darken the background if tasks exist
+            if (tasksOnFirstDay.length > 0) {
+              dayCell.classList.add(styles.darkenBackground);
+            }
+          }
+        }
+      });
+    };
+
+    handleFirstDayCellCheck();
+  }, [tasks]);
+
   // Handle click events
   const handleEventClick = (clickInfo) => {
     const taskId = clickInfo.event.id;
@@ -59,24 +92,10 @@ const MyCalendar = ({ tasks }) => {
     history.push(`/tasks/${selectedTask.id}/edit`);
   };
 
-  // Add background image to the first day of each month
-  const handleDayCellDidMount = (info) => {
-    const date = new Date(info.date);
-    if (date.getDate() === 1) {
-      const month = date.getMonth();
-      const imageUrl = monthImages[month];
-      if (imageUrl) {
-        info.el.style.backgroundImage = `url(${imageUrl.default})`;
-        info.el.style.backgroundSize = "cover";
-        info.el.style.backgroundPosition = "center";
-      }
-    }
-  };
-
   return (
     <Container className={`p-4 ${styles.calendarContainer}`}>
       <FullCalendar
-        plugins={[dayGridPlugin]} // Using only the dayGrid plugin
+        plugins={[dayGridPlugin]}
         initialView={currentView}
         views={{
           dayGridYear: {
@@ -98,7 +117,6 @@ const MyCalendar = ({ tasks }) => {
         }}
         events={calendarTasks}
         eventClick={handleEventClick}
-        dayCellDidMount={handleDayCellDidMount}
       />
 
       <Modal
