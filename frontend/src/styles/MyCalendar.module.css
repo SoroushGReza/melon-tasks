@@ -88,7 +88,6 @@
   color: white;
 }
 
-
 /* Task Details Modal */
 
 .calendarModal {
@@ -129,7 +128,6 @@
   margin-bottom: 2px;
 }
 
-
 /* Task List Modal */
 
 .taskListModal {
@@ -155,6 +153,13 @@
   border-top: none;
 }
 
+/* Task list UL elemnt */
+
+.ulTaskList {
+  padding-left: 0px;
+}
+
+/* Task list item */
 .taskListItem {
   display: flex;
   justify-content: space-between;
@@ -170,6 +175,12 @@
 
 .taskLink:hover {
   color: #a0b8c4;
+}
+
+/* Button group for edit and delete buttons */
+.buttonGroup {
+  display: flex;
+  gap: 5px;
 }
 
 /* Close button */
