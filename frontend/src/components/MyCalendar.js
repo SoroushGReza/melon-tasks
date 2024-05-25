@@ -30,6 +30,7 @@ const MyCalendar = ({ tasks }) => {
   const [showModal, setShowModal] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
   const [currentView, setCurrentView] = useState("dayGridMonth"); // State to manage current view
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth); // State to track window width
   const history = useHistory();
 
   // Hook to process tasks data when prop changes
@@ -75,6 +76,15 @@ const MyCalendar = ({ tasks }) => {
     handleFirstDayCellCheck();
   }, [tasks]);
 
+  // Handle window resize
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   // Handle click events
   const handleEventClick = (clickInfo) => {
     const taskId = clickInfo.event.id;
@@ -117,6 +127,23 @@ const MyCalendar = ({ tasks }) => {
         }}
         events={calendarTasks}
         eventClick={handleEventClick}
+        dayCellContent={({ date }) => {
+          const tasksOnDate = tasks.filter(
+            (task) =>
+              new Date(task.due_date).toDateString() === date.toDateString()
+          );
+          return (
+            <>
+              <div className="fc-daygrid-day-number">{date.getDate()}</div>
+              {windowWidth <= 797 && tasksOnDate.length > 0 && (
+                <i
+                  className="fas fa-tasks"
+                  onClick={() => setShowModal(true)}
+                ></i>
+              )}
+            </>
+          );
+        }}
       />
 
       <Modal
@@ -128,7 +155,7 @@ const MyCalendar = ({ tasks }) => {
           <Modal.Title>Task Details</Modal.Title>
         </Modal.Header>
         <Modal.Body className={styles.calendarModalBody}>
-          {selectedTask && (
+          {windowWidth > 797 && selectedTask && (
             <>
               <p>
                 <strong>Title:</strong> {selectedTask.title}
@@ -165,6 +192,7 @@ const MyCalendar = ({ tasks }) => {
               )}
             </>
           )}
+          {windowWidth <= 797 && <p>Task list of this day.</p>}
         </Modal.Body>
         <Modal.Footer className={styles.calendarModalFooter}>
           <Button
