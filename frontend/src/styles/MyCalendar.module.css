@@ -15,9 +15,16 @@
   width: 80vw;
 }
 
-/* Days font color */
+/* Dates in calendar */
+:global(.fc .fc-daygrid-day-top){
+  height: 20%;
+}
+
+/* Days date */
 :global(.fc .fc-daygrid-day-number) {
   color: #00ff1a;
+  padding: 0;
+  padding-right: 4px;
 }
 
 /* Current day background */
@@ -33,12 +40,14 @@
   flex-direction: column;
 }
 
+/* Day cell events */
 :global(.fc .fc-daygrid-day-events) {
   flex-grow: 1;
   overflow-y: auto;
+  padding-top: 2px;
 }
 
-/* Task events color */
+/* Day cell events color */
 :global(.fc .fc-event) {
   background-color: #ffffff;
   border: none;
@@ -158,12 +167,9 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  /* Darkness of overlay */
-  z-index: 1;
-  /* Place over above BG image */
-  pointer-events: none;
-  /* Ensure overlay doesnt interfere clicking */
+  background-color: rgba(0, 0, 0, 0.7); /* Darkness of overlay */
+  z-index: 1; /* Place over above BG image */
+  pointer-events: none; /* Ensure overlay doesnt interfere clicking */
 }
 
 /* Ensure text is above the overlay */
