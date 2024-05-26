@@ -48,7 +48,11 @@ function App() {
       <NavBar />
       <Container className={styles.Main}>
         <Switch>
-          <Route exact path="/" render={() => <MyCalendar tasks={tasks} />} />
+          <Route
+            exact
+            path="/"
+            render={() => <MyCalendar tasks={tasks} setTasks={setTasks} />}
+          />
           <Route
             exact
             path="/alltasks"
