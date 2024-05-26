@@ -7,6 +7,7 @@ import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
 import { useHistory, Link } from "react-router-dom";
 import styles from "../styles/MyCalendar.module.css";
+import { axiosReq } from "../api/axiosDefaults";
 
 // Show unique image for each month's 1st day
 const monthImages = {
@@ -25,7 +26,7 @@ const monthImages = {
 };
 
 // Calendar component
-const MyCalendar = ({ tasks }) => {
+const MyCalendar = ({ tasks, setTasks }) => {
   const [calendarTasks, setCalendarTasks] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
@@ -110,10 +111,25 @@ const MyCalendar = ({ tasks }) => {
     history.push(`/tasks/${taskId}/edit`);
   };
 
+  // Remove task from the list by its ID
+  const removeTaskFromList = (taskId) => {
+    setTasks((prevTasks) => ({
+      ...prevTasks,
+      results: prevTasks.results.filter((task) => task.id !== taskId),
+    }));
+    setCalendarTasks((prevTasks) =>
+      prevTasks.filter((task) => task.id !== taskId)
+    );
+  };
+
   // Handle task delete
-  const handleDelete = (taskId) => {
-    // Implement task delete here
-    console.log("Deleting task with ID:", taskId);
+  const handleDelete = async (taskId) => {
+    try {
+      await axiosReq.delete(`/tasks/${taskId}/`);
+      removeTaskFromList(taskId);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   // Function to truncate text
