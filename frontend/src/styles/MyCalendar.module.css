@@ -2,17 +2,40 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0;
+}
+
+/* Ensure FullCalendar takes full width of its div*/
+.fc .fc-media-screen.fc-direction-ltr.fc-theme-standard {
+  width: 100%;
 }
 
 /* Calendar page header */
 :global(.fc .fc-header-toolbar) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #000000;
+  justify-content: space-between;
 }
 
-/*  Calendar size & Background  */
+/*  Calendar screen width & Background colour  */
 :global(.fc .fc-view-harness) {
   background-color: #383838;
-  width: 80vw;
+  width: 90vw;
+}
+
+/* Media Query for calender size on smaller screens */
+@media (max-width: 797px) {
+  :global(.fc .fc-view-harness) {
+    width: 99vw;
+  }
+
+/* Media Query for toolbar on smaller screens */
+  :global(.fc .fc-header-toolbar) {
+    margin-left: 2%;
+    margin-right: 2%;
+  }
 }
 
 /* Dates in calendar */
