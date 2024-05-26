@@ -17,7 +17,7 @@ import { useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
 
-function TaskCreateForm() {
+function TaskCreateForm({ setTasks }) {
   // Redirect user if not logged in
   useRedirect("loggedOut");
   // State to manage form errors
@@ -99,7 +99,8 @@ function TaskCreateForm() {
 
     try {
       const { data } = await axiosReq.post("/tasks/", formData);
-      history.push(`/tasks/${data.id}`);
+      setTasks((prevTasks) => [...prevTasks, data]);
+      history.push("/");
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) setErrors(err.response?.data);
