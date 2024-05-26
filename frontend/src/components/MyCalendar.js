@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import Container from "react-bootstrap/Container";
@@ -36,7 +36,17 @@ const MyCalendar = ({ tasks, setTasks }) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth); // State to track window width
   const history = useHistory();
 
-  // Hook to process tasks data when prop changes
+  // Hook to fetch tasks again
+  const fetchTasks = useCallback(async () => {
+    try {
+      const { data } = await axiosReq.get("/tasks/");
+      setTasks(data.results);
+    } catch (err) {
+      console.log(err);
+    }
+  }, [setTasks]);
+
+  // Fetch tasks on initial load and when tasks change
   useEffect(() => {
     const calendarTasksPreview = tasks.map((task) => ({
       title: task.title,
@@ -45,6 +55,18 @@ const MyCalendar = ({ tasks, setTasks }) => {
     }));
     setCalendarTasks(calendarTasksPreview);
   }, [tasks]);
+
+  // Handle updates on page navigation
+  useEffect(() => {
+    const unlisten = history.listen((location) => {
+      if (location.pathname === "/") {
+        fetchTasks();
+      }
+    });
+    return () => {
+      unlisten();
+    };
+  }, [history, fetchTasks]);
 
   useEffect(() => {
     const handleFirstDayCellCheck = () => {
