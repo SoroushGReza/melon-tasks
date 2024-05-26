@@ -113,10 +113,7 @@ const MyCalendar = ({ tasks, setTasks }) => {
 
   // Remove task from the list by its ID
   const removeTaskFromList = (taskId) => {
-    setTasks((prevTasks) => ({
-      ...prevTasks,
-      results: prevTasks.results.filter((task) => task.id !== taskId),
-    }));
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
     setCalendarTasks((prevTasks) =>
       prevTasks.filter((task) => task.id !== taskId)
     );
