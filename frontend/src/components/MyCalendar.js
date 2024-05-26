@@ -2,6 +2,8 @@ import React, { useEffect, useState, useCallback } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
@@ -193,10 +195,17 @@ const MyCalendar = ({ tasks, setTasks }) => {
             <>
               <div className="fc-daygrid-day-number">{date.getDate()}</div>
               {windowWidth <= 797 && tasksOnDate.length > 0 && (
-                <i
-                  className="fas fa-tasks"
-                  onClick={() => handleIconClick(date)}
-                ></i>
+                <Container fluid className="mt-5">
+                  <Row>
+                    <Col xs={6} className="mt-2">
+                      <i
+                        className={`fas fa-tasks task-list-icon`}
+                        onClick={() => handleIconClick(date)}
+                      ></i>
+                    </Col>
+                    <Col xs={6}></Col>
+                  </Row>
+                </Container>
               )}
             </>
           );
