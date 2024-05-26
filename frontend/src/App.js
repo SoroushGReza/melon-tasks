@@ -66,10 +66,18 @@ function App() {
           />
           <Route exact path="/signin" render={() => <SignInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
-          <Route exact path="/tasks/create" render={() => <TaskCreateForm />} />
+          <Route
+            exact
+            path="/tasks/create"
+            render={() => <TaskCreateForm setTasks={setTasks} />}
+          />
           <Route exact path="/tasks/:id" render={() => <TaskPage />} />
           <Route exact path="/tasks" render={() => <TasksPage />} />
-          <Route exact path="/tasks/:id/edit" render={() => <TaskEditForm />} />
+          <Route
+            exact
+            path="/tasks/:id/edit"
+            render={() => <TaskEditForm setTasks={setTasks} />}
+          />
           <Route exact path="/accounts/:id" render={() => <AccountPage />} />
           <Route
             exact
