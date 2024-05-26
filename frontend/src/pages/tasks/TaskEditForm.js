@@ -16,7 +16,7 @@ import btnStyles from "../../styles/Button.module.css";
 import { useHistory, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 
-function TaskEditForm() {
+function TaskEditForm({ setTasks }) {
   const [errors, setErrors] = useState({});
 
   const [taskData, setTaskData] = useState({
@@ -120,8 +120,11 @@ function TaskEditForm() {
     formData.append("is_public", is_public);
 
     try {
-      await axiosReq.put(`/tasks/${id}/`, formData);
-      history.push(`/tasks/${id}`);
+      const { data } = await axiosReq.put(`/tasks/${id}/`, formData);
+      setTasks((prevTasks) =>
+        prevTasks.map((task) => (task.id === data.id ? data : task))
+      );
+      history.push("/");
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) setErrors(err.response?.data);
