@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import Post from "./Task";
+import Task from "./Task";
 import Asset from "../../components/Asset";
 
 import Form from "react-bootstrap/Form";
@@ -17,6 +17,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import NewestAccounts from "../accounts/NewestAccounts";
 import { useRedirect } from "../../hooks/useRedirect";
+import MyCalendar from "../../components/MyCalendar";
 
 // TasksPage component, accepting props for an optional message and filter
 function TasksPage({ message, filter = "" }) {
@@ -102,7 +103,7 @@ function TasksPage({ message, filter = "" }) {
             {tasks.results.length ? (
               <InfiniteScroll
                 children={tasks.results.map((task) => (
-                  <Post
+                  <Task
                     key={task.id}
                     {...task}
                     setTasks={setTasks}
@@ -120,6 +121,7 @@ function TasksPage({ message, filter = "" }) {
                 <p>No tasks created yet</p>
               </Container>
             )}
+            <MyCalendar tasks={tasks.results} setTasks={setTasks} />
           </>
         ) : (
           <Container className={appStyles.Content}>
