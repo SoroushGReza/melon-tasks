@@ -121,7 +121,6 @@ function TasksPage({ message, filter = "" }) {
                 <p>No tasks created yet</p>
               </Container>
             )}
-            <MyCalendar tasks={tasks.results} setTasks={setTasks} />
           </>
         ) : (
           <Container className={appStyles.Content}>
