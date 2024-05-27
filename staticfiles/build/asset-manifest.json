@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.d103ef2f.chunk.css",
-    "main.js": "/static/js/main.1434959c.chunk.js",
-    "main.js.map": "/static/js/main.1434959c.chunk.js.map",
+    "main.css": "/static/css/main.d1ede44f.chunk.css",
+    "main.js": "/static/js/main.b83da629.chunk.js",
+    "main.js.map": "/static/js/main.b83da629.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.a43b0d73.js",
     "runtime-main.js.map": "/static/js/runtime-main.a43b0d73.js.map",
     "static/js/2.89f8bf18.chunk.js": "/static/js/2.89f8bf18.chunk.js",
@@ -10,7 +10,7 @@
     "static/js/3.8158d6cd.chunk.js": "/static/js/3.8158d6cd.chunk.js",
     "static/js/3.8158d6cd.chunk.js.map": "/static/js/3.8158d6cd.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.d103ef2f.chunk.css.map": "/static/css/main.d103ef2f.chunk.css.map",
+    "static/css/main.d1ede44f.chunk.css.map": "/static/css/main.d1ede44f.chunk.css.map",
     "static/js/2.89f8bf18.chunk.js.LICENSE.txt": "/static/js/2.89f8bf18.chunk.js.LICENSE.txt",
     "static/media/10october.webp": "/static/media/10october.62739035.webp",
     "static/media/11november.webp": "/static/media/11november.8ee7261e.webp",
@@ -33,7 +33,7 @@
   "entrypoints": [
     "static/js/runtime-main.a43b0d73.js",
     "static/js/2.89f8bf18.chunk.js",
-    "static/css/main.d103ef2f.chunk.css",
-    "static/js/main.1434959c.chunk.js"
+    "static/css/main.d1ede44f.chunk.css",
+    "static/js/main.b83da629.chunk.js"
   ]
 }
