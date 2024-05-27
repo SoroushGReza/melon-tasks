@@ -103,13 +103,13 @@
 
 
 /* Task List Icon For Modal */
-:global(i.fas.fa-tasks) {
+:global(i.fa-solid.fa-calendar-check) {
   font-size: 35px;
 }
 
 /* Smaller icon size for screens 500px or smaller*/
 @media (max-width: 500px) {
-  :global(i.fas.fa-tasks) {
+  :global(i.fa-solid.fa-calendar-check) {
     font-size: 20px;
     padding: 2px;
   }
@@ -117,7 +117,7 @@
 
 /* Smaller icon size for screens 360px or smaller */
 @media (max-width: 360px) {
-  :global(i.fas.fa-tasks) {
+  :global(i.fa-solid.fa-calendar-check) {
     font-size: 15px;
     padding: 2px;
   }
