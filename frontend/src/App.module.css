@@ -9,16 +9,16 @@
 }
 
 .Content {
-  background-color: #007a25;
+  background-color: rgba(3, 39, 0, 0.564);
   padding: 10px;
   border-radius: 2px;
-  border: 1px solid #00ff4d91;
 }
 
 .FillerImage {
   object-fit: cover;
   height: 100%;
   width: 100%;
+  border-radius: 2px;
 }
 
 .Image {
@@ -38,11 +38,11 @@ a {
 
 a:hover {
   text-decoration: none;
-  color: #64ff35;
+  color: white;
 }
 
 a:hover i {
-  color: #64ff35;
+  color: white;
   transition: color ease-in-out 0.3s;
 }
 

@@ -7,6 +7,7 @@
   margin-left: 2px;
   margin-right: 2px;
   min-width: 75px;
+  
 }
 
 .Button:hover {
@@ -24,7 +25,7 @@
 }
 
 .Button:focus {
-  background-color: #d9ff00;
+  background-color: #51ff00;
 }
 
 .Wide {
@@ -38,7 +39,7 @@
 .Dark,
 .DarkOutline:hover,
 .Bright:hover {
-  background-color: #042400;
+  background-color: #282828;
   color: rgb(255, 255, 255);
 }
 
@@ -60,7 +61,6 @@
 
 .RedOutline,
 .Red:hover {
-  border: 1px solid yellow;
   background-color: #ffffff;
   color: #2142b2;
 }
@@ -70,13 +70,12 @@
 .Green,
 .GreenOutline:hover,
 .Bright:hover {
-  background-color: rgb(153, 255, 0);
-  color: rgb(0, 0, 0);
+  background-color: #76a937;
+  color: #000000;
 }
 
 .GreenOutline,
 .Green:hover {
-  border: 1px solid rgb(153, 255, 0);
   background-color: #ffffff;
   color: #2142b2;
 }
@@ -94,6 +93,6 @@
 }
 
 .Bright {
-  background-color: #093500;
-  color: #ffffff;
+  background-color: #8dbd56;
+  color: #1b1b1b;
 }
