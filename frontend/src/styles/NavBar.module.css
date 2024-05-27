@@ -133,9 +133,20 @@
     color: #64ff35;
 }
 
+/* Search Input Field NavBar */
+.SearchInputContainer {
+    position: relative;
+    display: inline-block;
+}
 
-/* Navbar search for users */
+/* Search Input Field on smaller screens */
+@media (max-width: 414px) {
+    .SearchInputContainer {
+        width: 50%;
+    }
+}
 
+/* Search results dropdown */
 .SearchResultsDropdown {
     position: absolute;
     background-color: rgba(99, 0, 0, 0.979);
@@ -156,11 +167,6 @@
     background-color: #002d02;
     color: rgba(55, 255, 0, 0.642);
     border-radius: 4px;
-}
-
-.SearchInputContainer {
-    position: relative;
-    display: inline-block;
 }
 
 .NoUserFound {
