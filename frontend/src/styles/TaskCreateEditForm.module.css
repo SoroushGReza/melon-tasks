@@ -1,18 +1,11 @@
 .Container {
   min-height: 343px;
-  background-color: rgba(10, 78, 0, 0.354);
+  background-color: rgba(3, 39, 0, 0.564);
   border: none;
   color: rgb(255, 255, 255);
   font-weight: bolder;
-}
-
-
-.taskForm {
-  padding: 20px;
-  background-color: #0000002b;
   border-radius: 10px;
 }
-
 
 /* Close button */
 .closeButton {
