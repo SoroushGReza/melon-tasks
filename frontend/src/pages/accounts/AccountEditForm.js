@@ -121,7 +121,7 @@ const AccountEditForm = () => {
   const textFields = (
     <>
       <Form.Group>
-        <Form.Label className={styles.BioLabel}>Bio</Form.Label>
+        <Form.Label className={styles.BioLabel}>Status</Form.Label>
         <Form.Control
           as="textarea"
           value={content}
