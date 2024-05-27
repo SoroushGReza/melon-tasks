@@ -125,13 +125,13 @@
 
 /* Buttons */
 :global(.fc .fc-button-primary) {
-  background-color: rgba(255, 0, 0, 0.742);
+  background-color: #ba1b26;
   border-color: rgb(164, 164, 164);
   color: #ffffff;
 }
 
 :global(.fc .fc-button-primary:disabled) {
-  background-color: rgb(174, 0, 0);
+  background-color: #ba1b26;
   border-color: rgb(164, 164, 164);
   color: white;
 }
