@@ -53,6 +53,7 @@
 @media (max-width: 768px) {
     .NavLink {
         font-size: 0.9rem;
+        margin-bottom: 10px;
     }
 }
 
@@ -72,7 +73,7 @@
 /* Create Task Button */
 
 .CreateTaskButton {
-    background-color: #e85038;
+    background-color: #dc202c;
     color: rgb(255, 255, 255);
     border: none;
     border-radius: 5px;
@@ -87,7 +88,7 @@
 }
 
 .CreateTaskButton:hover {
-    background-color: #903123;
+    background-color: #ba1b26;
 }
 
 /* Responsive visibility for create task btn text */
@@ -95,6 +96,11 @@
 .CreateTaskText {
     display: inline;
     padding-right: 5px;
+    color: #e5e5e5;
+}
+
+.CreateTaskText:hover {
+    color: white;
 }
 
 @media (max-width: 991px) {
@@ -111,7 +117,8 @@
     .CreateTaskButton {
         width: 48px;
         padding: 5px;
-        margin-top: 5px;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 }
 
