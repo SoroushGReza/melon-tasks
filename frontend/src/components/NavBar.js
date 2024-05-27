@@ -71,6 +71,7 @@ const NavBar = () => {
     <NavLink
       className={`${styles.CreateTaskButton} d-flex align-items-center`}
       to="/tasks/create"
+      onClick={() => setNavbarExpanded(false)}
     >
       <i className="fa-solid fa-calendar-plus"></i>
       <span className={`${styles.CreateTaskText}`}>Create task</span>
@@ -84,12 +85,20 @@ const NavBar = () => {
         activeClassName={styles.Active}
         className={styles.NavLink}
         to="/tasks"
+        onClick={() => setNavbarExpanded(false)}
       >
         <i className="fa-solid fa-list-check"></i>
         <span className={styles.NavLinkTexts}>Tasks</span>
       </NavLink>
 
-      <NavLink className={styles.NavLink} to="/" onClick={handleSignout}>
+      <NavLink
+        className={styles.NavLink}
+        to="/"
+        onClick={() => {
+          handleSignout();
+          setNavbarExpanded(false);
+        }}
+      >
         <i className="fa-solid fa-right-from-bracket"></i>
         <span className={styles.NavLinkTexts}>Sign out</span>
       </NavLink>
@@ -98,6 +107,7 @@ const NavBar = () => {
         className={styles.NavLink}
         activeClassName={styles.Active}
         to={`/accounts/${currentUser?.account_id}`}
+        onClick={() => setNavbarExpanded(false)}
       >
         <div>
           <Avatar src={currentUser?.account_image} height={40} />
@@ -114,6 +124,7 @@ const NavBar = () => {
         className={styles.NavLink}
         activeClassName={styles.Active}
         to="/signin"
+        onClick={() => setNavbarExpanded(false)}
       >
         <i className="fa-solid fa-right-to-bracket"></i>
         <span className={styles.NavLinkTexts}>Sign in</span>
@@ -122,6 +133,7 @@ const NavBar = () => {
         className={styles.NavLink}
         activeClassName={styles.Active}
         to="/signup"
+        onClick={() => setNavbarExpanded(false)}
       >
         <i className="fa-solid fa-user-plus"></i>
         <span className={styles.NavLinkTexts}>Sign up</span>
@@ -138,7 +150,7 @@ const NavBar = () => {
       ref={navbarRef}
     >
       <Container>
-        <NavLink to="/">
+        <NavLink to="/" onClick={() => setNavbarExpanded(false)}>
           <Navbar.Brand>
             <img src={logo} alt="logo" height="45" />
           </Navbar.Brand>
@@ -161,7 +173,10 @@ const NavBar = () => {
                     <NavLink
                       key={user.id}
                       to={`/accounts/${user.id}`}
-                      onClick={closeSearchResults}
+                      onClick={() => {
+                        closeSearchResults();
+                        setNavbarExpanded(false);
+                      }}
                     >
                       {user.username}
                     </NavLink>
@@ -186,6 +201,7 @@ const NavBar = () => {
               className={styles.NavLink}
               activeClassName={styles.Active}
               to="/"
+              onClick={() => setNavbarExpanded(false)}
             >
               <i className="fa-solid fa-house-chimney"></i>
               <span className={styles.NavLinkTexts}>Home</span>
