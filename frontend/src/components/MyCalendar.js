@@ -94,6 +94,8 @@ const MyCalendar = ({ tasks, setTasks }) => {
             // Add class to darken the background if tasks exist
             if (tasksOnFirstDay.length > 0) {
               dayCell.classList.add(styles.darkenBackground);
+            } else {
+              dayCell.classList.remove(styles.darkenBackground);
             }
           }
         }
@@ -101,7 +103,21 @@ const MyCalendar = ({ tasks, setTasks }) => {
     };
 
     handleFirstDayCellCheck();
-  }, [tasks]);
+
+    const observer = new MutationObserver(handleFirstDayCellCheck);
+    const config = { childList: true, subtree: true };
+
+    const calendarElement = document.querySelector(".fc-daygrid");
+    if (calendarElement) {
+      observer.observe(calendarElement, config);
+    }
+
+    return () => {
+      if (calendarElement) {
+        observer.disconnect();
+      }
+    };
+  }, [tasks, currentView]);
 
   // Handle window resize
   useEffect(() => {
@@ -199,7 +215,7 @@ const MyCalendar = ({ tasks, setTasks }) => {
                   <Row>
                     <Col xs={6} className="mt-2">
                       <i
-                        className={`fas fa-tasks task-list-icon`}
+                        className={`fa-solid fa-calendar-check task-list-icon`}
                         onClick={() => handleIconClick(date)}
                       ></i>
                     </Col>
