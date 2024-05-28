@@ -164,6 +164,7 @@ const MyCalendar = ({ tasks, setTasks }) => {
     try {
       await axiosReq.delete(`/tasks/${taskId}/`);
       removeTaskFromList(taskId);
+      setShowModal(false); // Close the modal after deletion
     } catch (err) {
       console.log(err);
     }
@@ -291,6 +292,13 @@ const MyCalendar = ({ tasks, setTasks }) => {
             className={styles.editButton}
           >
             Edit Task
+          </Button>
+          <Button
+            variant="danger"
+            onClick={() => handleDelete(selectedTask.id)}
+            className={styles.deleteButton}
+          >
+            Delete Task
           </Button>
         </Modal.Footer>
       </Modal>
