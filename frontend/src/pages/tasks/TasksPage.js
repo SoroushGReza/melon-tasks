@@ -17,7 +17,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import NewestAccounts from "../accounts/NewestAccounts";
 import { useRedirect } from "../../hooks/useRedirect";
-import MyCalendar from "../../components/MyCalendar";
 
 // TasksPage component, accepting props for an optional message and filter
 function TasksPage({ message, filter = "" }) {
