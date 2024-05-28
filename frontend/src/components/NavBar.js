@@ -1,9 +1,9 @@
 import React, { useState, useRef } from "react";
 import { Form } from "react-bootstrap";
 import { FormControl } from "react-bootstrap";
-import Navbar from "react-bootstrap";
-import Container from "react-bootstrap";
-import Nav from "react-bootstrap";
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
 import logo from "../assets/logo.png";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
