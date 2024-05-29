@@ -291,9 +291,10 @@
 }
 
 /* Year view month 1st day text hidden */
-:global(.fc .fc-daygrid-day-number.fc-daygrid-month-start) {
+:global(.fc .fc-daygrid-month-start .fc-daygrid-day-number) {
   display: none;
 }
+
 
 /* Darken background for the first day of the month if tasks exist */
 .darkenBackground::before {
