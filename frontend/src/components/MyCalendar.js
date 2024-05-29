@@ -34,7 +34,9 @@ const MyCalendar = ({ tasks, setTasks }) => {
   const [selectedTask, setSelectedTask] = useState(null);
   const [showTaskListModal, setShowTaskListModal] = useState(false); // State for task list modal
   const [selectedDate, setSelectedDate] = useState(null); // State for selected date
-  const [currentView, setCurrentView] = useState("dayGridMonth"); // State to manage current view
+  const [currentView, setCurrentView] = useState(
+    localStorage.getItem("calendarView") || "dayGridMonth"
+  ); // State to manage current view
   const [windowWidth, setWindowWidth] = useState(window.innerWidth); // State to track window width
   const history = useHistory();
 
@@ -128,6 +130,12 @@ const MyCalendar = ({ tasks, setTasks }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Save current view to local storage when it changes
+  const handleViewChange = (view) => {
+    setCurrentView(view);
+    localStorage.setItem("calendarView", view);
+  };
+
   // Handle click events
   const handleEventClick = (clickInfo) => {
     const taskId = clickInfo.event.id;
@@ -193,7 +201,11 @@ const MyCalendar = ({ tasks, setTasks }) => {
         customButtons={{
           year: {
             text: "Year",
-            click: () => setCurrentView("dayGridYear"),
+            click: () => handleViewChange("dayGridYear"),
+          },
+          month: {
+            text: "Month",
+            click: () => handleViewChange("dayGridMonth"),
           },
         }}
         headerToolbar={{
@@ -203,6 +215,7 @@ const MyCalendar = ({ tasks, setTasks }) => {
         }}
         events={calendarTasks}
         eventClick={handleEventClick}
+        datesSet={(dateInfo) => handleViewChange(dateInfo.view.type)} // Capture view change
         dayCellContent={({ date }) => {
           const tasksOnDate = tasks.filter(
             (task) =>
